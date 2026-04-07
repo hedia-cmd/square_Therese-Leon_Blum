@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Square Thérèse et Léon Blum — Parcours artistique</title>
+  <meta
+    name="description"
+    content="Parcours artistique et outil de médiation numérique du square Thérèse et Léon Blum."
+  />
+
+  <style>
+    :root{
+      --bg:#08111f;
+      --bg-soft:#0f1b2d;
+      --panel:#132238;
+      --panel-2:#182b45;
+      --text:#eef4ff;
+      --muted:#aec0d8;
+      --line:rgba(255,255,255,.10);
+      --accent:#53d0c8;
+      --accent-2:#f0c86e;
+      --danger:#ff7f7f;
+      --shadow:0 14px 40px rgba(0,0,0,.28);
+      --radius-xl:24px;
+      --radius-lg:18px;
+      --radius-md:14px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(83,208,200,.10), transparent 28%),
+        linear-gradient(180deg, #07101b 0%, #0a1524 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .section{
+      padding:72px 0;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:.9rem;
+      background:rgba(255,255,255,.03);
+    }
+
+    .section-head{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-bottom:28px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:clamp(1.8rem, 4vw, 2.8rem);
+      line-height:1.06;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:760px;
+    }
+
+    /* Header */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter: blur(12px);
+      background:rgba(7,16,27,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .site-header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      min-height:72px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.01em;
+    }
+
+    .brand-badge{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), #6f8dff);
+      box-shadow:var(--shadow);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+
+    .nav a{
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .nav a:hover{color:var(--text)}
+
+    .menu-btn{
+      display:none;
+      width:44px;
+      height:44px;
+      border:none;
+      border-radius:12px;
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+    }
+
+    /* Hero */
+    .hero{
+      padding:84px 0 56px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero h1{
+      margin:14px 0 18px;
+      font-size:clamp(2.3rem, 6vw, 4.8rem);
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .hero p{
+      margin:0 0 26px;
+      color:var(--muted);
+      font-size:1.06rem;
+      max-width:650px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      transition:.2s ease;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent), #7edce0);
+      color:#04212a;
+      border:none;
+      font-weight:700;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .hero-card{
+      position:relative;
+      overflow:hidden;
+      min-height:460px;
+      border-radius:30px;
+      background:
+        linear-gradient(180deg, rgba(8,17,31,.08), rgba(8,17,31,.42)),
+        url('assets/hero.jpg') center/cover no-repeat;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card-overlay{
+      position:absolute;
+      inset:auto 18px 18px 18px;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(6,14,25,.68);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .hero-card-overlay h3{
+      margin:0 0 8px;
+      font-size:1.1rem;
+    }
+
+    .hero-card-overlay p{
+      margin:0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    /* Quick links */
+    .quick-links{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .quick-link{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      padding:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:18px;
+      min-height:120px;
+    }
+
+    .quick-link strong{
+      font-size:1rem;
+    }
+
+    .quick-link span{
+      color:var(--muted);
+      font-size:.93rem;
+    }
+
+    /* Cards / grids */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .card-body{
+      padding:18px;
+    }
+
+    .card h3,.card h4{
+      margin:0 0 8px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .artist-card img,
+    .portrait-card img,
+    .figure-card img{
+      aspect-ratio: 4 / 3;
+      object-fit:cover;
+      width:100%;
+    }
+
+    .tag{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:.82rem;
+      margin-bottom:10px;
+      background:rgba(255,255,255,.04);
+    }
+
+    /* Project */
+    .project-layout{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    .project-panel{
+      padding:22px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+    }
+
+    .project-panel p{color:var(--muted)}
+
+    .zones{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .zone{
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+    }
+
+    .zone strong{display:block;margin-bottom:4px}
+    .zone span{color:var(--muted);font-size:.95rem}
+
+    /* Videos */
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    .video-card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:20px;
+      overflow:hidden;
+    }
+
+    .video-embed{
+      position:relative;
+      width:100%;
+      aspect-ratio:16 / 9;
+      background:#000;
+    }
+
+    .video-embed iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .video-meta{
+      padding:14px 16px 18px;
+    }
+
+    .video-meta h3{
+      margin:0 0 6px;
+      font-size:1rem;
+    }
+
+    .video-meta p{
+      margin:0;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    /* Gallery */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:12px;
+    }
+
+    .gallery-item{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid var(--line);
+      cursor:pointer;
+      background:#0d1828;
+    }
+
+    .gallery-item img{
+      width:100%;
+      aspect-ratio:1 / 1;
+      object-fit:cover;
+      transition:transform .35s ease;
+    }
+
+    .gallery-item:hover img{
+      transform:scale(1.04);
+    }
+
+    .gallery-caption{
+      position:absolute;
+      inset:auto 10px 10px 10px;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:.88rem;
+      background:rgba(7,16,27,.76);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      background:rgba(0,0,0,.88);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+    }
+
+    .lightbox.open{display:flex}
+
+    .lightbox-content{
+      max-width:min(1000px, 100%);
+      max-height:100%;
+      position:relative;
+    }
+
+    .lightbox img{
+      max-height:78vh;
+      width:auto;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    .lightbox-close{
+      position:absolute;
+      top:-14px;
+      right:-14px;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:none;
+      background:#fff;
+      color:#000;
+      font-size:1.2rem;
+      cursor:pointer;
+    }
+
+    /* Quiz */
+    .quiz-box{
+      padding:22px;
+      background:linear-gradient(180deg, rgba(83,208,200,.08), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:22px;
+    }
+
+    .quiz-question{
+      margin-bottom:18px;
+      padding-bottom:18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .quiz-question:last-child{
+      border-bottom:none;
+      padding-bottom:0;
+      margin-bottom:0;
+    }
+
+    .quiz-question h4{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .quiz-options{
+      display:grid;
+      gap:10px;
+    }
+
+    .quiz-options label{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      cursor:pointer;
+    }
+
+    .quiz-result{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:16px;
+      display:none;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:var(--text);
+    }
+
+    /* Memory */
+    .memory-wrap{
+      display:grid;
+      gap:16px;
+    }
+
+    .memory-toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .memory-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .memory-card{
+      position:relative;
+      aspect-ratio:1 / 1;
+      border:none;
+      background:none;
+      padding:0;
+      cursor:pointer;
+      perspective:1000px;
+    }
+
+    .memory-card-inner{
+      position:relative;
+      width:100%;
+      height:100%;
+      transition:transform .45s ease;
+      transform-style:preserve-3d;
+    }
+
+    .memory-card.is-flipped .memory-card-inner,
+    .memory-card.is-matched .memory-card-inner{
+      transform:rotateY(180deg);
+    }
+
+    .memory-face{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .memory-front{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg, #10324e, #1f4963);
+      font-size:2rem;
+    }
+
+    .memory-back{
+      transform:rotateY(180deg);
+      background:#101b2d;
+    }
+
+    .memory-back img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .memory-status{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    /* Footer */
+    footer{
+      padding:40px 0 60px;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid,
+      .project-layout,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .video-grid,
+      .gallery-grid,
+      .quick-links{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .memory-grid{
+        grid-template-columns:repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        display:none;
+        position:absolute;
+        top:72px;
+        left:16px;
+        right:16px;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:16px;
+        border-radius:18px;
+        background:#0e1b2d;
+        border:1px solid var(--line);
+      }
+
+      .nav.open{display:flex}
+      .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+
+      .hero{
+        padding-top:48px;
+      }
+
+      .hero-grid,
+      .project-layout,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .video-grid,
+      .gallery-grid,
+      .quick-links{
+        grid-template-columns:1fr;
+      }
+
+      .memory-grid{
+        grid-template-columns:repeat(3, 1fr);
+      }
+
+      .hero-card{
+        min-height:320px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .memory-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+
+      .container{
+        width:min(var(--max), calc(100% - 22px));
+      }
+
+      .section{
+        padding:56px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-badge"></span>
+        <span>Square Thérèse et Léon Blum</span>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <a href="#projet">Le projet</a>
+        <a href="#artistes">Les artistes</a>
+        <a href="#portraits">Portraits</a>
+        <a href="#videos">Vidéos</a>
+        <a href="#ateliers">Ateliers</a>
+        <a href="#jouer">Jouer</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Parcours artistique · médiation numérique · QR code</span>
+          <h1>Explorez le square autrement</h1>
+          <p>
+            Découvrez les artistes, les portraits, les ateliers et les références qui composent ce projet.
+            Une expérience mobile simple, visuelle et ludique à parcourir sur place.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projet">Commencer la visite</a>
+            <a class="btn btn-secondary" href="#jouer">Jouer</a>
+          </div>
+
+          <div class="quick-links">
+            <a href="#artistes" class="quick-link">
+              <strong>Rencontrer les artistes</strong>
+              <span>Biographies, démarches, œuvres</span>
+            </a>
+            <a href="#portraits" class="quick-link">
+              <strong>Voir les portraits</strong>
+              <span>Galerie et points de regard</span>
+            </a>
+            <a href="#videos" class="quick-link">
+              <strong>Regarder les vidéos</strong>
+              <span>4 capsules courtes intégrées</span>
+            </a>
+            <a href="#ateliers" class="quick-link">
+              <strong>Découvrir les ateliers</strong>
+              <span>Galerie photo sur site</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-overlay">
+            <h3>À remplacer</h3>
+            <p>
+              Remplacez cette image par un visuel fort du square ou d’une fresque.
+              Fichier attendu : <strong>assets/hero.jpg</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projet" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Le projet</span>
+          <h2>Un parcours entre art, mémoire et espace public</h2>
+          <p>
+            Remplacez ici par votre texte d’introduction. Cette section présente le square,
+            l’esprit du projet, les enjeux artistiques, patrimoniaux et participatifs.
+          </p>
+        </div>
+
+        <div class="project-layout">
+          <div class="project-panel">
+            <h3>Présentation</h3>
+            <p>
+              Texte libre. Vous pouvez ici raconter la logique générale du projet,
+              son inscription dans le quartier, son lien aux habitants et la manière
+              dont les œuvres transforment le regard porté sur le lieu.
+            </p>
+            <p>
+              Vous pouvez aussi ajouter un court paragraphe sur la médiation,
+              les portraits, les ateliers et les usages du square.
+            </p>
+          </div>
+
+          <div class="project-panel">
+            <h3>Les 3 zones</h3>
+            <div class="zones">
+              <div class="zone">
+                <strong>Zone 1</strong>
+                <span>Remplacer par le nom, l’artiste ou la description.</span>
+              </div>
+              <div class="zone">
+                <strong>Zone 2</strong>
+                <span>Remplacer par le nom, l’artiste ou la description.</span>
+              </div>
+              <div class="zone">
+                <strong>Zone 3</strong>
+                <span>Remplacer par le nom, l’artiste ou la description.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="artistes" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Les artistes</span>
+          <h2>Des univers différents, un même lieu à habiter</h2>
+          <p>
+            Remplacez textes et visuels. Dupliquez ou retirez des cartes selon votre sélection finale.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card artist-card">
+            <img src="assets/artiste-1.jpg" alt="Artiste 1">
+            <div class="card-body">
+              <span class="tag">Artiste</span>
+              <h3>Koralie</h3>
+              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+            </div>
+          </article>
+
+          <article class="card artist-card">
+            <img src="assets/artiste-2.jpg" alt="Artiste 2">
+            <div class="card-body">
+              <span class="tag">Artiste</span>
+              <h3>Claire Rémy</h3>
+              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+            </div>
+          </article>
+
+          <article class="card artist-card">
+            <img src="assets/artiste-3.jpg" alt="Artiste 3">
+            <div class="card-body">
+              <span class="tag">Artiste</span>
+              <h3>Yann Le Gall</h3>
+              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+            </div>
+          </article>
+
+          <article class="card artist-card">
+            <img src="assets/artiste-4.jpg" alt="Artiste 4">
+            <div class="card-body">
+              <span class="tag">Artiste</span>
+              <h3>Ratur</h3>
+              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portraits" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Portraits</span>
+          <h2>Regarder les visages du square</h2>
+          <p>
+            Cette section peut accueillir portraits, détails d’œuvres, figures féminines
+            ou galerie thématique.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card portrait-card">
+            <img src="assets/portrait-1.jpg" alt="Portrait 1">
+            <div class="card-body">
+              <h3>Portrait 1</h3>
+              <p>Texte court à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="card portrait-card">
+            <img src="assets/portrait-2.jpg" alt="Portrait 2">
+            <div class="card-body">
+              <h3>Portrait 2</h3>
+              <p>Texte court à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="card portrait-card">
+            <img src="assets/portrait-3.jpg" alt="Portrait 3">
+            <div class="card-body">
+              <h3>Portrait 3</h3>
+              <p>Texte court à remplacer.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="figures" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Mémoire du lieu</span>
+          <h2>Quelques figures à découvrir</h2>
+          <p>
+            Version courte, pensée pour mobile. Une image, un nom, quelques lignes.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card figure-card">
+            <img src="assets/figure-1.jpg" alt="Figure 1">
+            <div class="card-body">
+              <h4>Galla Placidia</h4>
+              <p>Résumé court à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="card figure-card">
+            <img src="assets/figure-2.jpg" alt="Figure 2">
+            <div class="card-body">
+              <h4>Ermengarde</h4>
+              <p>Résumé court à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="card figure-card">
+            <img src="assets/figure-3.jpg" alt="Figure 3">
+            <div class="card-body">
+              <h4>Françoise de Cezelli</h4>
+              <p>Résumé court à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="card figure-card">
+            <img src="assets/figure-4.jpg" alt="Figure 4">
+            <div class="card-body">
+              <h4>Thérèse Blum</h4>
+              <p>Résumé court à remplacer.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Vidéos</span>
+          <h2>4 capsules à intégrer</h2>
+          <p>
+            Remplacez les identifiants YouTube dans les iframes ci-dessous.
+            Format idéal : capsules courtes de 45 secondes à 2 minutes.
+          </p>
+        </div>
+
+        <div class="video-grid">
+          <article class="video-card">
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID_1"
+                title="Vidéo 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <div class="video-meta">
+              <h3>Portrait d’artiste</h3>
+              <p>Texte d’introduction à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID_2"
+                title="Vidéo 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <div class="video-meta">
+              <h3>Micro-trottoir</h3>
+              <p>Texte d’introduction à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID_3"
+                title="Vidéo 3"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <div class="video-meta">
+              <h3>Les ateliers</h3>
+              <p>Texte d’introduction à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID_4"
+                title="Vidéo 4"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <div class="video-meta">
+              <h3>Le square aujourd’hui</h3>
+              <p>Texte d’introduction à remplacer.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ateliers" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Galerie ateliers</span>
+          <h2>Images de médiation sur site</h2>
+          <p>
+            Cliquez sur une image pour l’ouvrir. Remplacez les visuels et légendes.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item" data-full="assets/atelier-1.jpg">
+            <img src="assets/atelier-1.jpg" alt="Atelier 1">
+            <figcaption class="gallery-caption">Atelier 1</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="assets/atelier-2.jpg">
+            <img src="assets/atelier-2.jpg" alt="Atelier 2">
+            <figcaption class="gallery-caption">Atelier 2</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="assets/atelier-3.jpg">
+            <img src="assets/atelier-3.jpg" alt="Atelier 3">
+            <figcaption class="gallery-caption">Atelier 3</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="assets/atelier-4.jpg">
+            <img src="assets/atelier-4.jpg" alt="Atelier 4">
+            <figcaption class="gallery-caption">Atelier 4</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="assets/atelier-5.jpg">
+            <img src="assets/atelier-5.jpg" alt="Atelier 5">
+            <figcaption class="gallery-caption">Atelier 5</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="assets/atelier-6.jpg">
+            <img src="assets/atelier-6.jpg" alt="Atelier 6">
+            <figcaption class="gallery-caption">Atelier 6</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="assets/atelier-7.jpg">
+            <img src="assets/atelier-7.jpg" alt="Atelier 7">
+            <figcaption class="gallery-caption">Atelier 7</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="assets/atelier-8.jpg">
+            <img src="assets/atelier-8.jpg" alt="Atelier 8">
+            <figcaption class="gallery-caption">Atelier 8</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="reperes" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Repères</span>
+          <h2>Quelques pistes pour regarder</h2>
+          <p>
+            Cartes très courtes. À adapter selon votre angle de médiation.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="card-body">
+              <h3>Portrait monumental</h3>
+              <p>Comment un visage change la perception d’un lieu public.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3>Street art</h3>
+              <p>Une pratique qui dialogue avec l’espace urbain et ses usages.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3>Art participatif</h3>
+              <p>Quand un projet se construit aussi avec les habitants.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3>Mémoire et transmission</h3>
+              <p>Le lieu devient support de récit, de mémoire et de rencontre.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="jouer" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Jouer</span>
+          <h2>Tester son regard</h2>
+          <p>
+            Une première couche ludique avec un quiz et un memory.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="quiz-box">
+            <h3>Quiz express</h3>
+
+            <form id="quizForm">
+              <div class="quiz-question">
+                <h4>1. Combien de zones principales sont présentées dans le parcours ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q1" value="0"> 2</label>
+                  <label><input type="radio" name="q1" value="1"> 3</label>
+                  <label><input type="radio" name="q1" value="0"> 5</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>2. Quelle rubrique permet de voir les images de médiation ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q2" value="0"> Footer</label>
+                  <label><input type="radio" name="q2" value="1"> Galerie ateliers</label>
+                  <label><input type="radio" name="q2" value="0"> Menu caché</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>3. Le memory sert surtout à :</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q3" value="0"> Télécharger des vidéos</label>
+                  <label><input type="radio" name="q3" value="1"> Observer et mémoriser les visuels</label>
+                  <label><input type="radio" name="q3" value="0"> Envoyer un message</label>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Voir mon score</button>
+              <div id="quizResult" class="quiz-result"></div>
+            </form>
+          </div>
+
+          <div class="quiz-box">
+            <div class="memory-wrap">
+              <div class="memory-toolbar">
+                <div>
+                  <h3 style="margin:0 0 6px;">Memory visuel</h3>
+                  <div class="memory-status" id="memoryStatus">Coups : 0 · Paires : 0 / 4</div>
+                </div>
+                <button class="btn btn-secondary" id="restartMemory" type="button">Relancer</button>
+              </div>
+
+              <div class="memory-grid" id="memoryGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        Parcours artistique du square Thérèse et Léon Blum · Remplacez ce texte par vos crédits,
+        partenaires ou mentions.
+      </p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
+      <img id="lightboxImg" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    // Menu mobile
+    const menuBtn = document.getElementById('menuBtn');
+    const mainNav = document.getElementById('mainNav');
+
+    menuBtn.addEventListener('click', () => {
+      mainNav.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+      });
+    });
+
+    // Galerie lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const full = item.getAttribute('data-full');
+        const img = item.querySelector('img');
+        lightboxImg.src = full;
+        lightboxImg.alt = img ? img.alt : 'Image atelier';
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('open');
+        lightboxImg.src = '';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('open');
+        lightboxImg.src = '';
+      }
+    });
+
+    // Quiz
+    const quizForm = document.getElementById('quizForm');
+    const quizResult = document.getElementById('quizResult');
+
+    quizForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(quizForm);
+      let total = 0;
+      let answered = 0;
+
+      ['q1','q2','q3'].forEach(name => {
+        const value = formData.get(name);
+        if (value !== null) {
+          answered++;
+          total += Number(value);
+        }
+      });
+
+      if (answered < 3) {
+        quizResult.style.display = 'block';
+        quizResult.textContent = 'Merci de répondre aux 3 questions.';
+        return;
+      }
+
+      let message = '';
+      if (total === 3) {
+        message = 'Bravo. Vous avez obtenu 3/3.';
+      } else if (total === 2) {
+        message = 'Très bien. Vous avez obtenu 2/3.';
+      } else {
+        message = 'Vous avez obtenu ' + total + '/3. Reprenez le parcours et réessayez.';
+      }
+
+      quizResult.style.display = 'block';
+      quizResult.textContent = message;
+    });
+
+    // Memory
+    const memoryGrid = document.getElementById('memoryGrid');
+    const memoryStatus = document.getElementById('memoryStatus');
+    const restartMemoryBtn = document.getElementById('restartMemory');
+
+    const memoryImages = [
+      'assets/memory-1.jpg',
+      'assets/memory-2.jpg',
+      'assets/memory-3.jpg',
+      'assets/memory-4.jpg'
+    ];
+
+    let memoryState = {
+      cards: [],
+      flipped: [],
+      moves: 0,
+      matches: 0,
+      lock: false
+    };
+
+    function shuffle(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function updateMemoryStatus() {
+      memoryStatus.textContent = `Coups : ${memoryState.moves} · Paires : ${memoryState.matches} / 4`;
+    }
+
+    function createMemoryBoard() {
+      const duplicated = [...memoryImages, ...memoryImages].map((src, idx) => ({
+        id: idx + '-' + src,
+        src
+      }));
+
+      memoryState.cards = shuffle(duplicated);
+      memoryState.flipped = [];
+      memoryState.moves = 0;
+      memoryState.matches = 0;
+      memoryState.lock = false;
+
+      memoryGrid.innerHTML = '';
+
+      memoryState.cards.forEach((card, index) => {
+        const button = document.createElement('button');
+        button.className = 'memory-card';
+        button.type = 'button';
+        button.dataset.index = index;
+        button.dataset.src = card.src;
+
+        button.innerHTML = `
+          <div class="memory-card-inner">
+            <div class="memory-face memory-front">◼</div>
+            <div class="memory-face memory-back">
+              <img src="${card.src}" alt="Carte memory">
+            </div>
+          </div>
+        `;
+
+        button.addEventListener('click', () => flipCard(button));
+        memoryGrid.appendChild(button);
+      });
+
+      updateMemoryStatus();
+    }
+
+    function flipCard(button) {
+      if (memoryState.lock) return;
+      if (button.classList.contains('is-flipped')) return;
+      if (button.classList.contains('is-matched')) return;
+      if (memoryState.flipped.length === 2) return;
+
+      button.classList.add('is-flipped');
+      memoryState.flipped.push(button);
+
+      if (memoryState.flipped.length === 2) {
+        memoryState.moves++;
+        updateMemoryStatus();
+
+        const [first, second] = memoryState.flipped;
+        const isMatch = first.dataset.src === second.dataset.src;
+
+        if (isMatch) {
+          first.classList.add('is-matched');
+          second.classList.add('is-matched');
+          memoryState.flipped = [];
+          memoryState.matches++;
+          updateMemoryStatus();
+
+          if (memoryState.matches === memoryImages.length) {
+            setTimeout(() => {
+              alert(`Bravo. Memory terminé en ${memoryState.moves} coups.`);
+            }, 150);
+          }
+        } else {
+          memoryState.lock = true;
+          setTimeout(() => {
+            first.classList.remove('is-flipped');
+            second.classList.remove('is-flipped');
+            memoryState.flipped = [];
+            memoryState.lock = false;
+          }, 850);
+        }
+      }
+    }
+
+    restartMemoryBtn.addEventListener('click', createMemoryBoard);
+
+    createMemoryBoard();
+  </script>
+</body>
+</html>
