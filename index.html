@@ -92,7 +92,6 @@
       max-width:760px;
     }
 
-    /* Header */
     .site-header{
       position:sticky;
       top:0;
@@ -155,7 +154,6 @@
       box-shadow:var(--shadow-soft);
     }
 
-    /* Hero */
     .hero{
       padding:84px 0 56px;
     }
@@ -261,7 +259,6 @@
       font-size:.96rem;
     }
 
-    /* Quick links */
     .quick-links{
       display:grid;
       grid-template-columns:repeat(4, 1fr);
@@ -298,7 +295,6 @@
       font-size:.93rem;
     }
 
-    /* Cards / grids */
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -344,7 +340,6 @@
       background:var(--bg-soft);
     }
 
-    /* Project */
     .project-layout{
       display:grid;
       grid-template-columns:1.05fr .95fr;
@@ -386,7 +381,6 @@
       font-size:.95rem;
     }
 
-    /* Videos */
     .video-grid{
       display:grid;
       grid-template-columns:repeat(2, 1fr);
@@ -432,7 +426,6 @@
       font-size:.94rem;
     }
 
-    /* Gallery */
     .gallery-grid{
       display:grid;
       grid-template-columns:repeat(4, 1fr);
@@ -515,7 +508,6 @@
       box-shadow:var(--shadow);
     }
 
-    /* Quiz */
     .quiz-box{
       padding:22px;
       background:linear-gradient(180deg, #f8f3e8, #fffdf8);
@@ -578,7 +570,6 @@
       color:var(--text);
     }
 
-    /* Memory */
     .memory-wrap{
       display:grid;
       gap:16px;
@@ -656,7 +647,166 @@
       font-size:.95rem;
     }
 
-    /* Footer */
+    .figure-entry{
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .figure-entry:hover{
+      transform:translateY(-3px);
+      border-color:#cbbfa8;
+      box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
+    }
+
+    .figure-book-modal{
+      position:fixed;
+      inset:0;
+      z-index:120;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(47, 58, 47, .42);
+      backdrop-filter:blur(8px);
+    }
+
+    .figure-book-modal.open{
+      display:flex;
+    }
+
+    .figure-book-shell{
+      position:relative;
+      width:min(1100px, 100%);
+      max-height:min(90vh, 920px);
+      background:linear-gradient(180deg, #fffdf8 0%, #f8f3e8 100%);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:0 28px 60px rgba(47, 58, 47, .18);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .figure-book-close{
+      position:absolute;
+      top:16px;
+      right:16px;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--panel);
+      color:var(--text);
+      font-size:1.3rem;
+      cursor:pointer;
+      z-index:3;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .figure-book-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      padding:24px 72px 18px 28px;
+      border-bottom:1px solid var(--line-soft);
+      background:rgba(255,253,248,.72);
+    }
+
+    .figure-book-kicker{
+      margin:0 0 6px;
+      font-size:.86rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+    }
+
+    .figure-book-head h3{
+      margin:0;
+      font-size:1.8rem;
+      line-height:1.05;
+      color:var(--text);
+    }
+
+    .figure-book-counter{
+      flex-shrink:0;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--bg-soft);
+      color:var(--text-soft);
+      font-size:.92rem;
+    }
+
+    .figure-book-stage{
+      display:grid;
+      grid-template-columns:56px minmax(0,1fr) 56px;
+      align-items:stretch;
+      min-height:0;
+      flex:1;
+    }
+
+    .figure-book-nav{
+      border:none;
+      background:transparent;
+      color:var(--accent);
+      font-size:1.6rem;
+      cursor:pointer;
+      transition:background .2s ease, color .2s ease;
+    }
+
+    .figure-book-nav:hover{
+      background:rgba(122,139,90,.08);
+      color:var(--accent-hover);
+    }
+
+    .figure-book-nav:disabled{
+      opacity:.35;
+      cursor:default;
+      background:transparent;
+    }
+
+    .figure-book-page{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      min-height:0;
+    }
+
+    .figure-book-media{
+      background:#efe8da;
+      border-right:1px solid var(--line-soft);
+      min-height:0;
+    }
+
+    .figure-book-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      min-height:100%;
+    }
+
+    .figure-book-text{
+      padding:28px;
+      overflow:auto;
+      min-height:0;
+    }
+
+    .figure-book-text h4{
+      margin:0 0 14px;
+      font-size:1.18rem;
+      color:var(--text);
+    }
+
+    .figure-book-text p{
+      margin:0 0 14px;
+      color:var(--text-soft);
+      line-height:1.7;
+    }
+
+    .figure-book-text p:last-child{
+      margin-bottom:0;
+    }
+
     footer{
       padding:40px 0 60px;
       color:var(--muted);
@@ -664,7 +814,6 @@
       background:rgba(255,253,248,.45);
     }
 
-    /* Responsive */
     @media (max-width: 980px){
       .hero-grid,
       .project-layout,
@@ -679,6 +828,54 @@
 
       .memory-grid{
         grid-template-columns:repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 860px){
+      .figure-book-shell{
+        max-height:92vh;
+      }
+
+      .figure-book-head{
+        padding:20px 64px 16px 20px;
+      }
+
+      .figure-book-stage{
+        grid-template-columns:1fr;
+      }
+
+      .figure-book-nav{
+        position:absolute;
+        bottom:14px;
+        width:44px;
+        height:44px;
+        border-radius:999px;
+        background:rgba(255,253,248,.92);
+        border:1px solid var(--line);
+        box-shadow:var(--shadow-soft);
+        z-index:3;
+      }
+
+      .figure-book-nav.prev{
+        left:14px;
+      }
+
+      .figure-book-nav.next{
+        right:14px;
+      }
+
+      .figure-book-page{
+        grid-template-columns:1fr;
+      }
+
+      .figure-book-media{
+        border-right:none;
+        border-bottom:1px solid var(--line-soft);
+        max-height:38vh;
+      }
+
+      .figure-book-text{
+        padding:22px 20px 74px;
       }
     }
 
@@ -951,40 +1148,40 @@
           <span class="eyebrow">Mémoire du lieu</span>
           <h2>Quelques figures à découvrir</h2>
           <p>
-            Version courte, pensée pour mobile. Une image, un nom, quelques lignes.
+            Cliquez sur une figure pour ouvrir un parcours illustré, composé d’images et de textes à feuilleter.
           </p>
         </div>
 
         <div class="grid-4">
-          <article class="card figure-card">
-            <img src="assets/figure-1.jpg" alt="Figure 1">
+          <article class="card figure-card figure-entry" data-figure="galla">
+            <img src="assets/figure-1.jpg" alt="Galla Placidia">
             <div class="card-body">
               <h4>Galla Placidia</h4>
-              <p>Résumé court à remplacer.</p>
+              <p>Ouvrir le carnet illustré.</p>
             </div>
           </article>
 
-          <article class="card figure-card">
-            <img src="assets/figure-2.jpg" alt="Figure 2">
+          <article class="card figure-card figure-entry" data-figure="ermengarde">
+            <img src="assets/figure-2.jpg" alt="Ermengarde">
             <div class="card-body">
               <h4>Ermengarde</h4>
-              <p>Résumé court à remplacer.</p>
+              <p>Ouvrir le carnet illustré.</p>
             </div>
           </article>
 
-          <article class="card figure-card">
-            <img src="assets/figure-3.jpg" alt="Figure 3">
+          <article class="card figure-card figure-entry" data-figure="cezelli">
+            <img src="assets/figure-3.jpg" alt="Françoise de Cezelli">
             <div class="card-body">
               <h4>Françoise de Cezelli</h4>
-              <p>Résumé court à remplacer.</p>
+              <p>Ouvrir le carnet illustré.</p>
             </div>
           </article>
 
-          <article class="card figure-card">
-            <img src="assets/figure-4.jpg" alt="Figure 4">
+          <article class="card figure-card figure-entry" data-figure="blum">
+            <img src="assets/figure-4.jpg" alt="Thérèse Blum">
             <div class="card-body">
               <h4>Thérèse Blum</h4>
-              <p>Résumé court à remplacer.</p>
+              <p>Ouvrir le carnet illustré.</p>
             </div>
           </article>
         </div>
@@ -1167,74 +1364,74 @@
 
         <div class="grid-2">
           <div class="quiz-box">
-  <h3>Quiz express — Galla Placidia</h3>
+            <h3>Quiz express — Galla Placidia</h3>
 
-  <form id="quizForm">
-    <div class="quiz-question">
-      <h4>1. En quelle année est née Galla Placidia ?</h4>
-      <div class="quiz-options">
-        <label><input type="radio" name="q1" value="0"> 380</label>
-        <label><input type="radio" name="q1" value="0"> 385</label>
-        <label><input type="radio" name="q1" value="1"> 388</label>
-      </div>
-    </div>
+            <form id="quizForm">
+              <div class="quiz-question">
+                <h4>1. En quelle année est née Galla Placidia ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q1" value="0"> 380</label>
+                  <label><input type="radio" name="q1" value="0"> 385</label>
+                  <label><input type="radio" name="q1" value="1"> 388</label>
+                </div>
+              </div>
 
-    <div class="quiz-question">
-      <h4>2. De qui est-elle la fille ?</h4>
-      <div class="quiz-options">
-        <label><input type="radio" name="q2" value="1"> De l’empereur Théodose</label>
-        <label><input type="radio" name="q2" value="0"> De l’empereur Valentinien</label>
-      </div>
-    </div>
+              <div class="quiz-question">
+                <h4>2. De qui est-elle la fille ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q2" value="1"> De l’empereur Théodose</label>
+                  <label><input type="radio" name="q2" value="0"> De l’empereur Valentinien</label>
+                </div>
+              </div>
 
-    <div class="quiz-question">
-      <h4>3. En quelle année a-t-elle été prise en otage ?</h4>
-      <div class="quiz-options">
-        <label><input type="radio" name="q3" value="0"> 406</label>
-        <label><input type="radio" name="q3" value="0"> 408</label>
-        <label><input type="radio" name="q3" value="1"> 410</label>
-      </div>
-    </div>
+              <div class="quiz-question">
+                <h4>3. En quelle année a-t-elle été prise en otage ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q3" value="0"> 406</label>
+                  <label><input type="radio" name="q3" value="0"> 408</label>
+                  <label><input type="radio" name="q3" value="1"> 410</label>
+                </div>
+              </div>
 
-    <div class="quiz-question">
-      <h4>4. Combien de fois a-t-elle été mariée ?</h4>
-      <div class="quiz-options">
-        <label><input type="radio" name="q4" value="0"> 1 fois</label>
-        <label><input type="radio" name="q4" value="1"> 2 fois avec Athaulf et Constance</label>
-        <label><input type="radio" name="q4" value="0"> 3 fois</label>
-      </div>
-    </div>
+              <div class="quiz-question">
+                <h4>4. Combien de fois a-t-elle été mariée ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q4" value="0"> 1 fois</label>
+                  <label><input type="radio" name="q4" value="1"> 2 fois avec Athaulf et Constance</label>
+                  <label><input type="radio" name="q4" value="0"> 3 fois</label>
+                </div>
+              </div>
 
-    <div class="quiz-question">
-      <h4>5. Galla Placidia a exercé la régence :</h4>
-      <div class="quiz-options">
-        <label><input type="radio" name="q5" value="1"> De 425 à 437</label>
-        <label><input type="radio" name="q5" value="0"> De 427 à 435</label>
-        <label><input type="radio" name="q5" value="0"> De 425 à 435</label>
-      </div>
-    </div>
+              <div class="quiz-question">
+                <h4>5. Galla Placidia a exercé la régence :</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q5" value="1"> De 425 à 437</label>
+                  <label><input type="radio" name="q5" value="0"> De 427 à 435</label>
+                  <label><input type="radio" name="q5" value="0"> De 425 à 435</label>
+                </div>
+              </div>
 
-    <div class="quiz-question">
-      <h4>6. Quelle est la date de son décès ?</h4>
-      <div class="quiz-options">
-        <label><input type="radio" name="q6" value="0"> 448</label>
-        <label><input type="radio" name="q6" value="0"> 449</label>
-        <label><input type="radio" name="q6" value="1"> 450</label>
-      </div>
-    </div>
+              <div class="quiz-question">
+                <h4>6. Quelle est la date de son décès ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q6" value="0"> 448</label>
+                  <label><input type="radio" name="q6" value="0"> 449</label>
+                  <label><input type="radio" name="q6" value="1"> 450</label>
+                </div>
+              </div>
 
-    <div class="quiz-question">
-      <h4>7. Selon les historiens, Galla Placidia a probablement été inhumée :</h4>
-      <div class="quiz-options">
-        <label><input type="radio" name="q7" value="0"> À Ravenne</label>
-        <label><input type="radio" name="q7" value="1"> À Rome</label>
-      </div>
-    </div>
+              <div class="quiz-question">
+                <h4>7. Selon les historiens, Galla Placidia a probablement été inhumée :</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q7" value="0"> À Ravenne</label>
+                  <label><input type="radio" name="q7" value="1"> À Rome</label>
+                </div>
+              </div>
 
-    <button class="btn btn-primary" type="submit">Voir mon score</button>
-    <div id="quizResult" class="quiz-result"></div>
-  </form>
-</div>
+              <button class="btn btn-primary" type="submit">Voir mon score</button>
+              <div id="quizResult" class="quiz-result"></div>
+            </form>
+          </div>
 
           <div class="quiz-box">
             <div class="memory-wrap">
@@ -1267,6 +1464,36 @@
     <div class="lightbox-content">
       <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
       <img id="lightboxImg" src="" alt="">
+    </div>
+  </div>
+
+  <div class="figure-book-modal" id="figureBookModal" aria-hidden="true">
+    <div class="figure-book-shell">
+      <button class="figure-book-close" id="figureBookClose" aria-label="Fermer">×</button>
+
+      <div class="figure-book-head">
+        <div>
+          <p class="figure-book-kicker">Figures à découvrir</p>
+          <h3 id="figureBookTitle">Titre</h3>
+        </div>
+        <div class="figure-book-counter" id="figureBookCounter">1 / 1</div>
+      </div>
+
+      <div class="figure-book-stage">
+        <button class="figure-book-nav prev" id="figurePrev" aria-label="Page précédente">←</button>
+
+        <article class="figure-book-page">
+          <div class="figure-book-media">
+            <img id="figureBookImage" src="" alt="">
+          </div>
+          <div class="figure-book-text">
+            <h4 id="figureBookPageTitle">Sous-titre</h4>
+            <div id="figureBookBody"></div>
+          </div>
+        </article>
+
+        <button class="figure-book-nav next" id="figureNext" aria-label="Page suivante">→</button>
+      </div>
     </div>
   </div>
 
@@ -1312,56 +1539,218 @@
       }
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('open');
-        lightboxImg.src = '';
+    // Livre illustré des figures
+    const figureBookData = {
+      galla: {
+        title: 'Galla Placidia',
+        pages: [
+          {
+            title: 'Une figure impériale',
+            image: 'assets/figure-1.jpg',
+            body: `
+              <p>Remplacez ce texte par votre introduction à Galla Placidia. Cette première page peut servir d’entrée en matière, avec quelques repères biographiques essentiels.</p>
+              <p>Vous pouvez poser ici le contexte général, le siècle, la dimension politique de sa trajectoire et le lien avec l’histoire méditerranéenne.</p>
+            `
+          },
+          {
+            title: 'Une vie traversée par l’histoire',
+            image: 'assets/figure-1b.jpg',
+            body: `
+              <p>Ajoutez ici un texte plus développé sur son destin, les événements qu’elle traverse, ses mariages, sa position stratégique et sa capacité à exercer le pouvoir.</p>
+              <p>L’idée est de découper vos textes longs en plusieurs “pages” pour conserver un vrai effet de lecture illustrée.</p>
+            `
+          },
+          {
+            title: 'Repères et mémoire',
+            image: 'assets/figure-1c.jpg',
+            body: `
+              <p>Cette troisième page peut accueillir un extrait plus patrimonial, une anecdote, un détail iconographique, ou un lien avec la mémoire du lieu.</p>
+              <p>Vous pouvez aussi insérer ici une phrase de transition vers le square ou la fresque.</p>
+            `
+          }
+        ]
+      },
+
+      ermengarde: {
+        title: 'Ermengarde',
+        pages: [
+          {
+            title: 'Une souveraine de Narbonne',
+            image: 'assets/figure-2.jpg',
+            body: `
+              <p>Remplacez ce texte par votre première page sur Ermengarde. Vous pouvez insister sur son rôle politique et sur l’importance de Narbonne dans son histoire.</p>
+            `
+          },
+          {
+            title: 'Pouvoir, diplomatie, culture',
+            image: 'assets/figure-2b.jpg',
+            body: `
+              <p>Ajoutez ici votre texte long. Cette page peut développer la singularité de son règne, la culture occitane, les tensions politiques et l’empreinte qu’elle laisse.</p>
+            `
+          }
+        ]
+      },
+
+      cezelli: {
+        title: 'Françoise de Cezelli',
+        pages: [
+          {
+            title: 'Une figure de résistance',
+            image: 'assets/figure-3.jpg',
+            body: `
+              <p>Insérez ici l’introduction à Françoise de Cezelli. Présentez le contexte et ce qui fait d’elle une figure marquante de l’histoire locale.</p>
+            `
+          },
+          {
+            title: 'Le siège et le courage',
+            image: 'assets/figure-3b.jpg',
+            body: `
+              <p>Cette page peut raconter l’épisode du siège, son rôle dans la défense de la ville, ainsi que la manière dont sa mémoire a traversé le temps.</p>
+            `
+          }
+        ]
+      },
+
+      blum: {
+        title: 'Thérèse Blum',
+        pages: [
+          {
+            title: 'Une femme engagée',
+            image: 'assets/figure-4.jpg',
+            body: `
+              <p>Ajoutez ici votre texte de présentation de Thérèse Blum. Vous pouvez mettre en avant son engagement politique, sa personnalité et la place qu’elle occupe dans la mémoire collective.</p>
+            `
+          },
+          {
+            title: 'Présence et héritage',
+            image: 'assets/figure-4b.jpg',
+            body: `
+              <p>Cette seconde page peut approfondir le contexte historique, la relation à Léon Blum, ainsi que le sens de sa présence dans le parcours du square.</p>
+            `
+          }
+        ]
+      }
+    };
+
+    const figureBookModal = document.getElementById('figureBookModal');
+    const figureBookClose = document.getElementById('figureBookClose');
+    const figureBookTitle = document.getElementById('figureBookTitle');
+    const figureBookCounter = document.getElementById('figureBookCounter');
+    const figureBookImage = document.getElementById('figureBookImage');
+    const figureBookPageTitle = document.getElementById('figureBookPageTitle');
+    const figureBookBody = document.getElementById('figureBookBody');
+    const figurePrev = document.getElementById('figurePrev');
+    const figureNext = document.getElementById('figureNext');
+
+    let currentFigureKey = null;
+    let currentFigurePage = 0;
+
+    function renderFigureBook() {
+      if (!currentFigureKey) return;
+
+      const figure = figureBookData[currentFigureKey];
+      const page = figure.pages[currentFigurePage];
+
+      figureBookTitle.textContent = figure.title;
+      figureBookCounter.textContent = `${currentFigurePage + 1} / ${figure.pages.length}`;
+      figureBookImage.src = page.image;
+      figureBookImage.alt = `${figure.title} — ${page.title}`;
+      figureBookPageTitle.textContent = page.title;
+      figureBookBody.innerHTML = page.body;
+
+      figurePrev.disabled = currentFigurePage === 0;
+      figureNext.disabled = currentFigurePage === figure.pages.length - 1;
+    }
+
+    function openFigureBook(key) {
+      currentFigureKey = key;
+      currentFigurePage = 0;
+      renderFigureBook();
+      figureBookModal.classList.add('open');
+      figureBookModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFigureBook() {
+      figureBookModal.classList.remove('open');
+      figureBookModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function nextFigurePage() {
+      if (!currentFigureKey) return;
+      const total = figureBookData[currentFigureKey].pages.length;
+      if (currentFigurePage < total - 1) {
+        currentFigurePage += 1;
+        renderFigureBook();
+      }
+    }
+
+    function prevFigurePage() {
+      if (!currentFigureKey) return;
+      if (currentFigurePage > 0) {
+        currentFigurePage -= 1;
+        renderFigureBook();
+      }
+    }
+
+    document.querySelectorAll('.figure-entry').forEach(entry => {
+      entry.addEventListener('click', () => {
+        openFigureBook(entry.dataset.figure);
+      });
+    });
+
+    figureBookClose.addEventListener('click', closeFigureBook);
+    figureNext.addEventListener('click', nextFigurePage);
+    figurePrev.addEventListener('click', prevFigurePage);
+
+    figureBookModal.addEventListener('click', (e) => {
+      if (e.target === figureBookModal) {
+        closeFigureBook();
       }
     });
 
     // Quiz
-    <script>
-  const quizForm = document.getElementById('quizForm');
-  const quizResult = document.getElementById('quizResult');
+    const quizForm = document.getElementById('quizForm');
+    const quizResult = document.getElementById('quizResult');
 
-  quizForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+    quizForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    const formData = new FormData(quizForm);
-    let total = 0;
-    let answered = 0;
-    const totalQuestions = 7;
+      const formData = new FormData(quizForm);
+      let total = 0;
+      let answered = 0;
+      const totalQuestions = 7;
 
-    ['q1','q2','q3','q4','q5','q6','q7'].forEach(name => {
-      const value = formData.get(name);
-      if (value !== null) {
-        answered++;
-        total += Number(value);
+      ['q1','q2','q3','q4','q5','q6','q7'].forEach(name => {
+        const value = formData.get(name);
+        if (value !== null) {
+          answered++;
+          total += Number(value);
+        }
+      });
+
+      if (answered < totalQuestions) {
+        quizResult.style.display = 'block';
+        quizResult.textContent = `Merci de répondre aux ${totalQuestions} questions.`;
+        return;
       }
-    });
 
-    if (answered < totalQuestions) {
+      let message = '';
+
+      if (total === 7) {
+        message = 'Bravo. Vous avez obtenu 7/7.';
+      } else if (total >= 5) {
+        message = `Très bien. Vous avez obtenu ${total}/7.`;
+      } else if (total >= 3) {
+        message = `Pas mal. Vous avez obtenu ${total}/7.`;
+      } else {
+        message = `Vous avez obtenu ${total}/7. Reprenez le parcours et réessayez.`;
+      }
+
       quizResult.style.display = 'block';
-      quizResult.textContent = `Merci de répondre aux ${totalQuestions} questions.`;
-      return;
-    }
-
-    let message = '';
-
-    if (total === 7) {
-      message = 'Bravo. Vous avez obtenu 7/7.';
-    } else if (total >= 5) {
-      message = `Très bien. Vous avez obtenu ${total}/7.`;
-    } else if (total >= 3) {
-      message = `Pas mal. Vous avez obtenu ${total}/7.`;
-    } else {
-      message = `Vous avez obtenu ${total}/7. Reprenez le parcours et réessayez.`;
-    }
-
-    quizResult.style.display = 'block';
-    quizResult.textContent = message;
-  });
-</script>
+      quizResult.textContent = message;
+    });
 
     // Memory
     const memoryGrid = document.getElementById('memoryGrid');
@@ -1476,6 +1865,23 @@
     restartMemoryBtn.addEventListener('click', createMemoryBoard);
 
     createMemoryBoard();
+
+    // Raccourcis clavier
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('open');
+        lightboxImg.src = '';
+
+        if (figureBookModal.classList.contains('open')) {
+          closeFigureBook();
+        }
+      }
+
+      if (figureBookModal.classList.contains('open')) {
+        if (e.key === 'ArrowRight') nextFigurePage();
+        if (e.key === 'ArrowLeft') prevFigurePage();
+      }
+    });
   </script>
 </body>
 </html>
