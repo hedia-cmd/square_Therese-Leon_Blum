@@ -647,18 +647,21 @@
       font-size:.95rem;
     }
 
-    .figure-entry{
+    .figure-entry,
+    .artist-entry{
       cursor:pointer;
       transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
 
-    .figure-entry:hover{
+    .figure-entry:hover,
+    .artist-entry:hover{
       transform:translateY(-3px);
       border-color:#cbbfa8;
       box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
     }
 
-    .figure-book-modal{
+    .figure-book-modal,
+    .artist-book-modal{
       position:fixed;
       inset:0;
       z-index:120;
@@ -670,11 +673,17 @@
       backdrop-filter:blur(8px);
     }
 
-    .figure-book-modal.open{
+    .artist-book-modal{
+      z-index:121;
+    }
+
+    .figure-book-modal.open,
+    .artist-book-modal.open{
       display:flex;
     }
 
-    .figure-book-shell{
+    .figure-book-shell,
+    .artist-book-shell{
       position:relative;
       width:min(1100px, 100%);
       max-height:min(90vh, 920px);
@@ -687,7 +696,8 @@
       flex-direction:column;
     }
 
-    .figure-book-close{
+    .figure-book-close,
+    .artist-book-close{
       position:absolute;
       top:16px;
       right:16px;
@@ -703,7 +713,8 @@
       box-shadow:var(--shadow-soft);
     }
 
-    .figure-book-head{
+    .figure-book-head,
+    .artist-book-head{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
@@ -713,7 +724,8 @@
       background:rgba(255,253,248,.72);
     }
 
-    .figure-book-kicker{
+    .figure-book-kicker,
+    .artist-book-kicker{
       margin:0 0 6px;
       font-size:.86rem;
       text-transform:uppercase;
@@ -721,14 +733,16 @@
       color:var(--muted);
     }
 
-    .figure-book-head h3{
+    .figure-book-head h3,
+    .artist-book-head h3{
       margin:0;
       font-size:1.8rem;
       line-height:1.05;
       color:var(--text);
     }
 
-    .figure-book-counter{
+    .figure-book-counter,
+    .artist-book-counter{
       flex-shrink:0;
       padding:8px 12px;
       border-radius:999px;
@@ -738,7 +752,8 @@
       font-size:.92rem;
     }
 
-    .figure-book-stage{
+    .figure-book-stage,
+    .artist-book-stage{
       display:grid;
       grid-template-columns:56px minmax(0,1fr) 56px;
       align-items:stretch;
@@ -746,7 +761,8 @@
       flex:1;
     }
 
-    .figure-book-nav{
+    .figure-book-nav,
+    .artist-book-nav{
       border:none;
       background:transparent;
       color:var(--accent);
@@ -755,55 +771,64 @@
       transition:background .2s ease, color .2s ease;
     }
 
-    .figure-book-nav:hover{
+    .figure-book-nav:hover,
+    .artist-book-nav:hover{
       background:rgba(122,139,90,.08);
       color:var(--accent-hover);
     }
 
-    .figure-book-nav:disabled{
+    .figure-book-nav:disabled,
+    .artist-book-nav:disabled{
       opacity:.35;
       cursor:default;
       background:transparent;
     }
 
-    .figure-book-page{
+    .figure-book-page,
+    .artist-book-page{
       display:grid;
       grid-template-columns:1.02fr .98fr;
       min-height:0;
     }
 
-    .figure-book-media{
+    .figure-book-media,
+    .artist-book-media{
       background:#efe8da;
       border-right:1px solid var(--line-soft);
       min-height:0;
     }
 
-    .figure-book-media img{
+    .figure-book-media img,
+    .artist-book-media img{
       width:100%;
       height:100%;
       object-fit:cover;
       min-height:100%;
     }
 
-    .figure-book-text{
+    .figure-book-text,
+    .artist-book-text{
       padding:28px;
       overflow:auto;
       min-height:0;
     }
 
-    .figure-book-text h4{
+    .figure-book-text h4,
+    .artist-book-text h4{
       margin:0 0 14px;
       font-size:1.18rem;
       color:var(--text);
     }
 
-    .figure-book-text p{
+    .figure-book-text p,
+    .artist-book-text p{
       margin:0 0 14px;
       color:var(--text-soft);
       line-height:1.7;
     }
 
-    .figure-book-text p:last-child{
+    .figure-book-text p:last-child,
+    .artist-book-text p:last-child{
       margin-bottom:0;
     }
 
@@ -832,19 +857,23 @@
     }
 
     @media (max-width: 860px){
-      .figure-book-shell{
+      .figure-book-shell,
+      .artist-book-shell{
         max-height:92vh;
       }
 
-      .figure-book-head{
+      .figure-book-head,
+      .artist-book-head{
         padding:20px 64px 16px 20px;
       }
 
-      .figure-book-stage{
+      .figure-book-stage,
+      .artist-book-stage{
         grid-template-columns:1fr;
       }
 
-      .figure-book-nav{
+      .figure-book-nav,
+      .artist-book-nav{
         position:absolute;
         bottom:14px;
         width:44px;
@@ -856,25 +885,30 @@
         z-index:3;
       }
 
-      .figure-book-nav.prev{
+      .figure-book-nav.prev,
+      .artist-book-nav.prev{
         left:14px;
       }
 
-      .figure-book-nav.next{
+      .figure-book-nav.next,
+      .artist-book-nav.next{
         right:14px;
       }
 
-      .figure-book-page{
+      .figure-book-page,
+      .artist-book-page{
         grid-template-columns:1fr;
       }
 
-      .figure-book-media{
+      .figure-book-media,
+      .artist-book-media{
         border-right:none;
         border-bottom:1px solid var(--line-soft);
         max-height:38vh;
       }
 
-      .figure-book-text{
+      .figure-book-text,
+      .artist-book-text{
         padding:22px 20px 74px;
       }
     }
@@ -1059,44 +1093,44 @@
           <span class="eyebrow">Les artistes</span>
           <h2>Des univers différents, un même lieu à habiter</h2>
           <p>
-            Remplacez textes et visuels. Dupliquez ou retirez des cartes selon votre sélection finale.
+            Cliquez sur une carte pour ouvrir une fiche illustrée en deux pages maximum.
           </p>
         </div>
 
         <div class="grid-4">
-          <article class="card artist-card">
-            <img src="assets/artiste-1.jpg" alt="Artiste 1">
+          <article class="card artist-card artist-entry" data-artist="koralie">
+            <img src="assets/artiste-1.jpg" alt="Koralie">
             <div class="card-body">
               <span class="tag">Artiste</span>
               <h3>Koralie</h3>
-              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+              <p>Ouvrir la fiche illustrée.</p>
             </div>
           </article>
 
-          <article class="card artist-card">
-            <img src="assets/artiste-2.jpg" alt="Artiste 2">
+          <article class="card artist-card artist-entry" data-artist="claire-remy">
+            <img src="assets/artiste-2.jpg" alt="Claire Rémy">
             <div class="card-body">
               <span class="tag">Artiste</span>
               <h3>Claire Rémy</h3>
-              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+              <p>Ouvrir la fiche illustrée.</p>
             </div>
           </article>
 
-          <article class="card artist-card">
-            <img src="assets/artiste-3.jpg" alt="Artiste 3">
+          <article class="card artist-card artist-entry" data-artist="yann-le-gall">
+            <img src="assets/artiste-3.jpg" alt="Yann Le Gall">
             <div class="card-body">
               <span class="tag">Artiste</span>
               <h3>Yann Le Gall</h3>
-              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+              <p>Ouvrir la fiche illustrée.</p>
             </div>
           </article>
 
-          <article class="card artist-card">
-            <img src="assets/artiste-4.jpg" alt="Artiste 4">
+          <article class="card artist-card artist-entry" data-artist="ratur">
+            <img src="assets/artiste-4.jpg" alt="Ratur">
             <div class="card-body">
               <span class="tag">Artiste</span>
               <h3>Ratur</h3>
-              <p>Texte court à remplacer. Bio ou démarche en 3 à 5 lignes maximum.</p>
+              <p>Ouvrir la fiche illustrée.</p>
             </div>
           </article>
         </div>
@@ -1452,6 +1486,36 @@
     </div>
   </div>
 
+  <div class="artist-book-modal" id="artistBookModal" aria-hidden="true">
+    <div class="artist-book-shell">
+      <button class="artist-book-close" id="artistBookClose" aria-label="Fermer">×</button>
+
+      <div class="artist-book-head">
+        <div>
+          <p class="artist-book-kicker">Les artistes</p>
+          <h3 id="artistBookTitle">Titre</h3>
+        </div>
+        <div class="artist-book-counter" id="artistBookCounter">1 / 1</div>
+      </div>
+
+      <div class="artist-book-stage">
+        <button class="artist-book-nav prev" id="artistPrev" aria-label="Page précédente">←</button>
+
+        <article class="artist-book-page">
+          <div class="artist-book-media">
+            <img id="artistBookImage" src="" alt="">
+          </div>
+          <div class="artist-book-text">
+            <h4 id="artistBookPageTitle">Sous-titre</h4>
+            <div id="artistBookBody"></div>
+          </div>
+        </article>
+
+        <button class="artist-book-nav next" id="artistNext" aria-label="Page suivante">→</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const mainNav = document.getElementById('mainNav');
@@ -1494,134 +1558,134 @@
 
     const figureBookData = {
       galla: {
-  title: 'Galla Placidia',
-  pages: [
-    {
-      title: 'Naissance et destin impérial',
-      image: 'assets/figure-1.jpg',
-      body: `
-        <p><strong>Aelia Galla Placidia</strong>, née en 388 à Thessalonique, est la fille de l’empereur Théodose Ier et de Galla, elle-même fille de l’empereur Valentinien.</p>
-        <p>Fille et petite-fille d’empereur, elle appartient au cœur de la dynastie théodosienne. Demi-sœur d’Arcadius et d’Honorius, elle grandit dans l’univers de la cour impériale, d’abord à Constantinople, puis dans un Empire romain d’Occident fragilisé.</p>
-        <p>En 410, lors du sac de Rome par les Wisigoths, Galla Placidia est prise en otage. Cet événement marque un tournant décisif dans sa vie politique et personnelle.</p>
-      `
-    },
-    {
-      title: 'Otage, épouse, survivante',
-      image: 'assets/figure-1b.jpg',
-      body: `
-        <p>Après avoir été emmenée par les Wisigoths, Galla Placidia épouse leur roi, <strong>Athaulf</strong>, d’abord selon le rite germanique en 411, puis selon le rite romain à Narbonne en 414.</p>
-        <p>Ce mariage entre une princesse impériale romaine et un chef barbare, une première, frappe profondément les contemporains. La même année, elle donne naissance à une fille, puis en 415 à Barcelone à un fils, Théodose, qui meurt quelques mois plus tard.</p>
-        <p>Quelques semaines plus tard, Athaulf est assassiné. Galla Placidia subit alors l’humiliation imposée par le roi Sigéric avant d’être finalement rendue au pouvoir romain. En 417, elle rejoint Ravenne, où Honorius lui impose un second mariage avec Constance.</p>
-      `
-    },
-    {
-      title: 'Régente de l’Empire d’Occident',
-      image: 'assets/figure-1c.jpg',
-      body: `
-        <p>De son union avec Constance naissent deux enfants, Honoria et Valentinien. Après la mort de Constance en 421 puis celle d’Honorius en 423, une nouvelle lutte pour le pouvoir s’ouvre en Occident.</p>
-        <p>En 425, son fils <strong>Valentinien III</strong> devient empereur. Galla Placidia exerce alors la régence et gouverne l’Empire d’Occident pendant de longues années, dans des conditions extrêmement difficiles.</p>
-        <p>Elle demeure dans l’histoire romaine un cas presque unique de femme exerçant un tel pouvoir pendant près de vingt-cinq ans. Même après la majorité de son fils et son mariage en 437, elle conserve une forte influence sur les affaires publiques.</p>
-      `
-    },
-    {
-      title: 'Pouvoir, foi et mémoire',
-      image: 'assets/figure-1d.jpg',
-      body: `
-        <p>Le règne de Galla Placidia est marqué par les rivalités militaires, l’affaiblissement de l’Empire et la pression croissante des peuples barbares. Elle doit gouverner entre crises politiques, guerres et recompositions du pouvoir.</p>
-        <p>Chrétienne réputée pour sa piété, elle soutient l’Église, fait construire plusieurs édifices religieux et décide vers 430 la construction d’un mausolée à Ravenne.</p>
-        <p>Galla Placidia meurt à Rome le <strong>27 novembre 450</strong>. Selon les historiens, elle est inhumée dans le mausolée impérial à Rome, aux côtés de son père Théodose, et non dans le célèbre mausolée de Ravenne qui porte aujourd’hui son nom.</p>
-        <p><small>Source : texte adapté à partir d’un extrait biographique sur Galla Placidia.</small></p>
-      `
-    }
-  ]
-},
+        title: 'Galla Placidia',
+        pages: [
+          {
+            title: 'Naissance et destin impérial',
+            image: 'assets/figure-1.jpg',
+            body: `
+              <p><strong>Aelia Galla Placidia</strong>, née en 388 à Thessalonique, est la fille de l’empereur Théodose Ier et de Galla, elle-même fille de l’empereur Valentinien.</p>
+              <p>Fille et petite-fille d’empereur, elle appartient au cœur de la dynastie théodosienne. Demi-sœur d’Arcadius et d’Honorius, elle grandit dans l’univers de la cour impériale, d’abord à Constantinople, puis dans un Empire romain d’Occident fragilisé.</p>
+              <p>En 410, lors du sac de Rome par les Wisigoths, Galla Placidia est prise en otage. Cet événement marque un tournant décisif dans sa vie politique et personnelle.</p>
+            `
+          },
+          {
+            title: 'Otage, épouse, survivante',
+            image: 'assets/figure-1b.jpg',
+            body: `
+              <p>Après avoir été emmenée par les Wisigoths, Galla Placidia épouse leur roi, <strong>Athaulf</strong>, d’abord selon le rite germanique en 411, puis selon le rite romain à Narbonne en 414.</p>
+              <p>Ce mariage entre une princesse impériale romaine et un chef barbare, une première, frappe profondément les contemporains. La même année, elle donne naissance à une fille, puis en 415 à Barcelone à un fils, Théodose, qui meurt quelques mois plus tard.</p>
+              <p>Quelques semaines plus tard, Athaulf est assassiné. Galla Placidia subit alors l’humiliation imposée par le roi Sigéric avant d’être finalement rendue au pouvoir romain. En 417, elle rejoint Ravenne, où Honorius lui impose un second mariage avec Constance.</p>
+            `
+          },
+          {
+            title: 'Régente de l’Empire d’Occident',
+            image: 'assets/figure-1c.jpg',
+            body: `
+              <p>De son union avec Constance naissent deux enfants, Honoria et Valentinien. Après la mort de Constance en 421 puis celle d’Honorius en 423, une nouvelle lutte pour le pouvoir s’ouvre en Occident.</p>
+              <p>En 425, son fils <strong>Valentinien III</strong> devient empereur. Galla Placidia exerce alors la régence et gouverne l’Empire d’Occident pendant de longues années, dans des conditions extrêmement difficiles.</p>
+              <p>Elle demeure dans l’histoire romaine un cas presque unique de femme exerçant un tel pouvoir pendant près de vingt-cinq ans. Même après la majorité de son fils et son mariage en 437, elle conserve une forte influence sur les affaires publiques.</p>
+            `
+          },
+          {
+            title: 'Pouvoir, foi et mémoire',
+            image: 'assets/figure-1d.jpg',
+            body: `
+              <p>Le règne de Galla Placidia est marqué par les rivalités militaires, l’affaiblissement de l’Empire et la pression croissante des peuples barbares. Elle doit gouverner entre crises politiques, guerres et recompositions du pouvoir.</p>
+              <p>Chrétienne réputée pour sa piété, elle soutient l’Église, fait construire plusieurs édifices religieux et décide vers 430 la construction d’un mausolée à Ravenne.</p>
+              <p>Galla Placidia meurt à Rome le <strong>27 novembre 450</strong>. Selon les historiens, elle est inhumée dans le mausolée impérial à Rome, aux côtés de son père Théodose, et non dans le célèbre mausolée de Ravenne qui porte aujourd’hui son nom.</p>
+              <p><small>Source : texte adapté à partir d’un extrait biographique sur Galla Placidia.</small></p>
+            `
+          }
+        ]
+      },
 
       ermengarde: {
-  title: 'Ermengarde de Narbonne',
-  pages: [
-    {
-      title: 'Une héritière au cœur des rivalités',
-      image: 'assets/figure-2.jpg',
-      body: `
-        <p><strong>Ermengarde de Narbonne</strong> (vers 1127/1129 – 1196 ou 1197) devient vicomtesse de Narbonne alors qu’elle est encore très jeune, après la mort de son père, le vicomte Aymeri II, en 1134.</p>
-        <p>Elle hérite d’une vicomté stratégique, convoitée par les grands pouvoirs méridionaux, notamment les comtes de Toulouse et les comtes de Barcelone, dans un contexte de fortes tensions politiques.</p>
-        <p>Mineure au moment de sa succession, elle voit son héritage menacé : le comte de Toulouse, Alphonse Jourdain, tente de mettre la main sur Narbonne, notamment par un projet de mariage destiné à placer la cité sous domination toulousaine.</p>
-      `
-    },
-    {
-      title: 'La reconquête de Narbonne',
-      image: 'assets/figure-2b.jpg',
-      body: `
-        <p>Face à cette menace, Ermengarde trouve l’appui du comte de Barcelone Raimond-Bérenger IV et d’une coalition de seigneurs méridionaux hostiles à Toulouse.</p>
-        <p>Sur leurs conseils, elle épouse Bernard d’Anduze, ce qui fait échouer le projet du comte de Toulouse. En 1143, après la défaite et la capture d’Alphonse Jourdain, un traité impose la restitution de Narbonne à Ermengarde.</p>
-        <p>Cette victoire marque durablement son entrée sur la scène politique. Narbonne apparaît alors comme l’un des grands enjeux de la « guerre méridionale », et Ermengarde comme une véritable figure de pouvoir.</p>
-      `
-    },
-    {
-      title: 'Une souveraine, mécène et médiatrice',
-      image: 'assets/figure-2c.jpg',
-      body: `
-        <p>Ermengarde n’est pas seulement une dame de pouvoir : elle est aussi une médiatrice et une protectrice de la vie intellectuelle et artistique en Occitanie.</p>
-        <p>Elle intervient dans plusieurs négociations politiques et soutient fortement l’abbaye cistercienne de <strong>Fontfroide</strong>, à laquelle elle fait en 1157 une donation majeure qui contribue à la prospérité du monastère.</p>
-        <p>Sa cour est réputée pour accueillir médecins, juristes et surtout troubadours. Narbonne devient sous son gouvernement un foyer de culture courtoise. Plusieurs poètes lyriques lui rendent hommage, et son nom reste lié à l’essor de la poésie des troubadours.</p>
-      `
-    },
-    {
-      title: 'Mémoire et postérité',
-      image: 'assets/figure-2d.jpg',
-      body: `
-        <p>À la fin de sa vie, Ermengarde désigne son neveu comme héritier, mais les dernières années de son pouvoir semblent marquées par des tensions politiques. Réfugiée en Roussillon, elle rédige son testament en 1196.</p>
-        <p>Sa renommée dépasse pourtant largement son époque. Dans le <em>De Amore</em> d’André le Chapelain, elle apparaît parmi les grandes dames associées à l’amour courtois, aux côtés d’Aliénor d’Aquitaine et de Marie de Champagne.</p>
-        <p>Figure majeure de l’Occitanie du XIIe siècle, Ermengarde demeure dans l’histoire comme une femme de gouvernement, d’influence et de culture, liée à la fois à la puissance politique de Narbonne et à l’éclat du monde troubadouresque.</p>
-        <p><small>Source : texte adapté à partir d’un extrait biographique sur Ermengarde de Narbonne.</small></p>
-      `
-    }
-  ]
-},
+        title: 'Ermengarde de Narbonne',
+        pages: [
+          {
+            title: 'Une héritière au cœur des rivalités',
+            image: 'assets/figure-2.jpg',
+            body: `
+              <p><strong>Ermengarde de Narbonne</strong> (vers 1127/1129 – 1196 ou 1197) devient vicomtesse de Narbonne alors qu’elle est encore très jeune, après la mort de son père, le vicomte Aymeri II, en 1134.</p>
+              <p>Elle hérite d’une vicomté stratégique, convoitée par les grands pouvoirs méridionaux, notamment les comtes de Toulouse et les comtes de Barcelone, dans un contexte de fortes tensions politiques.</p>
+              <p>Mineure au moment de sa succession, elle voit son héritage menacé : le comte de Toulouse, Alphonse Jourdain, tente de mettre la main sur Narbonne, notamment par un projet de mariage destiné à placer la cité sous domination toulousaine.</p>
+            `
+          },
+          {
+            title: 'La reconquête de Narbonne',
+            image: 'assets/figure-2b.jpg',
+            body: `
+              <p>Face à cette menace, Ermengarde trouve l’appui du comte de Barcelone Raimond-Bérenger IV et d’une coalition de seigneurs méridionaux hostiles à Toulouse.</p>
+              <p>Sur leurs conseils, elle épouse Bernard d’Anduze, ce qui fait échouer le projet du comte de Toulouse. En 1143, après la défaite et la capture d’Alphonse Jourdain, un traité impose la restitution de Narbonne à Ermengarde.</p>
+              <p>Cette victoire marque durablement son entrée sur la scène politique. Narbonne apparaît alors comme l’un des grands enjeux de la « guerre méridionale », et Ermengarde comme une véritable figure de pouvoir.</p>
+            `
+          },
+          {
+            title: 'Une souveraine, mécène et médiatrice',
+            image: 'assets/figure-2c.jpg',
+            body: `
+              <p>Ermengarde n’est pas seulement une dame de pouvoir : elle est aussi une médiatrice et une protectrice de la vie intellectuelle et artistique en Occitanie.</p>
+              <p>Elle intervient dans plusieurs négociations politiques et soutient fortement l’abbaye cistercienne de <strong>Fontfroide</strong>, à laquelle elle fait en 1157 une donation majeure qui contribue à la prospérité du monastère.</p>
+              <p>Sa cour est réputée pour accueillir médecins, juristes et surtout troubadours. Narbonne devient sous son gouvernement un foyer de culture courtoise. Plusieurs poètes lyriques lui rendent hommage, et son nom reste lié à l’essor de la poésie des troubadours.</p>
+            `
+          },
+          {
+            title: 'Mémoire et postérité',
+            image: 'assets/figure-2d.jpg',
+            body: `
+              <p>À la fin de sa vie, Ermengarde désigne son neveu comme héritier, mais les dernières années de son pouvoir semblent marquées par des tensions politiques. Réfugiée en Roussillon, elle rédige son testament en 1196.</p>
+              <p>Sa renommée dépasse pourtant largement son époque. Dans le <em>De Amore</em> d’André le Chapelain, elle apparaît parmi les grandes dames associées à l’amour courtois, aux côtés d’Aliénor d’Aquitaine et de Marie de Champagne.</p>
+              <p>Figure majeure de l’Occitanie du XIIe siècle, Ermengarde demeure dans l’histoire comme une femme de gouvernement, d’influence et de culture, liée à la fois à la puissance politique de Narbonne et à l’éclat du monde troubadouresque.</p>
+              <p><small>Source : texte adapté à partir d’un extrait biographique sur Ermengarde de Narbonne.</small></p>
+            `
+          }
+        ]
+      },
 
       cezelli: {
-  title: 'Françoise de Cezelli',
-  pages: [
-    {
-      title: 'Origines et jeunesse',
-      image: 'assets/figure-3.jpg',
-      body: `
-        <p><strong>Françoise de Cezelli</strong> (22 mai 1558 — 16 octobre 1615), connue également comme <em>Francese de Cezelly</em>, est issue d’une famille noble de Montpellier.</p>
-        <p>Elle naît en 1558. Fille de Jean de Cezelli, président de la chambre des comptes de Montpellier, elle est aussi la nièce du gouverneur de Leucate.</p>
-        <p>Elle passe sa jeunesse à Saint-Aunès, puis dans la propriété familiale d’Ouveillan, dans un contexte marqué par les guerres de religion qui agitent alors la région.</p>
-      `
-    },
-    {
-      title: 'Mariages et destin familial',
-      image: 'assets/figure-3b.jpg',
-      body: `
-        <p>Françoise de Cezelli se marie une première fois en 1572 avec François de Cayre d’Entraygues, avec qui elle a un fils. Son mari meurt en 1574.</p>
-        <p>Le 4 avril 1577, elle épouse à Ouveillan Jean de Boursiez, seigneur de Pantnaut de Barri. À cette occasion, elle lui apporte en cadeau de mariage la gouvernance de Leucate.</p>
-        <p>Leucate est alors une place forte stratégique, gardant la frontière entre la France et l’Espagne. Le couple a cinq enfants : Hercule, Anne-Françoise, Antoine, Paul et Frances.</p>
-      `
-    },
-    {
-      title: 'Le siège de Leucate',
-      image: 'assets/figure-3c.jpg',
-      body: `
-        <p>En 1589, l’armée espagnole, alliée à la Ligue catholique, vient assiéger Leucate. Jean de Boursiez part prévenir le duc de Montmorency, mais il est capturé et conduit à Narbonne.</p>
-        <p>En son absence, Françoise de Cezelli organise la défense de la forteresse. Elle galvanise la garnison et repousse les attaques ennemies.</p>
-        <p>Les assaillants exigent alors les clefs de la ville en échange de la vie de son mari. Françoise refuse, affirmant : <em>« La ville est au roi et mon honneur à Dieu. Je dois les conserver jusqu’au dernier soupir… »</em></p>
-        <p>Son mari est exécuté, mais après trois semaines de siège, les ennemis lèvent le camp. En reconnaissance, Henri IV lui laisse le gouvernement effectif de Leucate, qu’elle exerce pendant vingt-sept ans, jusqu’à la majorité de son fils aîné Hercule.</p>
-      `
-    },
-    {
-      title: 'Mémoire et hommages',
-      image: 'assets/figure-3d.jpg',
-      body: `
-        <p>Françoise de Cezelli meurt à Montpellier le 16 octobre 1615, à l’âge de 56 ans. Elle est inhumée à côté de son mari dans la chapelle Sainte-Anne de l’église Saint-Paul de Narbonne.</p>
-        <p>Sa mémoire demeure vive. En 1899, une statue en bronze est érigée à Leucate. Déboulonnée pendant la Seconde Guerre mondiale, elle est ensuite remplacée, puis réinstallée sous une nouvelle forme.</p>
-        <p>Une plaque commémorative lui rend hommage à Montpellier. Une rue de Montpellier, une école élémentaire de Narbonne et une vedette de sauvetage de Port Leucate portent son nom.</p>
-        <p><small>Source : texte adapté d’un extrait de Wikipedia.</small></p>
-      `
-    }
-  ]
-},
+        title: 'Françoise de Cezelli',
+        pages: [
+          {
+            title: 'Origines et jeunesse',
+            image: 'assets/figure-3.jpg',
+            body: `
+              <p><strong>Françoise de Cezelli</strong> (22 mai 1558 — 16 octobre 1615), connue également comme <em>Francese de Cezelly</em>, est issue d’une famille noble de Montpellier.</p>
+              <p>Elle naît en 1558. Fille de Jean de Cezelli, président de la chambre des comptes de Montpellier, elle est aussi la nièce du gouverneur de Leucate.</p>
+              <p>Elle passe sa jeunesse à Saint-Aunès, puis dans la propriété familiale d’Ouveillan, dans un contexte marqué par les guerres de religion qui agitent alors la région.</p>
+            `
+          },
+          {
+            title: 'Mariages et destin familial',
+            image: 'assets/figure-3b.jpg',
+            body: `
+              <p>Françoise de Cezelli se marie une première fois en 1572 avec François de Cayre d’Entraygues, avec qui elle a un fils. Son mari meurt en 1574.</p>
+              <p>Le 4 avril 1577, elle épouse à Ouveillan Jean de Boursiez, seigneur de Pantnaut de Barri. À cette occasion, elle lui apporte en cadeau de mariage la gouvernance de Leucate.</p>
+              <p>Leucate est alors une place forte stratégique, gardant la frontière entre la France et l’Espagne. Le couple a cinq enfants : Hercule, Anne-Françoise, Antoine, Paul et Frances.</p>
+            `
+          },
+          {
+            title: 'Le siège de Leucate',
+            image: 'assets/figure-3c.jpg',
+            body: `
+              <p>En 1589, l’armée espagnole, alliée à la Ligue catholique, vient assiéger Leucate. Jean de Boursiez part prévenir le duc de Montmorency, mais il est capturé et conduit à Narbonne.</p>
+              <p>En son absence, Françoise de Cezelli organise la défense de la forteresse. Elle galvanise la garnison et repousse les attaques ennemies.</p>
+              <p>Les assaillants exigent alors les clefs de la ville en échange de la vie de son mari. Françoise refuse, affirmant : <em>« La ville est au roi et mon honneur à Dieu. Je dois les conserver jusqu’au dernier soupir… »</em></p>
+              <p>Son mari est exécuté, mais après trois semaines de siège, les ennemis lèvent le camp. En reconnaissance, Henri IV lui laisse le gouvernement effectif de Leucate, qu’elle exerce pendant vingt-sept ans, jusqu’à la majorité de son fils aîné Hercule.</p>
+            `
+          },
+          {
+            title: 'Mémoire et hommages',
+            image: 'assets/figure-3d.jpg',
+            body: `
+              <p>Françoise de Cezelli meurt à Montpellier le 16 octobre 1615, à l’âge de 56 ans. Elle est inhumée à côté de son mari dans la chapelle Sainte-Anne de l’église Saint-Paul de Narbonne.</p>
+              <p>Sa mémoire demeure vive. En 1899, une statue en bronze est érigée à Leucate. Déboulonnée pendant la Seconde Guerre mondiale, elle est ensuite remplacée, puis réinstallée sous une nouvelle forme.</p>
+              <p>Une plaque commémorative lui rend hommage à Montpellier. Une rue de Montpellier, une école élémentaire de Narbonne et une vedette de sauvetage de Port Leucate portent son nom.</p>
+              <p><small>Source : texte adapté d’un extrait de Wikipedia.</small></p>
+            `
+          }
+        ]
+      },
 
       blum: {
         title: 'Thérèse Blum',
@@ -1659,6 +1723,93 @@
       }
     };
 
+    const artistBookData = {
+      koralie: {
+        title: 'Koralie',
+        pages: [
+          {
+            title: 'Biographie',
+            image: 'assets/artiste-1.jpg',
+            body: `
+              <p>Remplacez ce texte par une biographie courte de Koralie. Vous pouvez y présenter son parcours, ses influences et les grands axes de son travail.</p>
+              <p>Sur mobile, la photo et le texte se suivent verticalement pour une lecture plus confortable.</p>
+            `
+          },
+          {
+            title: 'Univers visuel',
+            image: 'assets/artiste-1b.jpg',
+            body: `
+              <p>Ajoutez ici une seconde page : œuvre, détail d’intervention, technique, intention ou lien avec le square.</p>
+              <p>Cette structure en deux pages maximum permet de garder une lecture simple et fluide.</p>
+            `
+          }
+        ]
+      },
+
+      'claire-remy': {
+        title: 'Claire Rémy',
+        pages: [
+          {
+            title: 'Biographie',
+            image: 'assets/artiste-2.jpg',
+            body: `
+              <p>Remplacez ce texte par une biographie courte de Claire Rémy.</p>
+              <p>Vous pouvez préciser ici son parcours, ses thèmes de travail et sa place dans le projet.</p>
+            `
+          },
+          {
+            title: 'Démarche artistique',
+            image: 'assets/artiste-2b.jpg',
+            body: `
+              <p>Ajoutez ici une seconde page consacrée à sa démarche, à un visuel du square ou à une œuvre particulière.</p>
+            `
+          }
+        ]
+      },
+
+      'yann-le-gall': {
+        title: 'Yann Le Gall',
+        pages: [
+          {
+            title: 'Biographie',
+            image: 'assets/artiste-3.jpg',
+            body: `
+              <p>Remplacez ce texte par une biographie courte de Yann Le Gall.</p>
+              <p>Vous pouvez situer ici son parcours et son approche artistique.</p>
+            `
+          },
+          {
+            title: 'Pratique et regard',
+            image: 'assets/artiste-3b.jpg',
+            body: `
+              <p>Ajoutez ici une seconde page sur sa pratique, son univers plastique ou la manière dont il intervient dans le square.</p>
+            `
+          }
+        ]
+      },
+
+      ratur: {
+        title: 'Ratur',
+        pages: [
+          {
+            title: 'Biographie',
+            image: 'assets/artiste-4.jpg',
+            body: `
+              <p>Remplacez ce texte par une biographie courte de Ratur.</p>
+              <p>Quelques lignes suffisent pour introduire le public à son travail.</p>
+            `
+          },
+          {
+            title: 'Signature visuelle',
+            image: 'assets/artiste-4b.jpg',
+            body: `
+              <p>Ajoutez ici une seconde page sur l’esthétique, le geste ou l’intervention de l’artiste dans le projet.</p>
+            `
+          }
+        ]
+      }
+    };
+
     const figureBookModal = document.getElementById('figureBookModal');
     const figureBookClose = document.getElementById('figureBookClose');
     const figureBookTitle = document.getElementById('figureBookTitle');
@@ -1669,12 +1820,23 @@
     const figurePrev = document.getElementById('figurePrev');
     const figureNext = document.getElementById('figureNext');
 
+    const artistBookModal = document.getElementById('artistBookModal');
+    const artistBookClose = document.getElementById('artistBookClose');
+    const artistBookTitle = document.getElementById('artistBookTitle');
+    const artistBookCounter = document.getElementById('artistBookCounter');
+    const artistBookImage = document.getElementById('artistBookImage');
+    const artistBookPageTitle = document.getElementById('artistBookPageTitle');
+    const artistBookBody = document.getElementById('artistBookBody');
+    const artistPrev = document.getElementById('artistPrev');
+    const artistNext = document.getElementById('artistNext');
+
     let currentFigureKey = null;
     let currentFigurePage = 0;
+    let currentArtistKey = null;
+    let currentArtistPage = 0;
 
     function renderFigureBook() {
       if (!currentFigureKey) return;
-
       const figure = figureBookData[currentFigureKey];
       const page = figure.pages[currentFigurePage];
 
@@ -1721,9 +1883,63 @@
       }
     }
 
+    function renderArtistBook() {
+      if (!currentArtistKey) return;
+      const artist = artistBookData[currentArtistKey];
+      const page = artist.pages[currentArtistPage];
+
+      artistBookTitle.textContent = artist.title;
+      artistBookCounter.textContent = `${currentArtistPage + 1} / ${artist.pages.length}`;
+      artistBookImage.src = page.image;
+      artistBookImage.alt = `${artist.title} — ${page.title}`;
+      artistBookPageTitle.textContent = page.title;
+      artistBookBody.innerHTML = page.body;
+
+      artistPrev.disabled = currentArtistPage === 0;
+      artistNext.disabled = currentArtistPage === artist.pages.length - 1;
+    }
+
+    function openArtistBook(key) {
+      currentArtistKey = key;
+      currentArtistPage = 0;
+      renderArtistBook();
+      artistBookModal.classList.add('open');
+      artistBookModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArtistBook() {
+      artistBookModal.classList.remove('open');
+      artistBookModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function nextArtistPage() {
+      if (!currentArtistKey) return;
+      const total = artistBookData[currentArtistKey].pages.length;
+      if (currentArtistPage < total - 1) {
+        currentArtistPage += 1;
+        renderArtistBook();
+      }
+    }
+
+    function prevArtistPage() {
+      if (!currentArtistKey) return;
+      if (currentArtistPage > 0) {
+        currentArtistPage -= 1;
+        renderArtistBook();
+      }
+    }
+
     document.querySelectorAll('.figure-entry').forEach(entry => {
       entry.addEventListener('click', () => {
         openFigureBook(entry.dataset.figure);
+      });
+    });
+
+    document.querySelectorAll('.artist-entry').forEach(entry => {
+      entry.addEventListener('click', () => {
+        openArtistBook(entry.dataset.artist);
       });
     });
 
@@ -1731,9 +1947,19 @@
     figureNext.addEventListener('click', nextFigurePage);
     figurePrev.addEventListener('click', prevFigurePage);
 
+    artistBookClose.addEventListener('click', closeArtistBook);
+    artistNext.addEventListener('click', nextArtistPage);
+    artistPrev.addEventListener('click', prevArtistPage);
+
     figureBookModal.addEventListener('click', (e) => {
       if (e.target === figureBookModal) {
         closeFigureBook();
+      }
+    });
+
+    artistBookModal.addEventListener('click', (e) => {
+      if (e.target === artistBookModal) {
+        closeArtistBook();
       }
     });
 
@@ -1898,11 +2124,20 @@
         if (figureBookModal.classList.contains('open')) {
           closeFigureBook();
         }
+
+        if (artistBookModal.classList.contains('open')) {
+          closeArtistBook();
+        }
       }
 
       if (figureBookModal.classList.contains('open')) {
         if (e.key === 'ArrowRight') nextFigurePage();
         if (e.key === 'ArrowLeft') prevFigurePage();
+      }
+
+      if (artistBookModal.classList.contains('open')) {
+        if (e.key === 'ArrowRight') nextArtistPage();
+        if (e.key === 'ArrowLeft') prevArtistPage();
       }
     });
   </script>
