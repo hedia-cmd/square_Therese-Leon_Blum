@@ -232,7 +232,7 @@
       border-radius:30px;
       background:
         linear-gradient(180deg, rgba(246,243,234,.05), rgba(47,58,47,.12)),
-        url('facade_intro.jpg') center/cover no-repeat;
+        url('img/Koralie_4.jpg') center/cover no-repeat;
       border:1px solid var(--line);
       box-shadow:var(--shadow);
     }
@@ -1064,14 +1064,7 @@
           </div>
         </div>
 
-        <div class="hero-card">
-          <div class="hero-card-overlay">
-            <h3>Visuel d’accueil</h3>
-            <p>
-              Cette image pointe vers un fichier du dossier <strong>img</strong>.
-            </p>
-          </div>
-        </div>
+        <div class="hero-card"></div>
       </div>
     </section>
 
@@ -1104,7 +1097,7 @@
           </div>
 
           <div class="project-panel">
-            <h3>Les 3 zones</h3>
+            <h3>Les 4 zones</h3>
             <div class="zones">
               <div class="zone">
                 <strong>Zone 1</strong>
@@ -1117,6 +1110,10 @@
               <div class="zone">
                 <strong>Zone 3</strong>
                 <span>De la rue Blida au boulevard Condorcet · intervention de Yann Le Gall.</span>
+              </div>
+              <div class="zone">
+                <strong>Zone 4</strong>
+                <span>Le parc de la Révolution · intervention de Ratur.</span>
               </div>
             </div>
           </div>
@@ -1395,77 +1392,197 @@
         <div class="section-head">
           <span class="eyebrow">Jouer</span>
           <h2>Tester son regard</h2>
-          <p>Une première couche ludique avec un quiz et un memory.</p>
+          <p>Trois quiz pour explorer les figures historiques du parcours, plus un memory visuel.</p>
         </div>
 
         <div class="grid-2">
           <div class="quiz-box">
             <h3>Quiz express — Galla Placidia</h3>
 
-            <form id="quizForm">
+            <form class="quiz-form" data-total="7">
               <div class="quiz-question">
                 <h4>1. En quelle année est née Galla Placidia ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="q1" value="0"> 380</label>
-                  <label><input type="radio" name="q1" value="0"> 385</label>
-                  <label><input type="radio" name="q1" value="1"> 388</label>
+                  <label><input type="radio" name="galla-q1" value="0"> 380</label>
+                  <label><input type="radio" name="galla-q1" value="0"> 385</label>
+                  <label><input type="radio" name="galla-q1" value="1"> 388</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>2. De qui est-elle la fille ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="q2" value="1"> De l’empereur Théodose</label>
-                  <label><input type="radio" name="q2" value="0"> De l’empereur Valentinien</label>
+                  <label><input type="radio" name="galla-q2" value="1"> De l’empereur Théodose Ier</label>
+                  <label><input type="radio" name="galla-q2" value="0"> De l’empereur Valentinien</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>3. En quelle année a-t-elle été prise en otage ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="q3" value="0"> 406</label>
-                  <label><input type="radio" name="q3" value="0"> 408</label>
-                  <label><input type="radio" name="q3" value="1"> 410</label>
+                  <label><input type="radio" name="galla-q3" value="0"> 406</label>
+                  <label><input type="radio" name="galla-q3" value="0"> 408</label>
+                  <label><input type="radio" name="galla-q3" value="1"> 410</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>4. Combien de fois a-t-elle été mariée ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="q4" value="0"> 1 fois</label>
-                  <label><input type="radio" name="q4" value="1"> 2 fois avec Athaulf et Constance</label>
-                  <label><input type="radio" name="q4" value="0"> 3 fois</label>
+                  <label><input type="radio" name="galla-q4" value="0"> 1 fois</label>
+                  <label><input type="radio" name="galla-q4" value="1"> 2 fois avec Athaulf et Constance</label>
+                  <label><input type="radio" name="galla-q4" value="0"> 3 fois</label>
                 </div>
               </div>
 
               <div class="quiz-question">
-                <h4>5. Galla Placidia a exercé la régence :</h4>
+                <h4>5. Galla Placidia a-t-elle été régente ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="q5" value="1"> De 425 à 437</label>
-                  <label><input type="radio" name="q5" value="0"> De 427 à 435</label>
-                  <label><input type="radio" name="q5" value="0"> De 425 à 435</label>
+                  <label><input type="radio" name="galla-q5" value="1"> Oui</label>
+                  <label><input type="radio" name="galla-q5" value="0"> Non</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>6. Quelle est la date de son décès ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="q6" value="0"> 448</label>
-                  <label><input type="radio" name="q6" value="0"> 449</label>
-                  <label><input type="radio" name="q6" value="1"> 450</label>
+                  <label><input type="radio" name="galla-q6" value="0"> 448</label>
+                  <label><input type="radio" name="galla-q6" value="0"> 449</label>
+                  <label><input type="radio" name="galla-q6" value="1"> 450</label>
                 </div>
               </div>
 
               <div class="quiz-question">
-                <h4>7. Selon les historiens, Galla Placidia a probablement été inhumée :</h4>
+                <h4>7. Où est-elle inhumée ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="q7" value="0"> À Ravenne</label>
-                  <label><input type="radio" name="q7" value="1"> À Rome</label>
+                  <label><input type="radio" name="galla-q7" value="0"> À Ravenne</label>
+                  <label><input type="radio" name="galla-q7" value="1"> À Rome</label>
                 </div>
               </div>
 
               <button class="btn btn-primary" type="submit">Voir mon score</button>
-              <div id="quizResult" class="quiz-result"></div>
+              <div class="quiz-result"></div>
+            </form>
+          </div>
+
+          <div class="quiz-box">
+            <h3>Quiz express — Ermengarde de Narbonne</h3>
+
+            <form class="quiz-form" data-total="6">
+              <div class="quiz-question">
+                <h4>1. En quelle année meurt le vicomte de Narbonne Aymeri II ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="ermengarde-q1" value="0"> 1133</label>
+                  <label><input type="radio" name="ermengarde-q1" value="1"> 1134</label>
+                  <label><input type="radio" name="ermengarde-q1" value="0"> 1135</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>2. Qui est Aymeri II par rapport à Ermengarde ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="ermengarde-q2" value="0"> Son frère</label>
+                  <label><input type="radio" name="ermengarde-q2" value="1"> Son père</label>
+                  <label><input type="radio" name="ermengarde-q2" value="0"> Son fils</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>3. Bernard d’Anduze a-t-il été l’époux d’Ermengarde de Narbonne ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="ermengarde-q3" value="1"> Oui</label>
+                  <label><input type="radio" name="ermengarde-q3" value="0"> Non</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>4. Ermengarde a-t-elle été une protectrice de la vie intellectuelle et artistique ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="ermengarde-q4" value="1"> Oui</label>
+                  <label><input type="radio" name="ermengarde-q4" value="0"> Non</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>5. La cour d’Ermengarde est réputée pour accueillir des médecins, des juristes et surtout des troubadours.</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="ermengarde-q5" value="1"> Vrai</label>
+                  <label><input type="radio" name="ermengarde-q5" value="0"> Faux</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>6. L’abbaye de Fontfroide a-t-elle reçu d’Ermengarde une donation majeure ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="ermengarde-q6" value="1"> Oui</label>
+                  <label><input type="radio" name="ermengarde-q6" value="0"> Non</label>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Voir mon score</button>
+              <div class="quiz-result"></div>
+            </form>
+          </div>
+
+          <div class="quiz-box">
+            <h3>Quiz express — Françoise de Cezelli</h3>
+
+            <form class="quiz-form" data-total="6">
+              <div class="quiz-question">
+                <h4>1. Où est née Françoise de Cezelli ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="cezelli-q1" value="0"> Avignon</label>
+                  <label><input type="radio" name="cezelli-q1" value="0"> Narbonne</label>
+                  <label><input type="radio" name="cezelli-q1" value="1"> Montpellier</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>2. De qui est-elle la fille ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="cezelli-q2" value="0"> Du gouverneur de Leucate</label>
+                  <label><input type="radio" name="cezelli-q2" value="1"> Du président de la chambre des comptes de Montpellier</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>3. En quelle année se marie-t-elle avec Jean de Boursiez, seigneur de Pantnaut de Barri ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="cezelli-q3" value="0"> 1571</label>
+                  <label><input type="radio" name="cezelli-q3" value="0"> 1572</label>
+                  <label><input type="radio" name="cezelli-q3" value="1"> 1577</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>4. Quand a lieu le siège de Leucate ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="cezelli-q4" value="0"> 1588</label>
+                  <label><input type="radio" name="cezelli-q4" value="1"> 1589</label>
+                  <label><input type="radio" name="cezelli-q4" value="0"> 1590</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>5. En quelle année est-elle décédée ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="cezelli-q5" value="0"> 1614</label>
+                  <label><input type="radio" name="cezelli-q5" value="1"> 1615</label>
+                  <label><input type="radio" name="cezelli-q5" value="0"> 1616</label>
+                </div>
+              </div>
+
+              <div class="quiz-question">
+                <h4>6. Où est-elle inhumée ?</h4>
+                <div class="quiz-options">
+                  <label><input type="radio" name="cezelli-q6" value="1"> À Narbonne</label>
+                  <label><input type="radio" name="cezelli-q6" value="0"> À Montpellier</label>
+                  <label><input type="radio" name="cezelli-q6" value="0"> À Leucate</label>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Voir mon score</button>
+              <div class="quiz-result"></div>
             </form>
           </div>
 
@@ -2019,30 +2136,34 @@
        QUIZ
     =========================== */
 
-    const quizForm = document.getElementById('quizForm');
-    const quizResult = document.getElementById('quizResult');
+    document.querySelectorAll('.quiz-form').forEach(form => {
+      const quizResult = form.querySelector('.quiz-result');
 
-    quizForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-      let score = 0;
-      const total = 7;
+        let score = 0;
+        const total = Number(form.dataset.total || 0);
+        const groups = new Set(
+          Array.from(form.querySelectorAll('input[type="radio"]')).map(input => input.name)
+        );
 
-      for (let i = 1; i <= total; i++) {
-        const answer = document.querySelector(`input[name="q${i}"]:checked`);
-        if (answer && answer.value === "1") score++;
-      }
+        groups.forEach(name => {
+          const answer = form.querySelector(`input[name="${name}"]:checked`);
+          if (answer && answer.value === "1") score++;
+        });
 
-      quizResult.style.display = 'block';
-      quizResult.innerHTML = `<strong>Score :</strong> ${score} / ${total}`;
+        quizResult.style.display = 'block';
+        quizResult.innerHTML = `<strong>Score :</strong> ${score} / ${total}`;
 
-      if (score === total) {
-        quizResult.innerHTML += `<br>Excellent, regard affûté.`;
-      } else if (score >= 4) {
-        quizResult.innerHTML += `<br>Bon niveau, continuez l’exploration.`;
-      } else {
-        quizResult.innerHTML += `<br>À revoir sur le parcours.`;
-      }
+        if (score === total) {
+          quizResult.innerHTML += `<br>Excellent, regard affûté.`;
+        } else if (score >= Math.ceil(total / 2)) {
+          quizResult.innerHTML += `<br>Bon niveau, continuez l’exploration.`;
+        } else {
+          quizResult.innerHTML += `<br>À revoir sur le parcours.`;
+        }
+      });
     });
 
     /* ===========================
