@@ -329,6 +329,17 @@
       width:100%;
     }
 
+    .portrait-card{
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .portrait-card:hover{
+      transform:translateY(-3px);
+      border-color:#cbbfa8;
+      box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
+    }
+
     .tag{
       display:inline-flex;
       padding:6px 10px;
@@ -356,6 +367,29 @@
     }
 
     .project-panel p{color:var(--muted)}
+
+    .project-map{
+      margin:20px 0 0;
+      overflow:hidden;
+      border-radius:22px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .project-map img{
+      width:100%;
+      max-height:520px;
+      object-fit:cover;
+    }
+
+    .project-map figcaption{
+      padding:14px 16px;
+      color:var(--muted);
+      font-size:.94rem;
+      background:rgba(255,253,248,.88);
+      border-top:1px solid var(--line-soft);
+    }
 
     .zones{
       display:grid;
@@ -480,13 +514,14 @@
     .lightbox.open{display:flex}
 
     .lightbox-content{
-      max-width:min(1000px, 100%);
+      max-width:min(1180px, 100%);
       max-height:100%;
       position:relative;
     }
 
     .lightbox img{
-      max-height:78vh;
+      max-width:92vw;
+      max-height:86vh;
       width:auto;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.6);
@@ -1020,7 +1055,7 @@
             </a>
             <a href="#videos" class="quick-link">
               <strong>Regarder les vidéos</strong>
-              <span>4 capsules courtes intégrées</span>
+              <span>3 capsules courtes intégrées</span>
             </a>
             <a href="#ateliers" class="quick-link">
               <strong>Découvrir les ateliers</strong>
@@ -1086,6 +1121,11 @@
             </div>
           </div>
         </div>
+
+        <figure class="project-map">
+          <img src="img/plan_square.png" alt="Plan du parcours artistique dans le square Thérèse et Léon Blum">
+          <figcaption>Plan du parcours : zones d’intervention, repères et traversées du square.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -1150,8 +1190,8 @@
           </p>
         </div>
 
-        <div class="grid-3">
-          <article class="card portrait-card">
+        <div class="grid-4">
+          <article class="card portrait-card" data-full="img/PORTRAIT-KORALIE.jpg">
             <img src="img/PORTRAIT-KORALIE.jpg" alt="Portrait 1">
             <div class="card-body">
               <h3>Portrait 1</h3>
@@ -1159,7 +1199,7 @@
             </div>
           </article>
 
-          <article class="card portrait-card">
+          <article class="card portrait-card" data-full="img/YannLegal_3.jpeg">
             <img src="img/YannLegal_3.jpeg" alt="Portrait 2">
             <div class="card-body">
               <h3>Portrait 2</h3>
@@ -1167,10 +1207,18 @@
             </div>
           </article>
 
-          <article class="card portrait-card">
+          <article class="card portrait-card" data-full="img/ratur4.webp">
             <img src="img/ratur4.webp" alt="Portrait 3">
             <div class="card-body">
               <h3>Portrait 3</h3>
+              <p>Texte court à remplacer.</p>
+            </div>
+          </article>
+
+          <article class="card portrait-card" data-full="img/Thérèse3.jpg">
+            <img src="img/Thérèse3.jpg" alt="Portrait 4">
+            <div class="card-body">
+              <h3>Portrait 4</h3>
               <p>Texte court à remplacer.</p>
             </div>
           </article>
@@ -1228,7 +1276,7 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Vidéos</span>
-          <h2>4 capsules à intégrer</h2>
+          <h2>3 capsules à intégrer</h2>
           <p>
             Remplacez les identifiants YouTube dans les iframes ci-dessous.
             Format idéal : capsules courtes de 45 secondes à 2 minutes.
@@ -1262,16 +1310,6 @@
             </div>
             <div class="video-meta">
               <h3>Les ateliers</h3>
-              <p>Texte d’introduction à remplacer.</p>
-            </div>
-          </article>
-
-          <article class="video-card">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Vidéo 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="video-meta">
-              <h3>Le square aujourd’hui</h3>
               <p>Texte d’introduction à remplacer.</p>
             </div>
           </article>
@@ -1543,12 +1581,12 @@
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
 
-    document.querySelectorAll('.gallery-item').forEach(item => {
+    document.querySelectorAll('.gallery-item, .portrait-card').forEach(item => {
       item.addEventListener('click', () => {
         const full = item.getAttribute('data-full');
         const img = item.querySelector('img');
         lightboxImg.src = full;
-        lightboxImg.alt = img ? img.alt : 'Image atelier';
+        lightboxImg.alt = img ? img.alt : 'Image agrandie';
         lightbox.classList.add('open');
       });
     });
