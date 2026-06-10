@@ -1,2106 +1,1869 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Square Thérèse et Léon Blum — Parcours artistique</title>
-  <meta
-    name="description"
-    content="Parcours artistique et outil de médiation numérique du square Thérèse et Léon Blum."
-  />
-  <style>
-    :root{
-      --bg:#F6F3EA;
-      --bg-soft:#ECE6D8;
-      --bg-soft-2:#F2ECDD;
-      --panel:#FFFDF8;
-      --panel-2:#F8F3E8;
-      --text:#2F3A2F;
-      --text-soft:#445043;
-      --muted:#667160;
-      --line:#D8D1C2;
-      --line-soft:#E7E0D3;
-      --accent:#7A8B5A;
-      --accent-hover:#6D7D50;
-      --accent-2:#C98E72;
-      --accent-2-soft:#E6B8A2;
-      --accent-3:#B7C9D6;
-      --shadow:0 12px 28px rgba(92, 84, 67, 0.10);
-      --shadow-soft:0 8px 20px rgba(92, 84, 67, 0.08);
-      --radius-xl:24px;
-      --radius-lg:18px;
-      --radius-md:14px;
-      --max:1180px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(183,201,214,.28), transparent 30%),
-        radial-gradient(circle at 20% 10%, rgba(201,142,114,.12), transparent 24%),
-        linear-gradient(180deg, #fbf8f0 0%, var(--bg) 100%);
-      color:var(--text);
-      line-height:1.55;
-    }
-
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:inherit}
-    button{font:inherit}
-
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-    }
-
-    .section{
-      padding:72px 0;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--muted);
-      font-size:.9rem;
-      background:rgba(255,253,248,.84);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .section-head{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-bottom:28px;
-    }
-
-    .section-head h2{
-      margin:0;
-      font-size:clamp(1.8rem, 4vw, 2.8rem);
-      line-height:1.06;
-      color:var(--text);
-    }
-
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      max-width:760px;
-    }
-
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:40;
-      backdrop-filter: blur(12px);
-      background:rgba(246,243,234,.86);
-      border-bottom:1px solid var(--line-soft);
-      box-shadow:0 4px 16px rgba(92, 84, 67, 0.05);
-    }
-
-    .site-header-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      min-height:72px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      letter-spacing:.01em;
-      color:var(--text);
-    }
-
-    .brand-badge{
-      width:40px;
-      height:40px;
-      border-radius:12px;
-      background:linear-gradient(135deg, var(--accent), var(--accent-2-soft));
-      box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,.55);
-    }
-
-    .nav{
-      display:flex;
-      gap:18px;
-      align-items:center;
-    }
-
-    .nav a{
-      color:var(--muted);
-      font-size:.96rem;
-      transition:color .2s ease;
-    }
-
-    .nav a:hover{color:var(--accent)}
-
-    .menu-btn{
-      display:none;
-      width:44px;
-      height:44px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:var(--panel);
-      color:var(--text);
-      cursor:pointer;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .hero{
-      padding:84px 0 56px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:28px;
-      align-items:center;
-    }
-
-    .hero h1{
-      margin:14px 0 18px;
-      font-size:clamp(2.3rem, 6vw, 4.8rem);
-      line-height:.96;
-      letter-spacing:-.04em;
-      color:var(--text);
-    }
-
-    .hero p{
-      margin:0 0 26px;
-      color:var(--muted);
-      font-size:1.06rem;
-      max-width:650px;
-    }
-
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:48px;
-      padding:0 18px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      transition:.2s ease;
-      cursor:pointer;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .btn-primary{
-      background:linear-gradient(135deg, var(--accent), #96a67b);
-      color:#fffdf8;
-      border:none;
-      font-weight:700;
-    }
-
-    .btn-primary:hover{
-      background:linear-gradient(135deg, var(--accent-hover), #88986f);
-    }
-
-    .btn-secondary{
-      background:var(--panel);
-      color:var(--text);
-    }
-
-    .btn-secondary:hover{
-      background:var(--bg-soft-2);
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-    }
-
-    .hero-card{
-      position:relative;
-      overflow:hidden;
-      min-height:460px;
-      border-radius:30px;
-      background:
-        linear-gradient(180deg, rgba(246,243,234,.05), rgba(47,58,47,.12)),
-        url('img/Koralie_4.jpg') center/cover no-repeat;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-card-overlay{
-      position:absolute;
-      inset:auto 18px 18px 18px;
-      padding:18px;
-      border-radius:18px;
-      background:rgba(255,253,248,.88);
-      border:1px solid rgba(216,209,194,.85);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .hero-card-overlay h3{
-      margin:0 0 8px;
-      font-size:1.1rem;
-      color:var(--text);
-    }
-
-    .hero-card-overlay p{
-      margin:0;
-      color:var(--text-soft);
-      font-size:.96rem;
-    }
-
-    .quick-links{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:14px;
-      margin-top:24px;
-    }
-
-    .quick-link{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      padding:18px;
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:18px;
-      min-height:120px;
-      box-shadow:var(--shadow-soft);
-      transition:transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-
-    .quick-link:hover{
-      transform:translateY(-2px);
-      border-color:#cbbfa8;
-      background:#fffaf1;
-    }
-
-    .quick-link strong{
-      font-size:1rem;
-      color:var(--text);
-    }
-
-    .quick-link span{
-      color:var(--muted);
-      font-size:.93rem;
-    }
-
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-
-    .card{
-      background:linear-gradient(180deg, var(--panel), #faf5ea);
-      border:1px solid var(--line);
-      border-radius:var(--radius-lg);
-      overflow:hidden;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .card-body{
-      padding:18px;
-    }
-
-    .card h3,.card h4{
-      margin:0 0 8px;
-      color:var(--text);
-    }
-
-    .card p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    .artist-card img,
-    .portrait-card img,
-    .figure-card img{
-      aspect-ratio: 4 / 3;
-      object-fit:cover;
-      width:100%;
-    }
-
-    .tag{
-      display:inline-flex;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-size:.82rem;
-      margin-bottom:10px;
-      background:var(--bg-soft);
-    }
-
-    .project-layout{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:20px;
-      align-items:start;
-    }
-
-    .project-panel{
-      padding:22px;
-      border-radius:22px;
-      background:linear-gradient(180deg, var(--panel), var(--panel-2));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .project-panel p{color:var(--muted)}
-
-    .zones{
-      display:grid;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .zone{
-      padding:14px 16px;
-      border-radius:16px;
-      background:#fbf6eb;
-      border:1px solid var(--line);
-    }
-
-    .zone strong{
-      display:block;
-      margin-bottom:4px;
-      color:var(--text);
-    }
-
-    .zone span{
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    .video-grid{
-      display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:18px;
-    }
-
-    .video-card{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .video-embed{
-      position:relative;
-      width:100%;
-      aspect-ratio:16 / 9;
-      background:#d8d1c2;
-    }
-
-    .video-embed iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-    .video-meta{
-      padding:14px 16px 18px;
-    }
-
-    .video-meta h3{
-      margin:0 0 6px;
-      font-size:1rem;
-      color:var(--text);
-    }
-
-    .video-meta p{
-      margin:0;
-      color:var(--muted);
-      font-size:.94rem;
-    }
-
-    .gallery-grid{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:12px;
-    }
-
-    .gallery-item{
-      position:relative;
-      overflow:hidden;
-      border-radius:18px;
-      border:1px solid var(--line);
-      cursor:pointer;
-      background:var(--panel);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .gallery-item img{
-      width:100%;
-      aspect-ratio:1 / 1;
-      object-fit:cover;
-      transition:transform .35s ease;
-    }
-
-    .gallery-item:hover img{
-      transform:scale(1.04);
-    }
-
-    .gallery-caption{
-      position:absolute;
-      inset:auto 10px 10px 10px;
-      padding:10px 12px;
-      border-radius:12px;
-      font-size:.88rem;
-      background:rgba(255,253,248,.92);
-      color:var(--text);
-      border:1px solid rgba(216,209,194,.9);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .lightbox{
-      position:fixed;
-      inset:0;
-      z-index:100;
-      background:rgba(47, 58, 47, .55);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:22px;
-      backdrop-filter: blur(6px);
-    }
-
-    .lightbox.open{display:flex}
-
-    .lightbox-content{
-      max-width:min(1000px, 100%);
-      max-height:100%;
-      position:relative;
-    }
-
-    .lightbox img{
-      max-height:78vh;
-      width:auto;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.6);
-      box-shadow:0 22px 50px rgba(47, 58, 47, .20);
-    }
-
-    .lightbox-close{
-      position:absolute;
-      top:-14px;
-      right:-14px;
-      width:42px;
-      height:42px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:var(--panel);
-      color:var(--text);
-      font-size:1.2rem;
-      cursor:pointer;
-      box-shadow:var(--shadow);
-    }
-
-    .quiz-box{
-      padding:22px;
-      background:linear-gradient(180deg, #f8f3e8, #fffdf8);
-      border:1px solid var(--line);
-      border-radius:22px;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .quiz-box h3{
-      color:var(--text);
-    }
-
-    .quiz-question{
-      margin-bottom:18px;
-      padding-bottom:18px;
-      border-bottom:1px solid var(--line-soft);
-    }
-
-    .quiz-question:last-child{
-      border-bottom:none;
-      padding-bottom:0;
-      margin-bottom:0;
-    }
-
-    .quiz-question h4{
-      margin:0 0 10px;
-      font-size:1rem;
-      color:var(--text);
-    }
-
-    .quiz-options{
-      display:grid;
-      gap:10px;
-    }
-
-    .quiz-options label{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      padding:12px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:#fffaf1;
-      cursor:pointer;
-      transition:background .2s ease, border-color .2s ease;
-    }
-
-    .quiz-options label:hover{
-      background:#f5efe2;
-      border-color:#cbbfa8;
-    }
-
-    .quiz-result{
-      margin-top:18px;
-      padding:14px 16px;
-      border-radius:16px;
-      display:none;
-      background:var(--bg-soft);
-      border:1px solid var(--line);
-      color:var(--text);
-    }
-
-    .memory-wrap{
-      display:grid;
-      gap:16px;
-    }
-
-    .memory-toolbar{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-    }
-
-    .memory-grid{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:12px;
-    }
-
-    .memory-card{
-      position:relative;
-      aspect-ratio:1 / 1;
-      border:none;
-      background:none;
-      padding:0;
-      cursor:pointer;
-      perspective:1000px;
-    }
-
-    .memory-card-inner{
-      position:relative;
-      width:100%;
-      height:100%;
-      transition:transform .45s ease;
-      transform-style:preserve-3d;
-    }
-
-    .memory-card.is-flipped .memory-card-inner,
-    .memory-card.is-matched .memory-card-inner{
-      transform:rotateY(180deg);
-    }
-
-    .memory-face{
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .memory-front{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg, #a7b68a, #d8c27a);
-      color:#fffdf8;
-      font-size:2rem;
-    }
-
-    .memory-back{
-      transform:rotateY(180deg);
-      background:var(--panel);
-    }
-
-    .memory-back img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .memory-status{
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    .figure-entry,
-    .artist-entry{
-      cursor:pointer;
-      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-
-    .figure-entry:hover,
-    .artist-entry:hover{
-      transform:translateY(-3px);
-      border-color:#cbbfa8;
-      box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
-    }
-
-    .figure-book-modal,
-    .artist-book-modal{
-      position:fixed;
-      inset:0;
-      z-index:120;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      background:rgba(47, 58, 47, .42);
-      backdrop-filter:blur(8px);
-    }
-
-    .artist-book-modal{
-      z-index:121;
-    }
-
-    .figure-book-modal.open,
-    .artist-book-modal.open{
-      display:flex;
-    }
-
-    .figure-book-shell,
-    .artist-book-shell{
-      position:relative;
-      width:min(1100px, 100%);
-      max-height:min(90vh, 920px);
-      background:linear-gradient(180deg, #fffdf8 0%, #f8f3e8 100%);
-      border:1px solid var(--line);
-      border-radius:28px;
-      box-shadow:0 28px 60px rgba(47, 58, 47, .18);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .figure-book-close,
-    .artist-book-close{
-      position:absolute;
-      top:16px;
-      right:16px;
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:var(--panel);
-      color:var(--text);
-      font-size:1.3rem;
-      cursor:pointer;
-      z-index:3;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .figure-book-head,
-    .artist-book-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      padding:24px 72px 18px 28px;
-      border-bottom:1px solid var(--line-soft);
-      background:rgba(255,253,248,.72);
-    }
-
-    .figure-book-kicker,
-    .artist-book-kicker{
-      margin:0 0 6px;
-      font-size:.86rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--muted);
-    }
-
-    .figure-book-head h3,
-    .artist-book-head h3{
-      margin:0;
-      font-size:1.8rem;
-      line-height:1.05;
-      color:var(--text);
-    }
-
-    .figure-book-counter,
-    .artist-book-counter{
-      flex-shrink:0;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:var(--bg-soft);
-      color:var(--text-soft);
-      font-size:.92rem;
-    }
-
-    .figure-book-stage,
-    .artist-book-stage{
-      display:grid;
-      grid-template-columns:56px minmax(0,1fr) 56px;
-      align-items:stretch;
-      min-height:0;
-      flex:1;
-    }
-
-    .figure-book-nav,
-    .artist-book-nav{
-      border:none;
-      background:transparent;
-      color:var(--accent);
-      font-size:1.6rem;
-      cursor:pointer;
-      transition:background .2s ease, color .2s ease;
-    }
-
-    .figure-book-nav:hover,
-    .artist-book-nav:hover{
-      background:rgba(122,139,90,.08);
-      color:var(--accent-hover);
-    }
-
-    .figure-book-nav:disabled,
-    .artist-book-nav:disabled{
-      opacity:.35;
-      cursor:default;
-      background:transparent;
-    }
-
-    .figure-book-page,
-    .artist-book-page{
-      display:grid;
-      grid-template-columns:1.02fr .98fr;
-      min-height:0;
-    }
-
-    .figure-book-media,
-    .artist-book-media{
-      background:#efe8da;
-      border-right:1px solid var(--line-soft);
-      min-height:0;
-    }
-
-    .figure-book-media img,
-    .artist-book-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      min-height:100%;
-    }
-
-    .figure-book-text,
-    .artist-book-text{
-      padding:28px;
-      overflow:auto;
-      min-height:0;
-    }
-
-    .figure-book-text h4,
-    .artist-book-text h4{
-      margin:0 0 14px;
-      font-size:1.18rem;
-      color:var(--text);
-    }
-
-    .figure-book-text p,
-    .artist-book-text p{
-      margin:0 0 14px;
-      color:var(--text-soft);
-      line-height:1.7;
-    }
-
-    .figure-book-text p:last-child,
-    .artist-book-text p:last-child{
-      margin-bottom:0;
-    }
-
-    footer{
-      padding:40px 0 60px;
-      color:var(--muted);
-      border-top:1px solid var(--line-soft);
-      background:rgba(255,253,248,.45);
-    }
-
-    @media (max-width: 980px){
-      .hero-grid,
-      .project-layout,
-      .grid-4,
-      .grid-3,
-      .grid-2,
-      .video-grid,
-      .gallery-grid,
-      .quick-links{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .memory-grid{
-        grid-template-columns:repeat(4, 1fr);
-      }
-    }
-
-    @media (max-width: 860px){
-      .figure-book-shell,
-      .artist-book-shell{
-        max-height:92vh;
-      }
-
-      .figure-book-head,
-      .artist-book-head{
-        padding:20px 64px 16px 20px;
-      }
-
-      .figure-book-stage,
-      .artist-book-stage{
-        grid-template-columns:1fr;
-      }
-
-      .figure-book-nav,
-      .artist-book-nav{
-        position:absolute;
-        bottom:14px;
-        width:44px;
-        height:44px;
-        border-radius:999px;
-        background:rgba(255,253,248,.92);
-        border:1px solid var(--line);
-        box-shadow:var(--shadow-soft);
-        z-index:3;
-      }
-
-      .figure-book-nav.prev,
-      .artist-book-nav.prev{
-        left:14px;
-      }
-
-      .figure-book-nav.next,
-      .artist-book-nav.next{
-        right:14px;
-      }
-
-      .figure-book-page,
-      .artist-book-page{
-        grid-template-columns:1fr;
-      }
-
-      .figure-book-media,
-      .artist-book-media{
-        border-right:none;
-        border-bottom:1px solid var(--line-soft);
-        max-height:38vh;
-      }
-
-      .figure-book-text,
-      .artist-book-text{
-        padding:22px 20px 74px;
-      }
-    }
-
-    @media (max-width: 760px){
-      .nav{
-        display:none;
-        position:absolute;
-        top:72px;
-        left:16px;
-        right:16px;
-        flex-direction:column;
-        align-items:flex-start;
-        padding:16px;
-        border-radius:18px;
-        background:var(--panel);
-        border:1px solid var(--line);
-        box-shadow:var(--shadow);
-      }
-
-      .nav.open{display:flex}
-      .menu-btn{display:inline-flex;align-items:center;justify-content:center}
-
-      .hero{
-        padding-top:48px;
-      }
-
-      .hero-grid,
-      .project-layout,
-      .grid-4,
-      .grid-3,
-      .grid-2,
-      .video-grid,
-      .gallery-grid,
-      .quick-links{
-        grid-template-columns:1fr;
-      }
-
-      .memory-grid{
-        grid-template-columns:repeat(3, 1fr);
-      }
-
-      .hero-card{
-        min-height:320px;
-      }
-    }
-
-    @media (max-width: 520px){
-      .memory-grid{
-        grid-template-columns:repeat(2, 1fr);
-      }
-
-      .container{
-        width:min(var(--max), calc(100% - 22px));
-      }
-
-      .section{
-        padding:56px 0;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header class="site-header">
-    <div class="container site-header-inner">
-      <a href="#top" class="brand">
-        <span class="brand-badge"></span>
-        <span>Square Thérèse et Léon Blum</span>
-      </a>
-
-      <nav class="nav" id="mainNav">
-        <a href="#projet">Le projet</a>
-        <a href="#artistes">Les artistes</a>
-        <a href="#portraits">Portraits</a>
-        <a href="#videos">Vidéos</a>
-        <a href="#ateliers">Ateliers</a>
-        <a href="#jouer">Jouer</a>
-      </nav>
-
-      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Parcours artistique · médiation numérique · QR code</span>
-          <h1>Explorez le square autrement</h1>
-          <p>
-            Découvrez un parcours artistique qui relie piste cyclable, mémoire du lieu, portraits de femmes
-            et créations contemporaines. Une visite mobile, visuelle et accessible à parcourir sur place.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projet">Commencer la visite</a>
-            <a class="btn btn-secondary" href="#jouer">Jouer</a>
-          </div>
-
-          <div class="quick-links">
-            <a href="#artistes" class="quick-link">
-              <strong>Rencontrer les artistes</strong>
-              <span>Biographies, démarches, œuvres</span>
-            </a>
-            <a href="#portraits" class="quick-link">
-              <strong>Voir les portraits</strong>
-              <span>Galerie et points de regard</span>
-            </a>
-            <a href="#videos" class="quick-link">
-              <strong>Regarder les vidéos</strong>
-              <span>4 capsules courtes intégrées</span>
-            </a>
-            <a href="#ateliers" class="quick-link">
-              <strong>Découvrir les ateliers</strong>
-              <span>Galerie photo sur site</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <div class="hero-card-overlay">
-            <h3>Visuel d’accueil</h3>
-            <p>
-              Cette image pointe vers un fichier du dossier <strong>img</strong>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projet" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Le projet</span>
-          <h2>Un parcours entre art, mémoire et espace public</h2>
-          <p>
-            Le projet du square Thérèse et Léon Blum articule mobilité douce, valorisation paysagère,
-            mémoire locale et action artistique participative. Il accompagne la piste cyclable par
-            un parcours visuel coloré, végétal et protecteur, pensé comme une signalétique douce
-            pour les usagers.
-          </p>
-        </div>
-
-        <div class="project-layout">
-          <div class="project-panel">
-            <h3>Présentation</h3>
-            <p>
-              L’intervention vise à renforcer la lisibilité, l’attractivité et le sentiment de sécurité
-              autour d’un espace très fréquenté par les enfants, les familles et les établissements scolaires voisins.
-              La couleur, les motifs floraux et les formes inspirées de la nature prolongent l’identité végétale du square
-              jusque sur ses abords.
-            </p>
-            <p>
-              Le projet associe également un volet patrimonial et citoyen autour de figures féminines liées à Narbonne,
-              ainsi qu’une dimension participative avec les écoles, collèges, habitants, artistes et structures culturelles du territoire.
-            </p>
-          </div>
-
-          <div class="project-panel">
-            <h3>Les 3 zones</h3>
-            <div class="zones">
-              <div class="zone">
-                <strong>Zone 1</strong>
-                <span>De l’avenue Elie Sermet à l’avenue Pierre Sémard · intervention de Koralie.</span>
-              </div>
-              <div class="zone">
-                <strong>Zone 2</strong>
-                <span>De l’avenue Pierre Sémard à la rue Blida · intervention de Claire Rémy.</span>
-              </div>
-              <div class="zone">
-                <strong>Zone 3</strong>
-                <span>De la rue Blida au boulevard Condorcet · intervention de Yann Le Gall.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="artistes" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Les artistes</span>
-          <h2>Des univers différents, un même lieu à habiter</h2>
-          <p>
-            Cliquez sur une carte pour ouvrir une fiche illustrée en deux pages maximum.
-          </p>
-        </div>
-
-        <div class="grid-4">
-          <article class="card artist-card artist-entry" data-artist="koralie">
-            <img src="img/Koralie-3.webp" alt="Koralie">
-            <div class="card-body">
-              <span class="tag">Artiste</span>
-              <h3>Koralie</h3>
-              <p>Ouvrir la fiche illustrée.</p>
-            </div>
-          </article>
-
-          <article class="card artist-card artist-entry" data-artist="claire-remy">
-            <img src="img/Koralie_4.jpg" alt="Claire Rémy">
-            <div class="card-body">
-              <span class="tag">Artiste</span>
-              <h3>Claire Rémy</h3>
-              <p>Ouvrir la fiche illustrée.</p>
-            </div>
-          </article>
-
-          <article class="card artist-card artist-entry" data-artist="yann-le-gall">
-            <img src="img/Yannlegal_1.jpg" alt="Yann Le Gall">
-            <div class="card-body">
-              <span class="tag">Artiste</span>
-              <h3>Yann Le Gall</h3>
-              <p>Ouvrir la fiche illustrée.</p>
-            </div>
-          </article>
-
-          <article class="card artist-card artist-entry" data-artist="ratur">
-            <img src="img/ratur_1.jpg" alt="Ratur">
-            <div class="card-body">
-              <span class="tag">Artiste</span>
-              <h3>Ratur</h3>
-              <p>Ouvrir la fiche illustrée.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="portraits" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Portraits</span>
-          <h2>Regarder les visages du square</h2>
-          <p>
-            Cette section peut accueillir portraits, détails d’œuvres, figures féminines
-            ou galerie thématique.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card portrait-card">
-            <img src="img/PORTRAIT-KORALIE.jpg" alt="Portrait 1">
-            <div class="card-body">
-              <h3>Portrait 1</h3>
-              <p>Texte court à remplacer.</p>
-            </div>
-          </article>
-
-          <article class="card portrait-card">
-            <img src="img/YannLegal_3.jpeg" alt="Portrait 2">
-            <div class="card-body">
-              <h3>Portrait 2</h3>
-              <p>Texte court à remplacer.</p>
-            </div>
-          </article>
-
-          <article class="card portrait-card">
-            <img src="img/ratur4.webp" alt="Portrait 3">
-            <div class="card-body">
-              <h3>Portrait 3</h3>
-              <p>Texte court à remplacer.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="figures" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Mémoire du lieu</span>
-          <h2>Quelques figures à découvrir</h2>
-          <p>
-            Cliquez sur une figure pour ouvrir un parcours illustré, composé d’images et de textes à feuilleter.
-          </p>
-        </div>
-
-        <div class="grid-4">
-          <article class="card figure-card figure-entry" data-figure="galla">
-            <img src="img/Galla-Placidia_1.webp" alt="Galla Placidia">
-            <div class="card-body">
-              <h4>Galla Placidia</h4>
-              <p>Ouvrir le carnet illustré.</p>
-            </div>
-          </article>
-
-          <article class="card figure-card figure-entry" data-figure="ermengarde">
-            <img src="img/ermengarde_1.webp" alt="Ermengarde">
-            <div class="card-body">
-              <h4>Ermengarde</h4>
-              <p>Ouvrir le carnet illustré.</p>
-            </div>
-          </article>
-
-          <article class="card figure-card figure-entry" data-figure="cezelli">
-            <img src="img/Cezely_3.jpg" alt="Françoise de Cezelli">
-            <div class="card-body">
-              <h4>Françoise de Cezelli</h4>
-              <p>Ouvrir le carnet illustré.</p>
-            </div>
-          </article>
-
-          <article class="card figure-card figure-entry" data-figure="blum">
-            <img src="img/Thérèse3.jpg" alt="Thérèse Blum">
-            <div class="card-body">
-              <h4>Thérèse Blum</h4>
-              <p>Ouvrir le carnet illustré.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="videos" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Vidéos</span>
-          <h2>4 capsules à intégrer</h2>
-          <p>
-            Remplacez les identifiants YouTube dans les iframes ci-dessous.
-            Format idéal : capsules courtes de 45 secondes à 2 minutes.
-          </p>
-        </div>
-
-        <div class="video-grid">
-          <article class="video-card">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="Vidéo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="video-meta">
-              <h3>Portrait d’artiste</h3>
-              <p>Texte d’introduction à remplacer.</p>
-            </div>
-          </article>
-
-          <article class="video-card">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Vidéo 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="video-meta">
-              <h3>Micro-trottoir</h3>
-              <p>Texte d’introduction à remplacer.</p>
-            </div>
-          </article>
-
-          <article class="video-card">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Vidéo 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="video-meta">
-              <h3>Les ateliers</h3>
-              <p>Texte d’introduction à remplacer.</p>
-            </div>
-          </article>
-
-          <article class="video-card">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Vidéo 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="video-meta">
-              <h3>Le square aujourd’hui</h3>
-              <p>Texte d’introduction à remplacer.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="ateliers" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Galerie ateliers</span>
-          <h2>Images de médiation sur site</h2>
-          <p>
-            Cliquez sur une image pour l’ouvrir. Remplacez les visuels et légendes.
-          </p>
-        </div>
-
-        <div class="gallery-grid">
-          <figure class="gallery-item" data-full="img/Koralie_1.webp">
-            <img src="img/Koralie_1.webp" alt="Atelier 1">
-            <figcaption class="gallery-caption">Atelier 1</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-full="img/PORTRAIT-KORALIE.jpg">
-            <img src="img/PORTRAIT-KORALIE.jpg" alt="Atelier 2">
-            <figcaption class="gallery-caption">Atelier 2</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-full="img/Yannlegal_2.jpeg">
-            <img src="img/Yannlegal_2.jpeg" alt="Atelier 3">
-            <figcaption class="gallery-caption">Atelier 3</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-full="img/YannLegal_5.jpg">
-            <img src="img/YannLegal_5.jpg" alt="Atelier 4">
-            <figcaption class="gallery-caption">Atelier 4</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-full="img/ratur2.jpg">
-            <img src="img/ratur2.jpg" alt="Atelier 5">
-            <figcaption class="gallery-caption">Atelier 5</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-full="img/ratur4.webp">
-            <img src="img/ratur4.webp" alt="Atelier 6">
-            <figcaption class="gallery-caption">Atelier 6</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-full="img/cezelli_2.png">
-            <img src="img/cezelli_2.png" alt="Atelier 7">
-            <figcaption class="gallery-caption">Atelier 7</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-full="img/Thérèse_Léon_Blum2.webp">
-            <img src="img/Thérèse_Léon_Blum2.webp" alt="Atelier 8">
-            <figcaption class="gallery-caption">Atelier 8</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section id="reperes" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Repères</span>
-          <h2>Quelques pistes pour regarder</h2>
-          <p>
-            Cartes très courtes. À adapter selon votre angle de médiation.
-          </p>
-        </div>
-
-        <div class="grid-4">
-          <article class="card"><div class="card-body"><h3>Portrait monumental</h3><p>Comment un visage change la perception d’un lieu public.</p></div></article>
-          <article class="card"><div class="card-body"><h3>Street art</h3><p>Une pratique qui dialogue avec l’espace urbain et ses usages.</p></div></article>
-          <article class="card"><div class="card-body"><h3>Art participatif</h3><p>Quand un projet se construit aussi avec les habitants.</p></div></article>
-          <article class="card"><div class="card-body"><h3>Mémoire et transmission</h3><p>Le lieu devient support de récit, de mémoire et de rencontre.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="jouer" class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Jouer</span>
-          <h2>Tester son regard</h2>
-          <p>Une première couche ludique avec un quiz et un memory.</p>
-        </div>
-
-        <div class="grid-2">
-          <div class="quiz-box">
-            <h3>Quiz express — Galla Placidia</h3>
-
-            <form id="quizForm">
-              <div class="quiz-question">
-                <h4>1. En quelle année est née Galla Placidia ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="q1" value="0"> 380</label>
-                  <label><input type="radio" name="q1" value="0"> 385</label>
-                  <label><input type="radio" name="q1" value="1"> 388</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>2. De qui est-elle la fille ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="q2" value="1"> De l’empereur Théodose</label>
-                  <label><input type="radio" name="q2" value="0"> De l’empereur Valentinien</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>3. En quelle année a-t-elle été prise en otage ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="q3" value="0"> 406</label>
-                  <label><input type="radio" name="q3" value="0"> 408</label>
-                  <label><input type="radio" name="q3" value="1"> 410</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>4. Combien de fois a-t-elle été mariée ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="q4" value="0"> 1 fois</label>
-                  <label><input type="radio" name="q4" value="1"> 2 fois avec Athaulf et Constance</label>
-                  <label><input type="radio" name="q4" value="0"> 3 fois</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>5. Galla Placidia a exercé la régence :</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="q5" value="1"> De 425 à 437</label>
-                  <label><input type="radio" name="q5" value="0"> De 427 à 435</label>
-                  <label><input type="radio" name="q5" value="0"> De 425 à 435</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>6. Quelle est la date de son décès ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="q6" value="0"> 448</label>
-                  <label><input type="radio" name="q6" value="0"> 449</label>
-                  <label><input type="radio" name="q6" value="1"> 450</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>7. Selon les historiens, Galla Placidia a probablement été inhumée :</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="q7" value="0"> À Ravenne</label>
-                  <label><input type="radio" name="q7" value="1"> À Rome</label>
-                </div>
-              </div>
-
-              <button class="btn btn-primary" type="submit">Voir mon score</button>
-              <div id="quizResult" class="quiz-result"></div>
-            </form>
-          </div>
-
-          <div class="quiz-box">
-            <div class="memory-wrap">
-              <div class="memory-toolbar">
-                <div>
-                  <h3 style="margin:0 0 6px;">Memory visuel</h3>
-                  <div class="memory-status" id="memoryStatus">Coups : 0 · Paires : 0 / 4</div>
-                </div>
-                <button class="btn btn-secondary" id="restartMemory" type="button">Relancer</button>
-              </div>
-
-              <div class="memory-grid" id="memoryGrid"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
+ChatGPT Plus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Texte collé.txt
+Document
+voici ma page de médiation. voici les modifications à apporter : il ne faut plus que 3 videos à intégrer. ajouter une photo "plan_square.png" dans la partie Un parcours entre art, mémoire et espace public. dans la partie regarder les visage du square, il faut quatre portraits ( et non plus 3). Il s doivent s'afficher plus grand qd on clique dessus.  
+
+Capture d’écran 2026-06-09 à 18.09.58.png
+Capture d’écran 2026-06-09 à 18.10.08.png
+j'ai comité avec la nouvelle photo facade_intro.jpg mais elle ne s'affiche pas
+
+Capture d’écran 2026-06-09 à 18.20.29.png
+Capture d’écran 2026-06-09 à 18.20.37.png
+pb d'affichage...???
+
+Réflexion durant quelques secondes
+Oui, c’est un problème de nom de fichier.
+
+Dans ton code, tu as :
+
+<img src="img/Thérèse3.jpg" alt="Thérèse Blum">
+Mais dans ton dossier GitHub, le fichier visible à gauche s’appelle :
+
+Therese3.jpg
+Sans accent sur le é.
+
+GitHub est très strict :
+Thérèse3.jpg ≠ Therese3.jpg
+
+Donc remplace cette ligne :
+
+<img src="img/Thérèse3.jpg" alt="Thérèse Blum">
+par :
+
+<img src="img/Therese3.jpg" alt="Thérèse Blum">
+Ensuite, plus bas dans le JavaScript, cherche aussi :
+
+image: 'img/Thérèse3.jpg',
+et remplace par :
+
+image: 'img/Therese3.jpg',
+Il faut faire pareil pour l’autre image si besoin. Dans ton dossier, je vois :
+
+Therese2.webp
+Donc si dans le code tu as :
+
+image: 'img/Thérèse_Léon_Blum2.webp',
+remplace par :
+
+image: 'img/Therese2.webp',
+Le plus rapide : dans GitHub, fais une recherche dans la page avec :
+
+Thérèse
+et vérifie tous les chemins d’image contenant des accents.
+Pour éviter ce problème à l’avenir, garde toujours des noms de fichiers simples :
+
+therese3.jpg
+therese2.webp
+facade_intro.jpg
+plan_square.png
+sans accents, sans espaces, sans majuscules.
+
+
+où st les lignes des fichiers portraits
+
+Réflexion durant une seconde
+Dans ton fichier index.html, les portraits de la section “Regarder les visages du square” sont plus haut que la section “Quelques figures”.
+
+Cherche dans GitHub avec Cmd + F :
+
+id="portraits"
+Tu vas tomber sur ce bloc :
+
+<section id="portraits" class="section">
+Les lignes devraient être environ autour de 1170–1225, juste avant :
+
+<section id="figures" class="section">
+Dans cette section, les fichiers portraits sont dans des lignes comme celles-ci :
+
+<article class="card portrait-card" data-full="img/PORTRAIT-KORALIE.jpg">
+  <img src="img/PORTRAIT-KORALIE.jpg" alt="Portrait 1">
+<article class="card portrait-card" data-full="img/YannLegal_3.jpeg">
+  <img src="img/YannLegal_3.jpeg" alt="Portrait 2">
+<article class="card portrait-card" data-full="img/ratur4.webp">
+  <img src="img/ratur4.webp" alt="Portrait 3">
+<article class="card portrait-card" data-full="img/Therese3.jpg">
+  <img src="img/Therese3.jpg" alt="Portrait 4">
+Il faut bien modifier les deux chemins à chaque fois :
+
+data-full="img/nom_image.jpg"
+et :
+
+<img src="img/nom_image.jpg">
+data-full sert à l’image agrandie quand tu cliques.
+src sert à l’image visible dans la grille.
+
+
+je chercje les phtos de cette section : Regarder les visages du square
+
+Réflexion durant une seconde
+Les photos de la section “Regarder les visages du square” sont dans le bloc :
+
+<section id="portraits" class="section">
+Dans GitHub, fais Cmd + F puis cherche exactement :
+
+Regarder les visages du square
+Juste en dessous, tu dois trouver les 4 portraits. Le bloc ressemble à ça :
+
+<section id="portraits" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Portraits</span>
+      <h2>Regarder les visages du square</h2>
       <p>
-        Parcours artistique du square Thérèse et Léon Blum · Remplacez ce texte par vos crédits,
-        partenaires ou mentions.
+        Cliquez sur un portrait pour l’ouvrir en grand.
       </p>
     </div>
-  </footer>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">×</button>
-      <img id="lightboxImg" src="" alt="">
-    </div>
-  </div>
-
-  <div class="figure-book-modal" id="figureBookModal" aria-hidden="true">
-    <div class="figure-book-shell">
-      <button class="figure-book-close" id="figureBookClose" aria-label="Fermer">×</button>
-
-      <div class="figure-book-head">
-        <div>
-          <p class="figure-book-kicker">Figures à découvrir</p>
-          <h3 id="figureBookTitle">Titre</h3>
+    <div class="grid-4">
+      <article class="card portrait-card" data-full="img/PORTRAIT-KORALIE.jpg">
+        <img src="img/PORTRAIT-KORALIE.jpg" alt="Portrait 1">
+        <div class="card-body">
+          <h3>Portrait 1</h3>
+          <p>Texte court à remplacer.</p>
         </div>
-        <div class="figure-book-counter" id="figureBookCounter">1 / 1</div>
-      </div>
+      </article>
 
-      <div class="figure-book-stage">
-        <button class="figure-book-nav prev" id="figurePrev" aria-label="Page précédente">←</button>
-
-        <article class="figure-book-page">
-          <div class="figure-book-media">
-            <img id="figureBookImage" src="" alt="">
-          </div>
-          <div class="figure-book-text">
-            <h4 id="figureBookPageTitle">Sous-titre</h4>
-            <div id="figureBookBody"></div>
-          </div>
-        </article>
-
-        <button class="figure-book-nav next" id="figureNext" aria-label="Page suivante">→</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="artist-book-modal" id="artistBookModal" aria-hidden="true">
-    <div class="artist-book-shell">
-      <button class="artist-book-close" id="artistBookClose" aria-label="Fermer">×</button>
-
-      <div class="artist-book-head">
-        <div>
-          <p class="artist-book-kicker">Les artistes</p>
-          <h3 id="artistBookTitle">Titre</h3>
+      <article class="card portrait-card" data-full="img/YannLegal_3.jpeg">
+        <img src="img/YannLegal_3.jpeg" alt="Portrait 2">
+        <div class="card-body">
+          <h3>Portrait 2</h3>
+          <p>Texte court à remplacer.</p>
         </div>
-        <div class="artist-book-counter" id="artistBookCounter">1 / 1</div>
-      </div>
+      </article>
 
-      <div class="artist-book-stage">
-        <button class="artist-book-nav prev" id="artistPrev" aria-label="Page précédente">←</button>
+      <article class="card portrait-card" data-full="img/ratur4.webp">
+        <img src="img/ratur4.webp" alt="Portrait 3">
+        <div class="card-body">
+          <h3>Portrait 3</h3>
+          <p>Texte court à remplacer.</p>
+        </div>
+      </article>
 
-        <article class="artist-book-page">
-          <div class="artist-book-media">
-            <img id="artistBookImage" src="" alt="">
-          </div>
-          <div class="artist-book-text">
-            <h4 id="artistBookPageTitle">Sous-titre</h4>
-            <div id="artistBookBody"></div>
-          </div>
-        </article>
-
-        <button class="artist-book-nav next" id="artistNext" aria-label="Page suivante">→</button>
-      </div>
+      <article class="card portrait-card" data-full="img/Therese3.jpg">
+        <img src="img/Therese3.jpg" alt="Portrait 4">
+        <div class="card-body">
+          <h3>Portrait 4</h3>
+          <p>Texte court à remplacer.</p>
+        </div>
+      </article>
     </div>
   </div>
+</section>
+Les fichiers image sont donc ici :
 
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mainNav = document.getElementById('mainNav');
+img/PORTRAIT-KORALIE.jpg
+img/YannLegal_3.jpeg
+img/ratur4.webp
+img/Therese3.jpg
+Pour changer une photo, modifie les deux occurrences :
 
-    menuBtn.addEventListener('click', () => {
-      mainNav.classList.toggle('open');
-    });
+data-full="img/..."
+et :
 
-    document.querySelectorAll('.nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('open');
-      });
-    });
+<img src="img/...">
+Exemple :
 
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
+<article class="card portrait-card" data-full="img/nouveau_portrait.jpg">
+  <img src="img/nouveau_portrait.jpg" alt="Portrait 1">
+data-full = image agrandie au clic.
+src = image visible dans la grille.
 
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const full = item.getAttribute('data-full');
-        const img = item.querySelector('img');
-        lightboxImg.src = full;
-        lightboxImg.alt = img ? img.alt : 'Image atelier';
-        lightbox.classList.add('open');
-      });
-    });
 
-    lightboxClose.addEventListener('click', () => {
-      lightbox.classList.remove('open');
-      lightboxImg.src = '';
-    });
 
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('open');
-        lightboxImg.src = '';
-      }
-    });
+Texte collé.txt
+Document
+En Pj le fichier actuel ok : voici de nouvelles modifs à apporter à cette page actuelle : pour le memory utiliser les images du portrait blum_p.jpeg, etc... et deux images de ratur. Relecture. Carnet illustré Galla Placidia
+donne la page complete
+P.1
+Naissance et destin impérial
+Aelia Galla Placidia, née en 388 à Thessalonique, est la fille de l’empereur Théodose Ier et
+de Galla, elle-même fille de l’empereur Valentinien I er .
+Fille et petite-fille d’empereur, elle appartient au cœur de la dynastie théodosienne. Demi-
+sœur d’Arcadius et d’Honorius, elle grandit dans l’univers de la cour impériale, d’abord à
+Constantinople, puis dans un Empire romain d’Occident fragilisé.
+En 410, lors du sac de Rome par les Wisigoths, Galla Placidia est prise en otage. Cet
+événement marque un tournant décisif dans sa vie politique et personnelle.
+P.2
 
-    const figureBookData = {
-      galla: {
-        title: 'Galla Placidia',
-        pages: [
-          {
-            title: 'Naissance et destin impérial',
-            image: 'img/Galla-Placidia_1.webp',
-            body: `
-              <p><strong>Aelia Galla Placidia</strong>, née en 388 à Thessalonique, est la fille de l’empereur Théodose Ier et de Galla, elle-même fille de l’empereur Valentinien Ier.</p>
-              <p>Fille et petite-fille d’empereur, elle appartient au cœur de la dynastie théodosienne. Demi-sœur d’Arcadius et d’Honorius, elle grandit dans l’univers de la cour impériale, d’abord à Constantinople, puis dans un Empire romain d’Occident fragilisé.</p>
-              <p>En 410, lors du sac de Rome par les Wisigoths, Galla Placidia est prise en otage. Cet événement marque un tournant décisif dans sa vie politique et personnelle.</p>
-            `
-          },
-          {
-            title: 'Otage, épouse, survivante',
-            image: 'img/Placidia_2.jpg',
-            body: `
-              <p>Après avoir été emmenée par les Wisigoths, Galla Placidia épouse leur roi, <strong>Athaulf</strong>, d’abord selon le rite germanique en 411, puis selon le rite romain à Narbonne en 414.</p>
-              <p>Ce mariage entre une princesse impériale romaine et un chef barbare, une première, frappe profondément les contemporains. La même année, elle donne naissance à une fille, Clotilde de Wisigothie, puis en 415 à Barcelone à un fils, Théodose, qui meurt quelques mois plus tard.</p>
-              <p>Quelques semaines plus tard, Athaulf est assassiné. Galla Placidia subit alors l’humiliation imposée par le roi Sigéric avant d’être finalement rendue au pouvoir romain. En 417, elle rejoint Ravenne, où Honorius lui impose un second mariage avec Constance.</p>
-            `
-          },
-          {
-            title: 'Régente de l’Empire d’Occident',
-            image: 'img/galla_monaie.jpg',
-            body: `
-              <p>De son union avec Constance naissent deux enfants, Honoria et Valentinien. Après la mort de Constance en 421 puis celle d’Honorius en 423, une nouvelle lutte pour le pouvoir s’ouvre en Occident.</p>
-              <p>En 425, son fils <strong>Valentinien III</strong> devient empereur. Galla Placidia exerce alors la régence et gouverne l’Empire d’Occident pendant de longues années, dans des conditions extrêmement difficiles.</p>
-              <p>Elle demeure dans l’histoire romaine un cas presque unique de femme exerçant un tel pouvoir pendant près de vingt-cinq ans. Même après la majorité de son fils et son mariage en 437, elle conserve une forte influence sur les affaires publiques.</p>
-            `
-          },
-          {
-            title: 'Pouvoir, foi et mémoire',
-            image: 'img/galla_statue.jpg',
-            body: `
-              <p>Le règne de Galla Placidia est marqué par les rivalités militaires, l’affaiblissement de l’Empire et la pression croissante des peuples barbares. Elle doit gouverner entre crises politiques, guerres et recompositions du pouvoir.</p>
-              <p>Chrétienne réputée pour sa piété, elle soutient l’Église, fait construire plusieurs édifices religieux et décide vers 430 la construction d’un mausolée à Ravenne.</p>
-              <p>Galla Placidia meurt à Rome le <strong>27 novembre 450</strong>. Selon les historiens, elle est inhumée dans le mausolée impérial à Rome, aux côtés de son père Théodose, et non dans le célèbre mausolée de Ravenne qui porte aujourd’hui son nom.</p>
-              <p><small>Source : texte adapté à partir d’un extrait biographique sur Galla Placidia.</small></p>
-            `
-          }
-        ]
-      },
+Otage, épouse, survivante
+Après avoir été emmenée par les Wisigoths, Galla Placidia épouse leur roi, Athaulf, d’abord
+selon le rite germanique en 411, puis selon le rite romain à Narbonne en 414.
+Ce mariage entre une princesse impériale romaine et un chef barbare, une première, frappe
+profondément les contemporains. La même année, elle donne naissance à une fille, Clotilde
+de Wisigothie, puis en 415 à Barcelone à un fils, Théodose, qui meurt quelques mois plus
+tard.
+Quelques semaines plus tard, Athaulf est assassiné. Galla Placidia subit alors l’humiliation
+imposée par le roi Sigéric avant d’être finalement rendue au pouvoir romain. En 417, elle
+rejoint Ravenne, où Honorius lui impose un second mariage avec Constance.
 
-      ermengarde: {
-        title: 'Ermengarde de Narbonne',
-        pages: [
-          {
-            title: 'Une héritière au cœur des rivalités',
-            image: 'img/ermengarde_1.webp',
-            body: `
-              <p><strong>Ermengarde de Narbonne</strong> (vers 1127/1129 – 1196 ou 1197) devient vicomtesse de Narbonne alors qu’elle est encore très jeune, après la mort de son père, le vicomte Aymeri II, en 1134.</p>
-              <p>Elle hérite d’une vicomté stratégique, convoitée par les grands pouvoirs méridionaux, notamment les comtes de Toulouse et les comtes de Barcelone, dans un contexte de fortes tensions politiques.</p>
-              <p>Mineure au moment de sa succession, elle voit son héritage menacé : le comte de Toulouse, Alphonse Jourdain, tente de mettre la main sur Narbonne, notamment par un projet de mariage destiné à placer la cité sous domination toulousaine.</p>
-            `
-          },
-          {
-            title: 'La reconquête de Narbonne',
-            image: 'img/ermengarde_2.jpeg',
-            body: `
-              <p>Face à cette menace, Ermengarde trouve l’appui du comte de Barcelone Raimond-Bérenger IV et d’une coalition de seigneurs méridionaux hostiles à Toulouse.</p>
-              <p>Sur leurs conseils, elle épouse Bernard d’Anduze, ce qui fait échouer le projet du comte de Toulouse. En 1143, après la défaite et la capture d’Alphonse Jourdain, un traité impose la restitution de Narbonne à Ermengarde.</p>
-              <p>Cette victoire marque durablement son entrée sur la scène politique. Narbonne apparaît alors comme l’un des grands enjeux de la « guerre méridionale », et Ermengarde comme une véritable figure de pouvoir.</p>
-            `
-          },
-          {
-            title: 'Une souveraine, mécène et médiatrice',
-            image: 'img/ermengarde_4.jpg',
-            body: `
-              <p>Ermengarde n’est pas seulement une dame de pouvoir : elle est aussi une médiatrice et une protectrice de la vie intellectuelle et artistique en Occitanie.</p>
-              <p>Elle intervient dans plusieurs négociations politiques et soutient fortement l’abbaye cistercienne de <strong>Fontfroide</strong>, à laquelle elle fait en 1157 une donation majeure qui contribue à la prospérité du monastère.</p>
-              <p>Sa cour est réputée pour accueillir médecins, juristes et surtout troubadours. Narbonne devient sous son gouvernement un foyer de culture courtoise. Plusieurs poètes lyriques lui rendent hommage, et son nom reste lié à l’essor de la poésie des troubadours.</p>
-            `
-          },
-          {
-            title: 'Mémoire et postérité',
-            image: 'img/ermengarde_1.webp',
-            body: `
-              <p>À la fin de sa vie, Ermengarde désigne son neveu comme héritier, mais les dernières années de son pouvoir semblent marquées par des tensions politiques. Réfugiée en Roussillon, elle rédige son testament en 1196.</p>
-              <p>Sa renommée dépasse pourtant largement son époque. Dans le <em>De Amore</em> d’André le Chapelain, elle apparaît parmi les grandes dames associées à l’amour courtois, aux côtés d’Aliénor d’Aquitaine et de Marie de Champagne.</p>
-              <p>Figure majeure de l’Occitanie du XIIe siècle, Ermengarde demeure dans l’histoire comme une femme de gouvernement, d’influence et de culture, liée à la fois à la puissance politique de Narbonne et à l’éclat du monde troubadouresque.</p>
-              <p><small>Source : texte adapté à partir d’un extrait biographique sur Ermengarde de Narbonne.</small></p>
-            `
-          }
-        ]
-      },
+P.3
+Régente de l’Empire d’Occident
+De son union avec Constance naissent deux enfants, Honoria et Valentinien. Après la mort de
+Constance en 421 puis celle d’Honorius en 423, une nouvelle lutte pour le pouvoir s’ouvre en
+Occident.
+En 425, son fils Valentinien III devient empereur. Galla Placidia exerce alors la régence et
+gouverne l’Empire d’Occident pendant de longues années, dans des conditions extrêmement
+difficiles.
 
-      cezelli: {
-        title: 'Françoise de Cezelli',
-        pages: [
-          {
-            title: 'Origines et jeunesse',
-            image: 'img/cezelli_2.png',
-            body: `
-              <p><strong>Françoise de Cezelli</strong> (22 mai 1558 — 16 octobre 1615), connue également comme <em>Francese de Cezelly</em>, est issue d’une famille noble de Montpellier.</p>
-              <p>Elle naît en 1558. Fille de Jean de Cezelli, président de la chambre des comptes de Montpellier, elle est aussi la nièce du gouverneur de Leucate.</p>
-              <p>Elle passe sa jeunesse à Saint-Aunès, puis dans la propriété familiale d’Ouveillan, dans un contexte marqué par les guerres de religion qui agitent alors la région.</p>
-            `
-          },
-          {
-            title: 'Mariages et destin familial',
-            image: 'img/Cezely_3.jpg',
-            body: `
-              <p>Françoise de Cezelli se marie une première fois en 1572 avec François de Cayre d’Entraygues, avec qui elle a un fils. Son mari meurt en 1574.</p>
-              <p>Le 4 avril 1577, elle épouse à Ouveillan Jean de Boursiez, seigneur de Pantnaut de Barri. À cette occasion, elle lui apporte en cadeau de mariage la gouvernance de Leucate.</p>
-              <p>Leucate est alors une place forte stratégique, gardant la frontière entre la France et l’Espagne. Le couple a cinq enfants : Hercule, Anne-Françoise, Antoine, Paul et Frances.</p>
-            `
-          },
-          {
-            title: 'Le siège de Leucate',
-            image: 'img/Francoise-de-Cezelly-sepia-Mea-1.png',
-            body: `
-              <p>En 1589, l’armée espagnole, alliée à la Ligue catholique, vient assiéger Leucate. Jean de Boursiez part prévenir le duc de Montmorency, mais il est capturé et conduit à Narbonne.</p>
-              <p>En son absence, Françoise de Cezelli organise la défense de la forteresse. Elle galvanise la garnison et repousse les attaques ennemies.</p>
-              <p>Les assaillants exigent alors les clefs de la ville en échange de la vie de son mari. Françoise refuse, affirmant : <em>« La ville est au roi et mon honneur à Dieu. Je dois les conserver jusqu’au dernier soupir… »</em></p>
-              <p>Son mari est exécuté, mais après trois semaines de siège, les ennemis lèvent le camp. En reconnaissance, Henri IV lui laisse le gouvernement effectif de Leucate, qu’elle exerce pendant vingt-sept ans, jusqu’à la majorité de son fils aîné Hercule.</p>
-            `
-          },
-          {
-            title: 'Mémoire et hommages',
-            image: 'img/cezelli_2.png',
-            body: `
-              <p>Françoise de Cezelli meurt à Montpellier le 16 octobre 1615, à l’âge de 56 ans. Elle est inhumée à côté de son mari dans la chapelle Sainte-Anne de l’église Saint-Paul de Narbonne.</p>
-              <p>Sa mémoire demeure vive. En 1899, une statue en bronze est érigée à Leucate. Déboulonnée pendant la Seconde Guerre mondiale, elle est ensuite remplacée, puis réinstallée sous une nouvelle forme.</p>
-              <p>Une plaque commémorative lui rend hommage à Montpellier. Une rue de Montpellier, une école élémentaire de Narbonne et une vedette de sauvetage de Port Leucate portent son nom.</p>
-              <p><small>Source : texte adapté d’un extrait de Wikipedia.</small></p>
-            `
-          }
-        ]
-      },
+Elle demeure dans l’histoire romaine un cas presque unique de femme exerçant un tel pouvoir
+pendant près de vingt-cinq ans. Même après la majorité de son fils et son mariage en 437, elle
+conserve une forte influence sur les affaires publiques.
 
-      blum: {
-        title: 'Thérèse Blum',
-        pages: [
-          {
-            title: 'Naissance et milieu familial',
-            image: 'img/Thérèse3.jpg',
-            body: `
-              <p><strong>BLUM Thérèse, née Peyrera (1881-1938)</strong></p>
-              <p>(Hélène) Thérèse Pereyra voit le jour le 11 août 1881, à Saint-Germain-en-Laye (Yvelines). Issue d’une famille de la bourgeoisie intellectuelle juive, elle est la fille de Marie Mayer et d’Abraham Pereyra.</p>
-              <p>Par sa sœur Suzanne, elle est aussi la belle-sœur du compositeur Paul Dukas.</p>
-            `
-          },
-          {
-            title: 'Une femme libre et engagée',
-            image: 'img/Thérèse_Léon_Blum2.webp',
-            body: `
-              <p>Mariée en 1908 à Edmond Mayrargues, agent de change, Thérèse Blum est décrite comme énergique et décidée, à la fois musicienne et sportive.</p>
-              <p>Elle mène une vie libre, conduit sa voiture et fréquente les cercles aisés et cultivés, où elle rencontre en 1911 le critique littéraire et dramatique Léon Blum.</p>
-              <p>Devenue sa maîtresse, elle divorce. Elle travaille ensuite et milite à la SFIO.</p>
-            `
-          },
-          {
-            title: 'La “citoyenne Blum”',
-            image: 'img/Thérèse3.jpg',
-            body: `
-              <p>Après la mort de la première épouse de Léon Blum, elle l’épouse en 1931.</p>
-              <p>Militante socialiste acharnée, elle est surnommée la <em>« citoyenne Blum »</em>.</p>
-              <p>Elle meurt d’un cancer le 22 janvier 1938, à Paris, à l’âge de 56 ans.</p>
-              <p>Elle reçoit également la médaille d’honneur des épidémies en bronze le 27 octobre 1916.</p>
-              <p><small>Source : extrait adapté d’un article de l’APPL / Wikipedia.</small></p>
-            `
-          }
-        ]
-      }
-    };
+P.4
+Pouvoir, foi et mémoire
+Le règne de Galla Placidia est marqué par les rivalités militaires, l’affaiblissement de
+l’Empire et la pression croissante des peuples barbares. Elle doit gouverner entre crises
+politiques, guerres et recompositions du pouvoir.
+Chrétienne réputée pour sa piété, elle soutient l’Église, fait construire plusieurs édifices
+religieux et décide vers 430 la construction d’un mausolée à Ravenne.
+Galla Placidia meurt à Rome le 27 novembre 450. Selon les historiens, elle est inhumée dans
+le mausolée impérial à Rome, aux côtés de son père Théodose, et non dans le célèbre
+mausolée de Ravenne qui porte aujourd’hui son nom.
+Source : texte adapté à partir d’un extrait biographique sur Galla Placidia. RELECTURE
+GALLA PLACIDIA.
+Quizz :
+1/ En quelle année est née Galla Placidia ?
+380
+385
+388
+2/ De qui est-elle la fille ?
+De l’empereur Théodose I er
+De l’empereur Valentinien
 
-    const artistBookData = {
-      koralie: {
-        title: 'Koralie',
-        pages: [
-          {
-            title: 'Biographie',
-            image: 'img/Koralie_1.webp',
-            body: `
-              <p>Koralie Carmen Flores est une artiste plasticienne installée sur la côte basque. Originaire de Petite Camargue, elle a étudié l’architecture à Montpellier avant de se tourner vers le graffiti en 1999.</p>
-              <p>Depuis plus de vingt ans, elle développe une pratique pluridisciplinaire mêlant peinture, sculpture, installation et estampe. Son travail explore les liens entre la nature et le savoir-faire humain à travers des formes végétales, artisanales et architecturales.</p>
-              <p>Inspirée par les cultures du monde, l’animisme et l’Art déco, elle compose des œuvres symétriques et répétitives, véritables patchworks d’influences méditerranéennes, asiatiques et amérindiennes. Son univers onirique célèbre l’harmonie multiculturelle et la beauté de la nature.</p>
-            `
-          },
-          {
-            title: 'Univers visuel',
-            image: 'img/PORTRAIT-KORALIE.jpg',
-            body: `
-              <p>Koralie expose dans des galeries, musées et centres d’art internationaux, et collabore régulièrement avec des marques, institutions et collectionneurs pour des créations in situ.</p>
-              <p>Dans le projet du square Thérèse et Léon Blum, son intervention accompagne la première zone de la piste cyclable avec une écriture visuelle végétale, ornementale et protectrice.</p>
-            `
-          }
-        ]
-      },
+3/ En quelle année a-t-elle été prise en otage ?
+406  408 410
 
-      'claire-remy': {
-        title: 'Claire Rémy',
-        pages: [
-          {
-            title: 'Biographie',
-            image: 'img/Koralie_4.jpg',
-            body: `
-              <p>Diplômée des arts appliqués et des métiers d’art en graphisme, Claire Rémy développe très tôt une pratique artistique diversifiée. Après une première expérience en agence de communication à Lyon, elle voyage à travers le monde et vit notamment un an en Inde.</p>
-              <p>De retour à Lyon, elle ouvre un atelier-boutique en centre-ville, où elle réalise peintures, sculptures, artisanat d’art, bijoux et vêtements. C’est aussi à cette période qu’elle commence à produire des fresques murales.</p>
-              <p>Elle s’installe ensuite cinq ans en Angleterre, où elle consolide sa pratique des grands formats comme artiste résidente d’une galerie-restaurant.</p>
-            `
-          },
-          {
-            title: 'Ancrage à Narbonne',
-            image: 'img/Koralie-3.webp',
-            body: `
-              <p>Aujourd’hui installée à Narbonne, Claire Rémy enseigne les arts plastiques et la céramique au Patio des Arts depuis neuf ans. Elle intervient également dans les écoles de Narbonne et du Grand Narbonne, où elle mène de nombreux projets artistiques participatifs.</p>
-              <p>Son travail a été présenté dans de nombreuses expositions, individuelles et collectives. Dans le projet, elle signe l’intervention visuelle de la zone 2.</p>
-            `
-          }
-        ]
-      },
+4/ Combien de fois a-t-elle été mariée ?
+1 fois 2 fois avec Athaulf et Constance 3 fois
 
-      'yann-le-gall': {
-        title: 'Yann Le Gall',
-        pages: [
-          {
-            title: 'Biographie',
-            image: 'img/Yannlegal_1.jpg',
-            body: `
-              <p>Diplômé en graphisme et publicité de l’École de Communication Visuelle de Bordeaux, Yann Le Gall réinvente les espaces et la nature à travers son thème de prédilection : « Waves on Walls ».</p>
-              <p>Son travail évoque les îles tropicales et la mer avec un sens pictural de la poésie. Il imagine parfois un futur où le réchauffement climatique et la montée des eaux transformeraient radicalement les paysages.</p>
-            `
-          },
-          {
-            title: 'Pratique et regard',
-            image: 'img/YannLegal_3.jpeg',
-            body: `
-              <p>Ses lignes sont simples, presque naïves, et laissent toute leur place à des couleurs inspirées des impressionnistes et de la pop culture.</p>
-              <p>Son univers propose une vision sensible, immersive et contemporaine du paysage. Dans le square, il intervient sur la zone 3 avec une composition qui prolonge l’idée de nature, de mouvement et de respiration visuelle.</p>
-            `
-          }
-        ]
-      },
+5/ Galla Placidia a-t-elle été régente ? 
+Oui Non
 
-      ratur: {
-        title: 'Ratur',
-        pages: [
-          {
-            title: 'Biographie',
-            image: 'img/ratur_1.jpg',
-            body: `
-              <p>Ratur, de son vrai nom Arthur Maslard, est né au Havre en 1983. Attiré très tôt par le dessin et les arts graphiques, il rejoint en 2001 une école de communication visuelle où il rencontre le graffeur Madkow.</p>
-              <p>Avec lui et son frère Sckaro, il réalise ses premières fresques et fonde le collectif MV3. Issu d’une famille d’artistes, il réalise aujourd’hui encore ses fresques murales en duo avec son frère.</p>
-            `
-          },
-          {
-            title: 'Signature visuelle',
-            image: 'img/ratur4.webp',
-            body: `
-              <p>Le travail figuratif de Ratur interroge les relations entre les artistes issus du graffiti et les grands genres picturaux classiques. Ses influences croisent peinture classique, graphisme et graffiti.</p>
-              <p>Il met en scène des personnages contemporains, souvent anonymes, et joue avec différents traitements graphiques selon les plans. Dans le projet du square, il accompagne le volet consacré aux portraits de femmes, en liant force symbolique, présence humaine et dimension florale.</p>
-            `
-          }
-        ]
-      }
-    };
+6/ Quelle est la date de son décès ?
+448 449 450
 
-    const figureBookModal = document.getElementById('figureBookModal');
-    const figureBookClose = document.getElementById('figureBookClose');
-    const figureBookTitle = document.getElementById('figureBookTitle');
-    const figureBookCounter = document.getElementById('figureBookCounter');
-    const figureBookImage = document.getElementById('figureBookImage');
-    const figureBookPageTitle = document.getElementById('figureBookPageTitle');
-    const figureBookBody = document.getElementById('figureBookBody');
-    const figurePrev = document.getElementById('figurePrev');
-    const figureNext = document.getElementById('figureNext');
+7/ Où est-elle inhumée ?
+À Ravenne À Rome
 
-    const artistBookModal = document.getElementById('artistBookModal');
-    const artistBookClose = document.getElementById('artistBookClose');
-    const artistBookTitle = document.getElementById('artistBookTitle');
-    const artistBookCounter = document.getElementById('artistBookCounter');
-    const artistBookImage = document.getElementById('artistBookImage');
-    const artistBookPageTitle = document.getElementById('artistBookPageTitle');
-    const artistBookBody = document.getElementById('artistBookBody');
-    const artistPrev = document.getElementById('artistPrev');
-    const artistNext = document.getElementById('artistNext');
+J’ai mis à jour la page actuelle fournie en PJ 
 
-    let currentFigureKey = null;
-    let currentFigurePage = 0;
-    let currentArtistKey = null;
-    let currentArtistPage = 0;
+ avec :
 
-    function renderFigureBook() {
-      if (!currentFigureKey) return;
-      const figure = figureBookData[currentFigureKey];
-      const page = figure.pages[currentFigurePage];
+Memory visuel remplacé par 6 images :
 
-      figureBookTitle.textContent = figure.title;
-      figureBookCounter.textContent = `${currentFigurePage + 1} / ${figure.pages.length}`;
-      figureBookImage.src = page.image;
-      figureBookImage.alt = `${figure.title} — ${page.title}`;
-      figureBookPageTitle.textContent = page.title;
-      figureBookBody.innerHTML = page.body;
+galla_p.jpeg
 
-      figurePrev.disabled = currentFigurePage === 0;
-      figureNext.disabled = currentFigurePage === figure.pages.length - 1;
-    }
+ermangarde_p.jpeg
 
-    function openFigureBook(key) {
-      currentFigureKey = key;
-      currentFigurePage = 0;
-      renderFigureBook();
-      figureBookModal.classList.add('open');
-      figureBookModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+francoise_p.jpeg
 
-    function closeFigureBook() {
-      figureBookModal.classList.remove('open');
-      figureBookModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+blum_p.jpeg
 
-    function nextFigurePage() {
-      if (!currentFigureKey) return;
-      const total = figureBookData[currentFigureKey].pages.length;
-           if (currentFigurePage < total - 1) {
-        currentFigurePage++;
-        renderFigureBook();
-      }
-    }
+ratur_1.jpg
 
-    function prevFigurePage() {
-      if (!currentFigureKey) return;
-      if (currentFigurePage > 0) {
-        currentFigurePage--;
-        renderFigureBook();
-      }
-    }
+ratur4.webp
 
-    document.querySelectorAll('.figure-entry').forEach(el => {
-      el.addEventListener('click', () => {
-        openFigureBook(el.dataset.figure);
-      });
-    });
+Carnet illustré Galla Placidia relu et corrigé :
 
-    figureBookClose.addEventListener('click', closeFigureBook);
-    figurePrev.addEventListener('click', prevFigurePage);
-    figureNext.addEventListener('click', nextFigurePage);
+Valentinien Ier
 
-    figureBookModal.addEventListener('click', (e) => {
-      if (e.target === figureBookModal) closeFigureBook();
-    });
+ajout de Clotilde de Wisigothie
 
-    /* ===========================
-       ARTIST BOOK
-    =========================== */
+conservation des 4 pages
 
-    function renderArtistBook() {
-      if (!currentArtistKey) return;
-      const artist = artistBookData[currentArtistKey];
-      const page = artist.pages[currentArtistPage];
+Quiz Galla conservé avec les questions/réponses indiquées.
 
-      artistBookTitle.textContent = artist.title;
-      artistBookCounter.textContent = `${currentArtistPage + 1} / ${artist.pages.length}`;
-      artistBookImage.src = page.image;
-      artistBookImage.alt = `${artist.title} — ${page.title}`;
-      artistBookPageTitle.textContent = page.title;
-      artistBookBody.innerHTML = page.body;
+Télécharger la page complète mise à jour
 
-      artistPrev.disabled = currentArtistPage === 0;
-      artistNext.disabled = currentArtistPage === artist.pages.length - 1;
-    }
 
-    function openArtistBook(key) {
-      currentArtistKey = key;
-      currentArtistPage = 0;
-      renderArtistBook();
-      artistBookModal.classList.add('open');
-      artistBookModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
 
-    function closeArtistBook() {
-      artistBookModal.classList.remove('open');
-      artistBookModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(183,201,214,.28), transparent 30%),
+    radial-gradient(circle at 20% 10%, rgba(201,142,114,.12), transparent 24%),
+    linear-gradient(180deg, #fbf8f0 0%, var(--bg) 100%);
+  color:var(--text);
+  line-height:1.55;
+}
 
-    function nextArtistPage() {
-      if (!currentArtistKey) return;
-      const total = artistBookData[currentArtistKey].pages.length;
-      if (currentArtistPage < total - 1) {
-        currentArtistPage++;
-        renderArtistBook();
-      }
-    }
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
 
-    function prevArtistPage() {
-      if (!currentArtistKey) return;
-      if (currentArtistPage > 0) {
-        currentArtistPage--;
-        renderArtistBook();
-      }
-    }
+.container{
+  width:min(var(--max), calc(100% - 32px));
+  margin:0 auto;
+}
 
-    document.querySelectorAll('.artist-entry').forEach(el => {
-      el.addEventListener('click', () => {
-        openArtistBook(el.dataset.artist);
-      });
-    });
+.section{
+  padding:72px 0;
+}
 
-    artistBookClose.addEventListener('click', closeArtistBook);
-    artistPrev.addEventListener('click', prevArtistPage);
-    artistNext.addEventListener('click', nextArtistPage);
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+  font-size:.9rem;
+  background:rgba(255,253,248,.84);
+  box-shadow:var(--shadow-soft);
+}
 
-    artistBookModal.addEventListener('click', (e) => {
-      if (e.target === artistBookModal) closeArtistBook();
-    });
+.section-head{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:28px;
+}
 
-    /* ===========================
-       QUIZ
-    =========================== */
+.section-head h2{
+  margin:0;
+  font-size:clamp(1.8rem, 4vw, 2.8rem);
+  line-height:1.06;
+  color:var(--text);
+}
 
-    const quizForm = document.getElementById('quizForm');
-    const quizResult = document.getElementById('quizResult');
+.section-head p{
+  margin:0;
+  color:var(--muted);
+  max-width:760px;
+}
 
-    quizForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter: blur(12px);
+  background:rgba(246,243,234,.86);
+  border-bottom:1px solid var(--line-soft);
+  box-shadow:0 4px 16px rgba(92, 84, 67, 0.05);
+}
 
-      let score = 0;
-      const total = 7;
+.site-header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  min-height:72px;
+}
 
-      for (let i = 1; i <= total; i++) {
-        const answer = document.querySelector(`input[name="q${i}"]:checked`);
-        if (answer && answer.value === "1") score++;
-      }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:700;
+  letter-spacing:.01em;
+  color:var(--text);
+}
 
-      quizResult.style.display = 'block';
-      quizResult.innerHTML = `<strong>Score :</strong> ${score} / ${total}`;
+.brand-badge{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2-soft));
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.55);
+}
 
-      if (score === total) {
-        quizResult.innerHTML += `<br>Excellent, regard affûté.`;
-      } else if (score >= 4) {
-        quizResult.innerHTML += `<br>Bon niveau, continuez l’exploration.`;
-      } else {
-        quizResult.innerHTML += `<br>À revoir sur le parcours.`;
-      }
-    });
+.nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
 
-    /* ===========================
-       MEMORY GAME
-    =========================== */
+.nav a{
+  color:var(--muted);
+  font-size:.96rem;
+  transition:color .2s ease;
+}
 
-    const memoryGrid = document.getElementById('memoryGrid');
-    const memoryStatus = document.getElementById('memoryStatus');
-    const restartMemory = document.getElementById('restartMemory');
+.nav a:hover{color:var(--accent)}
 
-    const memoryImages = [
-      'img/galla_p.jpeg',
-      'img/ermangarde_p.jpeg',
-      'img/francoise_p.jpeg',
-      'img/blum_p.jpeg',
-      'img/ratur_1.jpg',
-      'img/ratur4.webp'
-    ];
+.menu-btn{
+  display:none;
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--panel);
+  color:var(--text);
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+}
 
-    let cards = [];
-    let flipped = [];
-    let matched = 0;
-    let moves = 0;
+.hero{
+  padding:84px 0 56px;
+}
 
-    function shuffle(array) {
-      return array.sort(() => Math.random() - 0.5);
-    }
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:28px;
+  align-items:center;
+}
 
-    function createMemory() {
-      memoryGrid.innerHTML = '';
-      matched = 0;
-      moves = 0;
-      flipped = [];
+.hero h1{
+  margin:14px 0 18px;
+  font-size:clamp(2.3rem, 6vw, 4.8rem);
+  line-height:.96;
+  letter-spacing:-.04em;
+  color:var(--text);
+}
 
-      const doubled = shuffle([...memoryImages, ...memoryImages]);
+.hero p{
+  margin:0 0 26px;
+  color:var(--muted);
+  font-size:1.06rem;
+  max-width:650px;
+}
 
-      cards = doubled.map((img, index) => {
-        const card = document.createElement('button');
-        card.className = 'memory-card';
-        card.dataset.image = img;
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:18px;
+}
 
-        card.innerHTML = `
-          <div class="memory-card-inner">
-            <div class="memory-face memory-front">?</div>
-            <div class="memory-face memory-back">
-              <img src="${img}" alt="">
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:48px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  transition:.2s ease;
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg, var(--accent), #96a67b);
+  color:#fffdf8;
+  border:none;
+  font-weight:700;
+}
+
+.btn-primary:hover{
+  background:linear-gradient(135deg, var(--accent-hover), #88986f);
+}
+
+.btn-secondary{
+  background:var(--panel);
+  color:var(--text);
+}
+
+.btn-secondary:hover{
+  background:var(--bg-soft-2);
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.hero-card{
+  position:relative;
+  overflow:hidden;
+  min-height:460px;
+  border-radius:30px;
+  background:
+    linear-gradient(180deg, rgba(246,243,234,.05), rgba(47,58,47,.12)),
+    url('img/facade_intro.jpg') center/cover no-repeat;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+
+.hero-card-overlay{
+  position:absolute;
+  inset:auto 18px 18px 18px;
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,253,248,.88);
+  border:1px solid rgba(216,209,194,.85);
+  box-shadow:var(--shadow-soft);
+}
+
+.hero-card-overlay h3{
+  margin:0 0 8px;
+  font-size:1.1rem;
+  color:var(--text);
+}
+
+.hero-card-overlay p{
+  margin:0;
+  color:var(--text-soft);
+  font-size:.96rem;
+}
+
+.quick-links{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:14px;
+  margin-top:24px;
+}
+
+.quick-link{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:18px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  min-height:120px;
+  box-shadow:var(--shadow-soft);
+  transition:transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.quick-link:hover{
+  transform:translateY(-2px);
+  border-color:#cbbfa8;
+  background:#fffaf1;
+}
+
+.quick-link strong{
+  font-size:1rem;
+  color:var(--text);
+}
+
+.quick-link span{
+  color:var(--muted);
+  font-size:.93rem;
+}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+.card{
+  background:linear-gradient(180deg, var(--panel), #faf5ea);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+}
+
+.card-body{
+  padding:18px;
+}
+
+.card h3,.card h4{
+  margin:0 0 8px;
+  color:var(--text);
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+}
+
+.artist-card img,
+.portrait-card img,
+.figure-card img{
+  aspect-ratio: 4 / 3;
+  object-fit:cover;
+  width:100%;
+}
+
+.portrait-card{
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.portrait-card:hover{
+  transform:translateY(-3px);
+  border-color:#cbbfa8;
+  box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
+}
+
+.tag{
+  display:inline-flex;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-size:.82rem;
+  margin-bottom:10px;
+  background:var(--bg-soft);
+}
+
+.project-layout{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:20px;
+  align-items:start;
+}
+
+.project-panel{
+  padding:22px;
+  border-radius:22px;
+  background:linear-gradient(180deg, var(--panel), var(--panel-2));
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+}
+
+.project-panel p{color:var(--muted)}
+
+.project-map{
+  margin:20px 0 0;
+  overflow:hidden;
+  border-radius:22px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+}
+
+.project-map img{
+  width:100%;
+  max-height:520px;
+  object-fit:cover;
+}
+
+.project-map figcaption{
+  padding:14px 16px;
+  color:var(--muted);
+  font-size:.94rem;
+  background:rgba(255,253,248,.88);
+  border-top:1px solid var(--line-soft);
+}
+
+.zones{
+  display:grid;
+  gap:12px;
+  margin-top:18px;
+}
+
+.zone{
+  padding:14px 16px;
+  border-radius:16px;
+  background:#fbf6eb;
+  border:1px solid var(--line);
+}
+
+.zone strong{
+  display:block;
+  margin-bottom:4px;
+  color:var(--text);
+}
+
+.zone span{
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:18px;
+}
+
+.video-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+}
+
+.video-embed{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  background:#d8d1c2;
+}
+
+.video-embed iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.video-meta{
+  padding:14px 16px 18px;
+}
+
+.video-meta h3{
+  margin:0 0 6px;
+  font-size:1rem;
+  color:var(--text);
+}
+
+.video-meta p{
+  margin:0;
+  color:var(--muted);
+  font-size:.94rem;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:12px;
+}
+
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid var(--line);
+  cursor:pointer;
+  background:var(--panel);
+  box-shadow:var(--shadow-soft);
+}
+
+.gallery-item img{
+  width:100%;
+  aspect-ratio:1 / 1;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.04);
+}
+
+.gallery-caption{
+  position:absolute;
+  inset:auto 10px 10px 10px;
+  padding:10px 12px;
+  border-radius:12px;
+  font-size:.88rem;
+  background:rgba(255,253,248,.92);
+  color:var(--text);
+  border:1px solid rgba(216,209,194,.9);
+  box-shadow:var(--shadow-soft);
+}
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(47, 58, 47, .55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  backdrop-filter: blur(6px);
+}
+
+.lightbox.open{display:flex}
+
+.lightbox-content{
+  max-width:min(1180px, 100%);
+  max-height:100%;
+  position:relative;
+}
+
+.lightbox img{
+  max-width:92vw;
+  max-height:86vh;
+  width:auto;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 22px 50px rgba(47, 58, 47, .20);
+}
+
+.lightbox-close{
+  position:absolute;
+  top:-14px;
+  right:-14px;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--text);
+  font-size:1.2rem;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+}
+
+.quiz-box{
+  padding:22px;
+  background:linear-gradient(180deg, #f8f3e8, #fffdf8);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow-soft);
+}
+
+.quiz-box h3{
+  color:var(--text);
+}
+
+.quiz-question{
+  margin-bottom:18px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line-soft);
+}
+
+.quiz-question:last-child{
+  border-bottom:none;
+  padding-bottom:0;
+  margin-bottom:0;
+}
+
+.quiz-question h4{
+  margin:0 0 10px;
+  font-size:1rem;
+  color:var(--text);
+}
+
+.quiz-options{
+  display:grid;
+  gap:10px;
+}
+
+.quiz-options label{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fffaf1;
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease;
+}
+
+.quiz-options label:hover{
+  background:#f5efe2;
+  border-color:#cbbfa8;
+}
+
+.quiz-result{
+  margin-top:18px;
+  padding:14px 16px;
+  border-radius:16px;
+  display:none;
+  background:var(--bg-soft);
+  border:1px solid var(--line);
+  color:var(--text);
+}
+
+.memory-wrap{
+  display:grid;
+  gap:16px;
+}
+
+.memory-toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.memory-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:12px;
+}
+
+.memory-card{
+  position:relative;
+  aspect-ratio:1 / 1;
+  border:none;
+  background:none;
+  padding:0;
+  cursor:pointer;
+  perspective:1000px;
+}
+
+.memory-card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform .45s ease;
+  transform-style:preserve-3d;
+}
+
+.memory-card.is-flipped .memory-card-inner,
+.memory-card.is-matched .memory-card-inner{
+  transform:rotateY(180deg);
+}
+
+.memory-face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+}
+
+.memory-front{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg, #a7b68a, #d8c27a);
+  color:#fffdf8;
+  font-size:2rem;
+}
+
+.memory-back{
+  transform:rotateY(180deg);
+  background:var(--panel);
+}
+
+.memory-back img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.memory-status{
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+.figure-entry,
+.artist-entry{
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.figure-entry:hover,
+.artist-entry:hover{
+  transform:translateY(-3px);
+  border-color:#cbbfa8;
+  box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
+}
+
+.figure-book-modal,
+.artist-book-modal{
+  position:fixed;
+  inset:0;
+  z-index:120;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(47, 58, 47, .42);
+  backdrop-filter:blur(8px);
+}
+
+.artist-book-modal{
+  z-index:121;
+}
+
+.figure-book-modal.open,
+.artist-book-modal.open{
+  display:flex;
+}
+
+.figure-book-shell,
+.artist-book-shell{
+  position:relative;
+  width:min(1100px, 100%);
+  max-height:min(90vh, 920px);
+  background:linear-gradient(180deg, #fffdf8 0%, #f8f3e8 100%);
+  border:1px solid var(--line);
+  border-radius:28px;
+  box-shadow:0 28px 60px rgba(47, 58, 47, .18);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.figure-book-close,
+.artist-book-close{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--text);
+  font-size:1.3rem;
+  cursor:pointer;
+  z-index:3;
+  box-shadow:var(--shadow-soft);
+}
+
+.figure-book-head,
+.artist-book-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  padding:24px 72px 18px 28px;
+  border-bottom:1px solid var(--line-soft);
+  background:rgba(255,253,248,.72);
+}
+
+.figure-book-kicker,
+.artist-book-kicker{
+  margin:0 0 6px;
+  font-size:.86rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
+
+.figure-book-head h3,
+.artist-book-head h3{
+  margin:0;
+  font-size:1.8rem;
+  line-height:1.05;
+  color:var(--text);
+}
+
+.figure-book-counter,
+.artist-book-counter{
+  flex-shrink:0;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--bg-soft);
+  color:var(--text-soft);
+  font-size:.92rem;
+}
+
+.figure-book-stage,
+.artist-book-stage{
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr) 56px;
+  align-items:stretch;
+  min-height:0;
+  flex:1;
+}
+
+.figure-book-nav,
+.artist-book-nav{
+  border:none;
+  background:transparent;
+  color:var(--accent);
+  font-size:1.6rem;
+  cursor:pointer;
+  transition:background .2s ease, color .2s ease;
+}
+
+.figure-book-nav:hover,
+.artist-book-nav:hover{
+  background:rgba(122,139,90,.08);
+  color:var(--accent-hover);
+}
+
+.figure-book-nav:disabled,
+.artist-book-nav:disabled{
+  opacity:.35;
+  cursor:default;
+  background:transparent;
+}
+
+.figure-book-page,
+.artist-book-page{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  min-height:0;
+}
+
+.figure-book-media,
+.artist-book-media{
+  background:#efe8da;
+  border-right:1px solid var(--line-soft);
+  min-height:0;
+}
+
+.figure-book-media img,
+.artist-book-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  min-height:100%;
+}
+
+.figure-book-text,
+.artist-book-text{
+  padding:28px;
+  overflow:auto;
+  min-height:0;
+}
+
+.figure-book-text h4,
+.artist-book-text h4{
+  margin:0 0 14px;
+  font-size:1.18rem;
+  color:var(--text);
+}
+
+.figure-book-text p,
+.artist-book-text p{
+  margin:0 0 14px;
+  color:var(--text-soft);
+  line-height:1.7;
+}
+
+.figure-book-text p:last-child,
+.artist-book-text p:last-child{
+  margin-bottom:0;
+}
+
+footer{
+  padding:40px 0 60px;
+  color:var(--muted);
+  border-top:1px solid var(--line-soft);
+  background:rgba(255,253,248,.45);
+}
+
+@media (max-width: 980px){
+  .hero-grid,
+  .project-layout,
+  .grid-4,
+  .grid-3,
+  .grid-2,
+  .video-grid,
+  .gallery-grid,
+  .quick-links{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .memory-grid{
+    grid-template-columns:repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 860px){
+  .figure-book-shell,
+  .artist-book-shell{
+    max-height:92vh;
+  }
+
+  .figure-book-head,
+  .artist-book-head{
+    padding:20px 64px 16px 20px;
+  }
+
+  .figure-book-stage,
+  .artist-book-stage{
+    grid-template-columns:1fr;
+  }
+
+  .figure-book-nav,
+  .artist-book-nav{
+    position:absolute;
+    bottom:14px;
+    width:44px;
+    height:44px;
+    border-radius:999px;
+    background:rgba(255,253,248,.92);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow-soft);
+    z-index:3;
+  }
+
+  .figure-book-nav.prev,
+  .artist-book-nav.prev{
+    left:14px;
+  }
+
+  .figure-book-nav.next,
+  .artist-book-nav.next{
+    right:14px;
+  }
+
+  .figure-book-page,
+  .artist-book-page{
+    grid-template-columns:1fr;
+  }
+
+  .figure-book-media,
+  .artist-book-media{
+    border-right:none;
+    border-bottom:1px solid var(--line-soft);
+    max-height:38vh;
+  }
+
+  .figure-book-text,
+  .artist-book-text{
+    padding:22px 20px 74px;
+  }
+}
+
+@media (max-width: 760px){
+  .nav{
+    display:none;
+    position:absolute;
+    top:72px;
+    left:16px;
+    right:16px;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:16px;
+    border-radius:18px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+  }
+
+  .nav.open{display:flex}
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+
+  .hero{
+    padding-top:48px;
+  }
+
+  .hero-grid,
+  .project-layout,
+  .grid-4,
+  .grid-3,
+  .grid-2,
+  .video-grid,
+  .gallery-grid,
+  .quick-links{
+    grid-template-columns:1fr;
+  }
+
+  .memory-grid{
+    grid-template-columns:repeat(3, 1fr);
+  }
+
+  .hero-card{
+    min-height:320px;
+  }
+}
+
+@media (max-width: 520px){
+  .memory-grid{
+    grid-template-columns:repeat(2, 1fr);
+  }
+
+  .container{
+    width:min(var(--max), calc(100% - 22px));
+  }
+
+  .section{
+    padding:56px 0;
+  }
+}
+  <nav class="nav" id="mainNav">
+    <a href="#projet">Le projet</a>
+    <a href="#artistes">Les artistes</a>
+    <a href="#portraits">Portraits</a>
+    <a href="#videos">Vidéos</a>
+    <a href="#ateliers">Ateliers</a>
+    <a href="#jouer">Jouer</a>
+  </nav>
+
+  <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+</div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projet">Commencer la visite</a>
+        <a class="btn btn-secondary" href="#jouer">Jouer</a>
+      </div>
+
+      <div class="quick-links">
+        <a href="#artistes" class="quick-link">
+          <strong>Rencontrer les artistes</strong>
+          <span>Biographies, démarches, œuvres</span>
+        </a>
+        <a href="#portraits" class="quick-link">
+          <strong>Voir les portraits</strong>
+          <span>Galerie et points de regard</span>
+        </a>
+        <a href="#videos" class="quick-link">
+          <strong>Regarder les vidéos</strong>
+          <span>3 capsules courtes intégrées</span>
+        </a>
+        <a href="#ateliers" class="quick-link">
+          <strong>Découvrir les ateliers</strong>
+          <span>Galerie photo sur site</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card"></div>
+  </div>
+</section>
+
+<section id="projet" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Le projet</span>
+      <h2>Un parcours entre art, mémoire et espace public</h2>
+      <p>
+        Le projet du square Thérèse et Léon Blum articule mobilité douce, valorisation paysagère,
+        mémoire locale et action artistique participative. Il accompagne la piste cyclable par
+        un parcours visuel coloré, végétal et protecteur, pensé comme une signalétique douce
+        pour les usagers.
+      </p>
+    </div>
+
+    <div class="project-layout">
+      <div class="project-panel">
+        <h3>Présentation</h3>
+        <p>
+          L’intervention vise à renforcer la lisibilité, l’attractivité et le sentiment de sécurité
+          autour d’un espace très fréquenté par les enfants, les familles et les établissements scolaires voisins.
+          La couleur, les motifs floraux et les formes inspirées de la nature prolongent l’identité végétale du square
+          jusque sur ses abords.
+        </p>
+        <p>
+          Le projet associe également un volet patrimonial et citoyen autour de figures féminines liées à Narbonne,
+          ainsi qu’une dimension participative avec les écoles, collèges, habitants, artistes et structures culturelles du territoire.
+        </p>
+      </div>
+
+      <div class="project-panel">
+        <h3>Les 4 zones</h3>
+        <div class="zones">
+          <div class="zone">
+            <strong>Zone 1</strong>
+            <span>De l’avenue Elie Sermet à l’avenue Pierre Sémard · intervention de Koralie.</span>
+          </div>
+          <div class="zone">
+            <strong>Zone 2</strong>
+            <span>De l’avenue Pierre Sémard à la rue Blida · intervention de Claire Rémy.</span>
+          </div>
+          <div class="zone">
+            <strong>Zone 3</strong>
+            <span>De la rue Blida au boulevard Condorcet · intervention de Yann Le Gall.</span>
+          </div>
+          <div class="zone">
+            <strong>Zone 4</strong>
+            <span>Le parc de la Révolution · intervention de Ratur.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="project-map">
+      <img src="img/plan_square.png" alt="Plan du parcours artistique dans le square Thérèse et Léon Blum">
+      <figcaption>Plan du parcours : zones d’intervention, repères et traversées du square.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="artistes" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Les artistes</span>
+      <h2>Des univers différents, un même lieu à habiter</h2>
+      <p>
+        Cliquez sur une carte pour ouvrir une fiche illustrée en deux pages maximum.
+      </p>
+    </div>
+
+    <div class="grid-4">
+      <article class="card artist-card artist-entry" data-artist="koralie">
+        <img src="img/Koralie-3.webp" alt="Koralie">
+        <div class="card-body">
+          <span class="tag">Artiste</span>
+          <h3>Koralie</h3>
+          <p>Ouvrir la fiche illustrée.</p>
+        </div>
+      </article>
+
+      <article class="card artist-card artist-entry" data-artist="claire-remy">
+        <img src="img/claire_remi_1.jpg" alt="Claire Rémy">
+        <div class="card-body">
+          <span class="tag">Artiste</span>
+          <h3>Claire Rémy</h3>
+          <p>Ouvrir la fiche illustrée.</p>
+        </div>
+      </article>
+
+      <article class="card artist-card artist-entry" data-artist="yann-le-gall">
+        <img src="img/Yannlegal_1.jpg" alt="Yann Le Gall">
+        <div class="card-body">
+          <span class="tag">Artiste</span>
+          <h3>Yann Le Gall</h3>
+          <p>Ouvrir la fiche illustrée.</p>
+        </div>
+      </article>
+
+      <article class="card artist-card artist-entry" data-artist="ratur">
+        <img src="img/ratur_1.jpg" alt="Ratur">
+        <div class="card-body">
+          <span class="tag">Artiste</span>
+          <h3>Ratur</h3>
+          <p>Ouvrir la fiche illustrée.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="portraits" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Portraits</span>
+      <h2>Regarder les visages du square</h2>
+      <p>
+        Cette section peut accueillir portraits, détails d’œuvres, figures féminines
+        ou galerie thématique.
+      </p>
+    </div>
+
+    <div class="grid-4">
+      <article class="card portrait-card" data-full="img/galla_p.jpeg">
+        <img src="img/galla_p.jpeg" alt="Portrait 1">
+        <div class="card-body">
+          <h3>Portrait 1</h3>
+          <p>Galla Placidia, née en 388 à Thessalonique et morte le 27 novembre 450 à Rome.</p>
+        </div>
+      </article>
+
+      <article class="card portrait-card" data-full="img/ermangarde_p.jpeg">
+        <img src="img/ermangarde_p.jpeg" alt="Portrait 2">
+        <div class="card-body">
+          <h3>Portrait 2</h3>
+          <p>Ermengarde de Narbonne, Vicomtesse de Narbonne de 1134 à 1192/1193.</p>
+        </div>
+      </article>
+
+      <article class="card portrait-card" data-full="img/francoise_p.jpeg">
+        <img src="img/francoise_p.jpeg" alt="Portrait 3">
+        <div class="card-body">
+          <h3>Portrait 3</h3>
+          <p>Françoise de Cezelli, 22 mai 1558 — 16 octobre 1615, gouverneure de Leucate.</p>
+        </div>
+      </article>
+
+      <article class="card portrait-card" data-full="img/blum_p.jpeg">
+        <img src="img/blum_p.jpeg" alt="Portrait 4">
+        <div class="card-body">
+          <h3>Portrait 4</h3>
+          <p>Thérèse Pereyra, 1881-1938, connue également sous le nom de Thérèse Blum après son mariage avec Léon Blum, est une militante socialiste française. .</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="figures" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Mémoire du lieu</span>
+      <h2>Quelques figures à découvrir</h2>
+      <p>
+        Cliquez sur une figure pour ouvrir un parcours illustré, composé d’images et de textes à feuilleter.
+      </p>
+    </div>
+
+    <div class="grid-4">
+      <article class="card figure-card figure-entry" data-figure="galla">
+        <img src="img/Galla-Placidia_1.webp" alt="Galla Placidia">
+        <div class="card-body">
+          <h4>Galla Placidia</h4>
+          <p>Ouvrir le carnet illustré.</p>
+        </div>
+      </article>
+
+      <article class="card figure-card figure-entry" data-figure="ermengarde">
+        <img src="img/ermengarde_1.webp" alt="Ermengarde">
+        <div class="card-body">
+          <h4>Ermengarde</h4>
+          <p>Ouvrir le carnet illustré.</p>
+        </div>
+      </article>
+
+      <article class="card figure-card figure-entry" data-figure="cezelli">
+        <img src="img/Cezely_3.jpg" alt="Françoise de Cezelli">
+        <div class="card-body">
+          <h4>Françoise de Cezelli</h4>
+          <p>Ouvrir le carnet illustré.</p>
+        </div>
+      </article>
+
+      <article class="card figure-card figure-entry" data-figure="blum">
+        <img src="img/Therese3.jpg" alt="Thérèse Blum">
+        <div class="card-body">
+          <h4>Thérèse Blum</h4>
+          <p>Ouvrir le carnet illustré.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="videos" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Vidéos</span>
+      <h2>3 capsules à intégrer</h2>
+      <p>
+        Remplacez les identifiants YouTube dans les iframes ci-dessous.
+        Format idéal : capsules courtes de 45 secondes à 2 minutes.
+      </p>
+    </div>
+
+    <div class="video-grid">
+      <article class="video-card">
+        <div class="video-embed">
+          <iframe src="https://youtu.be/Qe7up0UBLFY" title="Vidéo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <h3>Portrait d’artiste</h3>
+          <p>Texte d’introduction à remplacer.</p>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Vidéo 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <h3>Micro-trottoir</h3>
+          <p>Texte d’introduction à remplacer.</p>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Vidéo 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-meta">
+          <h3>Les ateliers</h3>
+          <p>Texte d’introduction à remplacer.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="ateliers" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Galerie ateliers</span>
+      <h2>Images de médiation sur site (ateliers à venir...)</h2>
+      <p>
+        Cliquez sur une image pour l’ouvrir. Remplacez les visuels et légendes.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+      <figure class="gallery-item" data-full="img/icone_ateliers.png">
+        <img src="img/icone_ateliers.png" alt="Atelier 1">
+        <figcaption class="gallery-caption">Atelier 1</figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-full="img/icone_ateliers.png">
+        <img src="img/icone_ateliers.png" alt="Atelier 2">
+        <figcaption class="gallery-caption">Atelier 2</figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-full="img/icone_ateliers.png">
+        <img src="img/icone_ateliers.png" alt="Atelier 3">
+        <figcaption class="gallery-caption">Atelier 3</figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-full="img/icone_ateliers.png">
+        <img src="img/icone_ateliers.png" alt="Atelier 4">
+        <figcaption class="gallery-caption">Atelier 4</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="reperes" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Repères</span>
+      <h2>Quelques pistes pour regarder</h2>
+      <p>
+        Cartes très courtes. À adapter selon votre angle de médiation.
+      </p>
+    </div>
+
+    <div class="grid-4">
+      <article class="card"><div class="card-body"><h3>Portrait monumental</h3><p>Comment un visage change la perception d’un lieu public.</p></div></article>
+      <article class="card"><div class="card-body"><h3>Street art</h3><p>Une pratique qui dialogue avec l’espace urbain et ses usages.</p></div></article>
+      <article class="card"><div class="card-body"><h3>Art participatif</h3><p>Quand un projet se construit aussi avec les habitants.</p></div></article>
+      <article class="card"><div class="card-body"><h3>Mémoire et transmission</h3><p>Le lieu devient support de récit, de mémoire et de rencontre.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="jouer" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Jouer</span>
+      <h2>Tester son regard</h2>
+      <p>Trois quiz pour explorer les figures historiques du parcours, plus un memory visuel.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="quiz-box">
+        <h3>Quiz express — Galla Placidia</h3>
+
+        <form class="quiz-form" data-total="7">
+          <div class="quiz-question">
+            <h4>1. En quelle année est née Galla Placidia ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="galla-q1" value="0"> 380</label>
+              <label><input type="radio" name="galla-q1" value="0"> 385</label>
+              <label><input type="radio" name="galla-q1" value="1"> 388</label>
             </div>
           </div>
-        `;
 
-        card.addEventListener('click', () => flipCard(card));
-        memoryGrid.appendChild(card);
-        return card;
-      });
+          <div class="quiz-question">
+            <h4>2. De qui est-elle la fille ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="galla-q2" value="1"> De l’empereur Théodose Ier</label>
+              <label><input type="radio" name="galla-q2" value="0"> De l’empereur Valentinien</label>
+            </div>
+          </div>
 
-      updateMemoryStatus();
-    }
+          <div class="quiz-question">
+            <h4>3. En quelle année a-t-elle été prise en otage ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="galla-q3" value="0"> 406</label>
+              <label><input type="radio" name="galla-q3" value="0"> 408</label>
+              <label><input type="radio" name="galla-q3" value="1"> 410</label>
+            </div>
+          </div>
 
-    function flipCard(card) {
-      if (flipped.length >= 2 || card.classList.contains('is-flipped') || card.classList.contains('is-matched')) return;
+          <div class="quiz-question">
+            <h4>4. Combien de fois a-t-elle été mariée ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="galla-q4" value="0"> 1 fois</label>
+              <label><input type="radio" name="galla-q4" value="1"> 2 fois avec Athaulf et Constance</label>
+              <label><input type="radio" name="galla-q4" value="0"> 3 fois</label>
+            </div>
+          </div>
 
-      card.classList.add('is-flipped');
-      flipped.push(card);
+          <div class="quiz-question">
+            <h4>5. Galla Placidia a-t-elle été régente ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="galla-q5" value="1"> Oui</label>
+              <label><input type="radio" name="galla-q5" value="0"> Non</label>
+            </div>
+          </div>
 
-      if (flipped.length === 2) {
-        moves++;
-        checkMatch();
-      }
-    }
+          <div class="quiz-question">
+            <h4>6. Quelle est la date de son décès ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="galla-q6" value="0"> 448</label>
+              <label><input type="radio" name="galla-q6" value="0"> 449</label>
+              <label><input type="radio" name="galla-q6" value="1"> 450</label>
+            </div>
+          </div>
 
-    function checkMatch() {
-      const [a, b] = flipped;
+          <div class="quiz-question">
+            <h4>7. Où est-elle inhumée ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="galla-q7" value="0"> À Ravenne</label>
+              <label><input type="radio" name="galla-q7" value="1"> À Rome</label>
+            </div>
+          </div>
 
-      if (a.dataset.image === b.dataset.image) {
-        a.classList.add('is-matched');
-        b.classList.add('is-matched');
-        matched++;
-        flipped = [];
-        updateMemoryStatus();
-      } else {
-        setTimeout(() => {
-          a.classList.remove('is-flipped');
-          b.classList.remove('is-flipped');
-          flipped = [];
-          updateMemoryStatus();
-        }, 700);
-      }
-    }
+          <button class="btn btn-primary" type="submit">Voir mon score</button>
+          <div class="quiz-result"></div>
+        </form>
+      </div>
 
-    function updateMemoryStatus() {
-      memoryStatus.textContent = `Coups : ${moves} · Paires : ${matched} / ${memoryImages.length}`;
-    }
+      <div class="quiz-box">
+        <h3>Quiz express — Ermengarde de Narbonne</h3>
 
-    restartMemory.addEventListener('click', createMemory);
+        <form class="quiz-form" data-total="6">
+          <div class="quiz-question">
+            <h4>1. En quelle année meurt le vicomte de Narbonne Aymeri II ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="ermengarde-q1" value="0"> 1133</label>
+              <label><input type="radio" name="ermengarde-q1" value="1"> 1134</label>
+              <label><input type="radio" name="ermengarde-q1" value="0"> 1135</label>
+            </div>
+          </div>
 
-    createMemory();
-  </script>
-</body>
-</html>
+          <div class="quiz-question">
+            <h4>2. Qui est Aymeri II par rapport à Ermengarde ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="ermengarde-q2" value="0"> Son frère</label>
+              <label><input type="radio" name="ermengarde-q2" value="1"> Son père</label>
+              <label><input type="radio" name="ermengarde-q2" value="0"> Son fils</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>3. Bernard d’Anduze a-t-il été l’époux d’Ermengarde de Narbonne ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="ermengarde-q3" value="1"> Oui</label>
+              <label><input type="radio" name="ermengarde-q3" value="0"> Non</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>4. Ermengarde a-t-elle été une protectrice de la vie intellectuelle et artistique ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="ermengarde-q4" value="1"> Oui</label>
+              <label><input type="radio" name="ermengarde-q4" value="0"> Non</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>5. La cour d’Ermengarde est réputée pour accueillir des médecins, des juristes et surtout des troubadours.</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="ermengarde-q5" value="1"> Vrai</label>
+              <label><input type="radio" name="ermengarde-q5" value="0"> Faux</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>6. L’abbaye de Fontfroide a-t-elle reçu d’Ermengarde une donation majeure ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="ermengarde-q6" value="1"> Oui</label>
+              <label><input type="radio" name="ermengarde-q6" value="0"> Non</label>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Voir mon score</button>
+          <div class="quiz-result"></div>
+        </form>
+      </div>
+
+      <div class="quiz-box">
+        <h3>Quiz express — Françoise de Cezelli</h3>
+
+        <form class="quiz-form" data-total="6">
+          <div class="quiz-question">
+            <h4>1. Où est née Françoise de Cezelli ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="cezelli-q1" value="0"> Avignon</label>
+              <label><input type="radio" name="cezelli-q1" value="0"> Narbonne</label>
+              <label><input type="radio" name="cezelli-q1" value="1"> Montpellier</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>2. De qui est-elle la fille ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="cezelli-q2" value="0"> Du gouverneur de Leucate</label>
+              <label><input type="radio" name="cezelli-q2" value="1"> Du président de la chambre des comptes de Montpellier</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>3. En quelle année se marie-t-elle avec Jean de Boursiez, seigneur de Pantnaut de Barri ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="cezelli-q3" value="0"> 1571</label>
+              <label><input type="radio" name="cezelli-q3" value="0"> 1572</label>
+              <label><input type="radio" name="cezelli-q3" value="1"> 1577</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>4. Quand a lieu le siège de Leucate ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="cezelli-q4" value="0"> 1588</label>
+              <label><input type="radio" name="cezelli-q4" value="1"> 1589</label>
+              <label><input type="radio" name="cezelli-q4" value="0"> 1590</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>5. En quelle année est-elle décédée ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="cezelli-q5" value="0"> 1614</label>
+              <label><input type="radio" name="cezelli-q5" value="1"> 1615</label>
+              <label><input type="radio" name="cezelli-q5" value="0"> 1616</label>
+            </div>
+          </div>
+
+          <div class="quiz-question">
+            <h4>6. Où est-elle inhumée ?</h4>
+            <div class="quiz-options">
+              <label><input type="radio" name="cezelli-q6" value="1"> À Narbonne</label>
+              <label><input type="radio" name="cezelli-q6" value="0"> À Montpellier</label>
+              <label><input type="radio" name="cezelli-q6" value="0"> À Leucate</label>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Voir mon score</button>
+          <div class="quiz-result"></div>
+        </form>
+      </div>
+
+      <div class="quiz-box">
+        <div class="memory-wrap">
+          <div class="memory-toolbar">
+            <div>
+              <h3 style="margin:0 0 6px;">Memory visuel</h3>
+              <div class="memory-status" id="memoryStatus">Coups : 0 · Paires : 0 / 4</div>
+            </div>
+            <button class="btn btn-secondary" id="restartMemory" type="button">Relancer</button>
+          </div>
+
+          <div class="memory-grid" id="memoryGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <div class="figure-book-head">
+    <div>
+      <p class="figure-book-kicker">Figures à découvrir</p>
+      <h3 id="figureBookTitle">Titre</h3>
+    </div>
+    <div class="figure-book-counter" id="figureBookCounter">1 / 1</div>
+  </div>
+
+  <div class="figure-book-stage">
+    <button class="figure-book-nav prev" id="figurePrev" aria-label="Page précédente">←</button>
+
+    <article class="figure-book-page">
+      <div class="figure-book-media">
+        <img id="figureBookImage" src="" alt="">
+      </div>
+      <div class="figure-book-text">
+        <h4 id="figureBookPageTitle">Sous-titre</h4>
+        <div id="figureBookBody"></div>
+      </div>
+    </article>
+
+    <button class="figure-book-nav next" id="figureNext" aria-label="Page suivante">→</button>
+  </div>
+</div>
+  <div class="artist-book-head">
+    <div>
+      <p class="artist-book-kicker">Les artistes</p>
+      <h3 id="artistBookTitle">Titre</h3>
+    </div>
+    <div class="artist-book-counter" id="artistBookCounter">1 / 1</div>
+  </div>
+
+  <div class="artist-book-stage">
+    <button class="artist-book-nav prev" id="artistPrev" aria-label="Page précédente">←</button>
+
+    <article class="artist-book-page">
+      <div class="artist-book-media">
+        <img id="artistBookImage" src="" alt="">
+      </div>
+      <div class="artist-book-text">
+        <h4 id="artistBookPageTitle">Sous-titre</h4>
+        <div id="artistBookBody"></div>
+      </div>
+    </article>
+
+    <button class="artist-book-nav next" id="artistNext" aria-label="Page suivante">→</button>
+  </div>
+</div>
+
+
