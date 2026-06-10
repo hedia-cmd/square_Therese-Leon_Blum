@@ -683,16 +683,40 @@
     }
 
     .figure-entry,
-    .artist-entry{
+    .artist-entry,
+    .repere-entry{
       cursor:pointer;
       transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
 
     .figure-entry:hover,
-    .artist-entry:hover{
+    .artist-entry:hover,
+    .repere-entry:hover{
       transform:translateY(-3px);
       border-color:#cbbfa8;
       box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
+    }
+
+    .repere-modal-text{
+      padding:28px;
+      overflow:auto;
+      max-height:70vh;
+    }
+
+    .repere-modal-text h4{
+      margin:0 0 16px;
+      font-size:1.22rem;
+      color:var(--text);
+    }
+
+    .repere-modal-text p{
+      margin:0 0 14px;
+      color:var(--text-soft);
+      line-height:1.72;
+    }
+
+    .repere-modal-text p:last-child{
+      margin-bottom:0;
     }
 
     .figure-book-modal,
@@ -1354,15 +1378,38 @@
           <span class="eyebrow">Repères</span>
           <h2>Quelques pistes pour regarder</h2>
           <p>
-            Cartes très courtes. À adapter selon votre angle de médiation.
+            Cliquez sur une carte pour ouvrir une fenêtre de médiation.
           </p>
         </div>
 
         <div class="grid-4">
-          <article class="card"><div class="card-body"><h3>Portrait monumental</h3><p>Comment un visage change la perception d’un lieu public.</p></div></article>
-          <article class="card"><div class="card-body"><h3>Street art</h3><p>Une pratique qui dialogue avec l’espace urbain et ses usages.</p></div></article>
-          <article class="card"><div class="card-body"><h3>Art participatif</h3><p>Quand un projet se construit aussi avec les habitants.</p></div></article>
-          <article class="card"><div class="card-body"><h3>Mémoire et transmission</h3><p>Le lieu devient support de récit, de mémoire et de rencontre.</p></div></article>
+          <article class="card repere-entry" data-repere="portrait">
+            <div class="card-body">
+              <h3>Portrait monumental</h3>
+              <p>Comment un visage change la perception d’un lieu public.</p>
+            </div>
+          </article>
+
+          <article class="card repere-entry" data-repere="street-art">
+            <div class="card-body">
+              <h3>Street art</h3>
+              <p>Une pratique qui dialogue avec l’espace urbain et ses usages.</p>
+            </div>
+          </article>
+
+          <article class="card repere-entry" data-repere="participatif">
+            <div class="card-body">
+              <h3>Art participatif</h3>
+              <p>Quand un projet se construit aussi avec les habitants.</p>
+            </div>
+          </article>
+
+          <article class="card repere-entry" data-repere="memoire">
+            <div class="card-body">
+              <h3>Mémoire et transmission</h3>
+              <p>Le lieu devient support de récit, de mémoire et de rencontre.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1571,7 +1618,7 @@
               <div class="memory-toolbar">
                 <div>
                   <h3 style="margin:0 0 6px;">Memory visuel</h3>
-                  <div class="memory-status" id="memoryStatus">Coups : 0 · Paires : 0 / 6</div>
+                  <div class="memory-status" id="memoryStatus">Coups : 0 · Paires : 0 / 4</div>
                 </div>
                 <button class="btn btn-secondary" id="restartMemory" type="button">Relancer</button>
               </div>
@@ -1656,6 +1703,24 @@
         </article>
 
         <button class="artist-book-nav next" id="artistNext" aria-label="Page suivante">→</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="figure-book-modal" id="repereModal" aria-hidden="true">
+    <div class="figure-book-shell">
+      <button class="figure-book-close" id="repereClose" aria-label="Fermer">×</button>
+
+      <div class="figure-book-head">
+        <div>
+          <p class="figure-book-kicker">Quelques pistes pour regarder</p>
+          <h3 id="repereTitle">Titre</h3>
+        </div>
+      </div>
+
+      <div class="repere-modal-text">
+        <h4 id="repereSubtitle">Sous-titre</h4>
+        <div id="repereBody"></div>
       </div>
     </div>
   </div>
@@ -2146,6 +2211,92 @@
       });
     });
 
+
+    /* ===========================
+       REPÈRES MODAL
+    =========================== */
+
+    const repereModal = document.getElementById('repereModal');
+    const repereClose = document.getElementById('repereClose');
+    const repereTitle = document.getElementById('repereTitle');
+    const repereSubtitle = document.getElementById('repereSubtitle');
+    const repereBody = document.getElementById('repereBody');
+
+    const repereData = {
+      portrait: {
+        title: 'Portrait monumental',
+        subtitle: 'Donner visage à la mémoire',
+        body: `
+          <p>Le portrait est l’un des plus anciens gestes de l’histoire de l’art : représenter une figure humaine pour retenir une présence, affirmer une identité, transmettre une mémoire. Dessiné, peint, sculpté ou photographié, il ne se limite jamais à la ressemblance. Il montre un visage, mais il raconte aussi une époque, une fonction, une position sociale, une émotion, parfois une absence. Depuis l’Antiquité, le portrait sert à conserver l’image des morts, à glorifier les puissants, à diffuser une autorité ou à inscrire une personne dans la mémoire collective.</p>
+          <p>Avec la Renaissance, le portrait devient un genre autonome. L’individu prend une place nouvelle dans l’art. Le modèle n’est plus seulement un symbole religieux ou politique : il devient une personne singulière, dotée de traits, d’un regard, d’une intériorité. Progressivement, les artistes développent différents types de portraits : portrait de face, de profil, de trois quarts, en buste, en pied, portrait intime, portrait d’apparat, portrait de famille, portrait allégorique, autoportrait. Chaque choix de cadrage produit un effet différent. Un portrait en pied impose une présence officielle ; un buste concentre l’attention sur le visage ; un cadrage serré permet de faire apparaître les émotions.</p>
+          <p>Le portrait est donc un langage. Les vêtements, les objets, les postures, les arrière-plans, les couleurs ou les gestes donnent des indices. Ils peuvent évoquer un rang, une profession, une appartenance, une valeur morale ou un territoire. Un portrait d’apparat affirme le pouvoir. Un portrait psychologique cherche à révéler une intériorité. Un autoportrait permet à l’artiste d’affirmer son existence et son statut de créateur. Le visage devient progressivement le lieu où se lisent les pensées et les sentiments, notamment à travers les expressions et les jeux d’ombre et de lumière.</p>
+          <p>Dans un parcours de médiation, le portrait permet d’entrer dans l’histoire par les visages. Il donne une présence sensible à des figures qui pourraient rester abstraites. Galla Placidia, Ermengarde de Narbonne, Françoise de Cezelli ou Thérèse Blum ne sont pas seulement des noms. Les représenter, les regarder, les associer à un lieu, c’est interroger ce que l’histoire retient ou oublie. C’est aussi poser une question politique : quels visages choisissons-nous de rendre visibles dans l’espace public ? Quelles femmes, quelles trajectoires, quelles mémoires méritent d’être transmises ?</p>
+          <p>Le portrait agit alors comme un pont entre mémoire et présent. Il invite à observer un visage, puis à chercher l’histoire derrière ce visage. Il peut susciter la curiosité, l’identification, parfois la surprise. Dans le square Thérèse et Léon Blum, les portraits féminins peuvent fonctionner comme des points d’arrêt dans le parcours : on ne traverse plus seulement un espace, on rencontre des figures. L’image devient une porte d’entrée vers un récit.</p>
+        `
+      },
+      'street-art': {
+        title: 'Street art',
+        subtitle: 'De la rue au parcours artistique',
+        body: `
+          <p>L’art urbain est né d’un geste libre, souvent illégal, parfois clandestin : inscrire une trace dans la ville. Tags, graffitis, pochoirs, collages, fresques, stickers, mosaïques, installations ou anamorphoses ont en commun de prendre la ville comme support. L’œuvre n’est pas seulement posée sur un mur : elle tient compte d’un contexte, d’une façade, d’un passage, d’une architecture, d’un quartier, d’un regard de passant. C’est ce lien au lieu qui fait de l’art urbain un art profondément contextuel.</p>
+          <p>L’art urbain vient d’origines illégales, subversives et éphémères, mais il connaît aujourd’hui une reconnaissance croissante à travers festivals, commandes publiques, commandes privées et parcours artistiques. La frontière entre vandalisme et œuvre d’art dépend du contexte, de l’époque, du support, de l’autorisation et du regard porté sur l’intervention.</p>
+          <p>Cette histoire est importante, car elle explique la force de l’art urbain. Il ne s’est pas d’abord développé dans les lieux consacrés, mais dans les interstices de la ville : murs aveugles, friches, voies ferrées, ponts, palissades, mobilier urbain. Il a donné une visibilité à des artistes autodidactes, à des cultures populaires, à des écritures graphiques issues du graffiti, du hip-hop, du pochoir ou de l’affichage. Il a aussi permis à des lieux délaissés d’être regardés autrement.</p>
+          <p>L’art urbain s’adresse directement aux passants. Il ne demande pas de billet d’entrée ni de connaissance préalable. Il apparaît dans le quotidien, parfois par surprise. Il peut être monumental ou discret, figuratif ou abstrait, politique ou poétique, durable ou voué à disparaître. Cette fragilité fait partie de son identité. Une œuvre urbaine peut être recouverte, effacée, dégradée, restaurée ou photographiée avant de disparaître. La mémoire de l’œuvre passe alors aussi par l’archive : photo, vidéo, récit, cartographie, parcours numérique.</p>
+          <p>Dans le square Thérèse et Léon Blum, l’art urbain permet de relier création contemporaine, mémoire locale et espace public. Les artistes interviennent sur un parcours vivant, fréquenté par des enfants, des familles, des cyclistes, des habitants. Les murs, les sols ou les abords ne sont plus de simples surfaces : ils deviennent des supports d’attention. L’art urbain y garde sa puissance première : transformer la ville sans l’enfermer, donner forme à ce qui circule déjà dans le lieu — des usages, des présences, des mémoires, des regards.</p>
+        `
+      },
+      participatif: {
+        title: 'Art participatif',
+        subtitle: 'Créer avec les habitants',
+        body: `
+          <p>L’art participatif repose sur une idée simple et exigeante : une œuvre peut se construire avec celles et ceux qui habitent, traversent ou pratiquent un lieu. Elle n’est plus seulement produite par un artiste, puis donnée à voir à un public. Elle naît d’une rencontre entre une démarche artistique professionnelle et des personnes qui ne se définissent pas forcément comme artistes. Les habitants, les élèves, les passants, les associations ou les usagers deviennent alors plus que des spectateurs : ils prennent part au processus, apportent une mémoire, un geste, un récit, une perception du territoire.</p>
+          <p>Ces pratiques bousculent les frontières habituelles de l’art. Elles déplacent la question de l’œuvre vers celle de la relation. Ce qui compte n’est pas uniquement l’objet final, mais aussi le chemin parcouru ensemble : les ateliers, les échanges, les hésitations, les choix partagés, les récits recueillis. L’œuvre devient la trace visible d’une expérience collective. Elle relie l’art à la vie quotidienne et permet à chacun de reconnaître une part de soi dans l’espace commun.</p>
+          <p>Mais cette forme de création reste souvent en quête de reconnaissance. Parce qu’elle associe des non-artistes, elle peut être regardée comme une action sociale, une médiation ou une animation, plutôt que comme une œuvre à part entière. Pourtant, sa force tient précisément à cette position hybride. L’artiste n’abandonne pas sa place : il propose un cadre, une forme, une exigence. Mais il accepte que l’œuvre soit traversée par d’autres voix. La création devient alors un espace de négociation sensible entre l’intention artistique et l’expérience vécue du territoire.</p>
+          <p>Dans un projet comme celui du square Thérèse et Léon Blum, cette approche prend tout son sens. Les habitants ne sont pas seulement invités à regarder une œuvre dans leur quartier. Ils peuvent contribuer à faire émerger une mémoire collective, à interroger les figures féminines mises en avant, à observer le square autrement, à inscrire leur propre regard dans le parcours. L’art participatif permet ainsi de transformer un lieu familier en espace de dialogue. Il donne de la valeur à ce qui est souvent invisible : les usages quotidiens, les souvenirs, les émotions, les récits transmis.</p>
+          <p>Participer ne signifie pas seulement faire avec ses mains. C’est aussi apprendre à regarder, à écouter, à nommer ce que l’on ressent. C’est comprendre qu’un espace public n’est pas seulement un décor, mais un lieu partagé, habité par des histoires multiples. En ce sens, l’art participatif rejoint les enjeux de démocratie culturelle : permettre à chacun d’accéder à la création, mais aussi de prendre part à la fabrication symbolique de son environnement.</p>
+        `
+      },
+      memoire: {
+        title: 'Mémoire et transmission',
+        subtitle: 'Transformer le regard sur un lieu',
+        body: `
+          <p>Créer dans l’espace public, c’est faire entrer l’art dans les lieux de passage, de rencontre et de vie quotidienne. Contrairement au musée ou à la galerie, l’espace public n’est pas un lieu réservé à l’art. Il est traversé par des usages multiples : circuler, attendre, jouer, se reposer, se retrouver, travailler, accompagner des enfants, rentrer chez soi. Lorsqu’une œuvre s’y installe, elle vient dialoguer avec ces usages. Elle peut surprendre, embellir, déranger, guider le regard ou révéler une histoire oubliée.</p>
+          <p>La création dans l’espace public répond à plusieurs objectifs : soutenir les artistes, aménager et valoriser un territoire, créer du commun, favoriser l’expression citoyenne et renforcer la démocratie culturelle. L’espace public est un lieu de tensions, mais aussi un espace essentiel de vie collective. La création peut y agir comme un miroir des préoccupations contemporaines : diversité, mémoire, écologie, égalité, place des corps, liberté d’expression.</p>
+          <p>L’art dans l’espace public modifie d’abord la perception. Une fresque, une installation, un parcours graphique ou une intervention lumineuse peuvent changer la manière dont on traverse un lieu. Un passage banal devient repère. Un mur aveugle devient surface d’imaginaire. Une piste cyclable devient parcours sensible. Un square devient support de récits. L’œuvre ne se contente pas d’occuper l’espace : elle le rend à nouveau visible.</p>
+          <p>Elle peut aussi contribuer à la valorisation d’un territoire. En révélant une identité locale, en mettant en avant des figures historiques, en associant les habitants ou en créant un parcours à découvrir, l’art public fabrique de l’attachement. Il permet aux usagers de regarder leur environnement avec plus d’attention, parfois avec plus de fierté. Mais cette valorisation ne doit pas réduire l’art à un simple outil d’attractivité ou de communication. Une œuvre dans l’espace public doit conserver sa force propre : poser des questions, ouvrir l’imaginaire, provoquer une expérience sensible.</p>
+          <p>Dans le square Thérèse et Léon Blum, cette logique permet d’articuler plusieurs dimensions : mobilité douce, mémoire féminine, paysage, street art, participation scolaire, médiation numérique. Le parcours artistique ne vient pas seulement décorer les abords du square. Il invite à ralentir, à observer, à relier les œuvres aux usages du lieu. Il transforme une traversée ordinaire en expérience de regard. Il rappelle qu’un espace public n’est jamais neutre : il raconte ce que nous choisissons de rendre visible ensemble.</p>
+        `
+      }
+    };
+
+    function openRepere(key) {
+      const data = repereData[key];
+      if (!data) return;
+      repereTitle.textContent = data.title;
+      repereSubtitle.textContent = data.subtitle;
+      repereBody.innerHTML = data.body;
+      repereModal.classList.add('open');
+      repereModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRepere() {
+      repereModal.classList.remove('open');
+      repereModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.repere-entry').forEach(el => {
+      el.addEventListener('click', () => {
+        openRepere(el.dataset.repere);
+      });
+    });
+
+    repereClose.addEventListener('click', closeRepere);
+    repereModal.addEventListener('click', (e) => {
+      if (e.target === repereModal) closeRepere();
+    });
+
     /* ===========================
        MEMORY GAME
     =========================== */
@@ -2155,11 +2306,9 @@
     const restartMemory = document.getElementById('restartMemory');
 
     const memoryImages = [
-      'img/galla_p.jpeg',
-      'img/ermangarde_p.jpeg',
-      'img/francoise_p.jpeg',
-      'img/blum_p.jpeg',
-      'img/ratur_1.jpg',
+      'img/Koralie_1.webp',
+      'img/PORTRAIT-KORALIE.jpg',
+      'img/Yannlegal_2.jpeg',
       'img/ratur4.webp'
     ];
 
