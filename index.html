@@ -232,7 +232,7 @@
       border-radius:30px;
       background:
         linear-gradient(180deg, rgba(246,243,234,.05), rgba(47,58,47,.12)),
-        url('img/facade_intro.jpg') center/cover no-repeat;
+        url('img/Koralie_4.jpg') center/cover no-repeat;
       border:1px solid var(--line);
       box-shadow:var(--shadow);
     }
@@ -329,17 +329,6 @@
       width:100%;
     }
 
-    .portrait-card{
-      cursor:pointer;
-      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-
-    .portrait-card:hover{
-      transform:translateY(-3px);
-      border-color:#cbbfa8;
-      box-shadow:0 16px 34px rgba(92, 84, 67, 0.14);
-    }
-
     .tag{
       display:inline-flex;
       padding:6px 10px;
@@ -367,29 +356,6 @@
     }
 
     .project-panel p{color:var(--muted)}
-
-    .project-map{
-      margin:20px 0 0;
-      overflow:hidden;
-      border-radius:22px;
-      background:var(--panel);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .project-map img{
-      width:100%;
-      max-height:520px;
-      object-fit:cover;
-    }
-
-    .project-map figcaption{
-      padding:14px 16px;
-      color:var(--muted);
-      font-size:.94rem;
-      background:rgba(255,253,248,.88);
-      border-top:1px solid var(--line-soft);
-    }
 
     .zones{
       display:grid;
@@ -514,14 +480,13 @@
     .lightbox.open{display:flex}
 
     .lightbox-content{
-      max-width:min(1180px, 100%);
+      max-width:min(1000px, 100%);
       max-height:100%;
       position:relative;
     }
 
     .lightbox img{
-      max-width:92vw;
-      max-height:86vh;
+      max-height:78vh;
       width:auto;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.6);
@@ -1055,7 +1020,7 @@
             </a>
             <a href="#videos" class="quick-link">
               <strong>Regarder les vidéos</strong>
-              <span>3 capsules courtes intégrées</span>
+              <span>4 capsules courtes intégrées</span>
             </a>
             <a href="#ateliers" class="quick-link">
               <strong>Découvrir les ateliers</strong>
@@ -1064,7 +1029,14 @@
           </div>
         </div>
 
-        <div class="hero-card"></div>
+        <div class="hero-card">
+          <div class="hero-card-overlay">
+            <h3>Visuel d’accueil</h3>
+            <p>
+              Cette image pointe vers un fichier du dossier <strong>img</strong>.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1097,7 +1069,7 @@
           </div>
 
           <div class="project-panel">
-            <h3>Les 4 zones</h3>
+            <h3>Les 3 zones</h3>
             <div class="zones">
               <div class="zone">
                 <strong>Zone 1</strong>
@@ -1111,18 +1083,9 @@
                 <strong>Zone 3</strong>
                 <span>De la rue Blida au boulevard Condorcet · intervention de Yann Le Gall.</span>
               </div>
-              <div class="zone">
-                <strong>Zone 4</strong>
-                <span>Le parc de la Révolution · intervention de Ratur.</span>
-              </div>
             </div>
           </div>
         </div>
-
-        <figure class="project-map">
-          <img src="img/plan_square.png" alt="Plan du parcours artistique dans le square Thérèse et Léon Blum">
-          <figcaption>Plan du parcours : zones d’intervention, repères et traversées du square.</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -1147,7 +1110,7 @@
           </article>
 
           <article class="card artist-card artist-entry" data-artist="claire-remy">
-            <img src="img/claire_remi_1.jpg" alt="Claire Rémy">
+            <img src="img/Koralie_4.jpg" alt="Claire Rémy">
             <div class="card-body">
               <span class="tag">Artiste</span>
               <h3>Claire Rémy</h3>
@@ -1187,36 +1150,28 @@
           </p>
         </div>
 
-        <div class="grid-4">
-          <article class="card portrait-card" data-full="img/galla_p.jpeg">
-            <img src="img/galla_p.jpeg" alt="Portrait 1">
+        <div class="grid-3">
+          <article class="card portrait-card">
+            <img src="img/PORTRAIT-KORALIE.jpg" alt="Portrait 1">
             <div class="card-body">
               <h3>Portrait 1</h3>
-              <p>Galla Placidia, née en 388 à Thessalonique et morte le 27 novembre 450 à Rome.</p>
+              <p>Texte court à remplacer.</p>
             </div>
           </article>
 
-          <article class="card portrait-card" data-full="img/ermangarde_p.jpeg">
-            <img src="img/ermangarde_p.jpeg" alt="Portrait 2">
+          <article class="card portrait-card">
+            <img src="img/YannLegal_3.jpeg" alt="Portrait 2">
             <div class="card-body">
               <h3>Portrait 2</h3>
-              <p>Ermengarde de Narbonne, Vicomtesse de Narbonne de 1134 à 1192/1193.</p>
+              <p>Texte court à remplacer.</p>
             </div>
           </article>
 
-          <article class="card portrait-card" data-full="img/francoise_p.jpeg">
-            <img src="img/francoise_p.jpeg" alt="Portrait 3">
+          <article class="card portrait-card">
+            <img src="img/ratur4.webp" alt="Portrait 3">
             <div class="card-body">
               <h3>Portrait 3</h3>
-              <p>Françoise de Cezelli, 22 mai 1558 — 16 octobre 1615, gouverneure de Leucate.</p>
-            </div>
-          </article>
-
-          <article class="card portrait-card" data-full="img/blum_p.jpeg">
-            <img src="img/blum_p.jpeg" alt="Portrait 4">
-            <div class="card-body">
-              <h3>Portrait 4</h3>
-              <p>Thérèse Pereyra, 1881-1938, connue également sous le nom de Thérèse Blum après son mariage avec Léon Blum, est une militante socialiste française. .</p>
+              <p>Texte court à remplacer.</p>
             </div>
           </article>
         </div>
@@ -1259,7 +1214,7 @@
           </article>
 
           <article class="card figure-card figure-entry" data-figure="blum">
-            <img src="img/Therese3.jpg" alt="Thérèse Blum">
+            <img src="img/Thérèse3.jpg" alt="Thérèse Blum">
             <div class="card-body">
               <h4>Thérèse Blum</h4>
               <p>Ouvrir le carnet illustré.</p>
@@ -1273,7 +1228,7 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Vidéos</span>
-          <h2>3 capsules à intégrer</h2>
+          <h2>4 capsules à intégrer</h2>
           <p>
             Remplacez les identifiants YouTube dans les iframes ci-dessous.
             Format idéal : capsules courtes de 45 secondes à 2 minutes.
@@ -1283,7 +1238,7 @@
         <div class="video-grid">
           <article class="video-card">
             <div class="video-embed">
-              <iframe src="https://youtu.be/Qe7up0UBLFY" title="Vidéo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="Vidéo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="video-meta">
               <h3>Portrait d’artiste</h3>
@@ -1310,6 +1265,16 @@
               <p>Texte d’introduction à remplacer.</p>
             </div>
           </article>
+
+          <article class="video-card">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Vidéo 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-meta">
+              <h3>Le square aujourd’hui</h3>
+              <p>Texte d’introduction à remplacer.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1318,31 +1283,51 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Galerie ateliers</span>
-          <h2>Images de médiation sur site (ateliers à venir...)</h2>
+          <h2>Images de médiation sur site</h2>
           <p>
             Cliquez sur une image pour l’ouvrir. Remplacez les visuels et légendes.
           </p>
         </div>
 
         <div class="gallery-grid">
-          <figure class="gallery-item" data-full="img/icone_ateliers.png">
-            <img src="img/icone_ateliers.png" alt="Atelier 1">
+          <figure class="gallery-item" data-full="img/Koralie_1.webp">
+            <img src="img/Koralie_1.webp" alt="Atelier 1">
             <figcaption class="gallery-caption">Atelier 1</figcaption>
           </figure>
 
-          <figure class="gallery-item" data-full="img/icone_ateliers.png">
-            <img src="img/icone_ateliers.png" alt="Atelier 2">
+          <figure class="gallery-item" data-full="img/PORTRAIT-KORALIE.jpg">
+            <img src="img/PORTRAIT-KORALIE.jpg" alt="Atelier 2">
             <figcaption class="gallery-caption">Atelier 2</figcaption>
           </figure>
 
-          <figure class="gallery-item" data-full="img/icone_ateliers.png">
-            <img src="img/icone_ateliers.png" alt="Atelier 3">
+          <figure class="gallery-item" data-full="img/Yannlegal_2.jpeg">
+            <img src="img/Yannlegal_2.jpeg" alt="Atelier 3">
             <figcaption class="gallery-caption">Atelier 3</figcaption>
           </figure>
 
-          <figure class="gallery-item" data-full="img/icone_ateliers.png">
-            <img src="img/icone_ateliers.png" alt="Atelier 4">
+          <figure class="gallery-item" data-full="img/YannLegal_5.jpg">
+            <img src="img/YannLegal_5.jpg" alt="Atelier 4">
             <figcaption class="gallery-caption">Atelier 4</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="img/ratur2.jpg">
+            <img src="img/ratur2.jpg" alt="Atelier 5">
+            <figcaption class="gallery-caption">Atelier 5</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="img/ratur4.webp">
+            <img src="img/ratur4.webp" alt="Atelier 6">
+            <figcaption class="gallery-caption">Atelier 6</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="img/cezelli_2.png">
+            <img src="img/cezelli_2.png" alt="Atelier 7">
+            <figcaption class="gallery-caption">Atelier 7</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-full="img/Thérèse_Léon_Blum2.webp">
+            <img src="img/Thérèse_Léon_Blum2.webp" alt="Atelier 8">
+            <figcaption class="gallery-caption">Atelier 8</figcaption>
           </figure>
         </div>
       </div>
@@ -1372,197 +1357,77 @@
         <div class="section-head">
           <span class="eyebrow">Jouer</span>
           <h2>Tester son regard</h2>
-          <p>Trois quiz pour explorer les figures historiques du parcours, plus un memory visuel.</p>
+          <p>Une première couche ludique avec un quiz et un memory.</p>
         </div>
 
         <div class="grid-2">
           <div class="quiz-box">
             <h3>Quiz express — Galla Placidia</h3>
 
-            <form class="quiz-form" data-total="7">
+            <form id="quizForm">
               <div class="quiz-question">
                 <h4>1. En quelle année est née Galla Placidia ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="galla-q1" value="0"> 380</label>
-                  <label><input type="radio" name="galla-q1" value="0"> 385</label>
-                  <label><input type="radio" name="galla-q1" value="1"> 388</label>
+                  <label><input type="radio" name="q1" value="0"> 380</label>
+                  <label><input type="radio" name="q1" value="0"> 385</label>
+                  <label><input type="radio" name="q1" value="1"> 388</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>2. De qui est-elle la fille ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="galla-q2" value="1"> De l’empereur Théodose Ier</label>
-                  <label><input type="radio" name="galla-q2" value="0"> De l’empereur Valentinien</label>
+                  <label><input type="radio" name="q2" value="1"> De l’empereur Théodose</label>
+                  <label><input type="radio" name="q2" value="0"> De l’empereur Valentinien</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>3. En quelle année a-t-elle été prise en otage ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="galla-q3" value="0"> 406</label>
-                  <label><input type="radio" name="galla-q3" value="0"> 408</label>
-                  <label><input type="radio" name="galla-q3" value="1"> 410</label>
+                  <label><input type="radio" name="q3" value="0"> 406</label>
+                  <label><input type="radio" name="q3" value="0"> 408</label>
+                  <label><input type="radio" name="q3" value="1"> 410</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>4. Combien de fois a-t-elle été mariée ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="galla-q4" value="0"> 1 fois</label>
-                  <label><input type="radio" name="galla-q4" value="1"> 2 fois avec Athaulf et Constance</label>
-                  <label><input type="radio" name="galla-q4" value="0"> 3 fois</label>
+                  <label><input type="radio" name="q4" value="0"> 1 fois</label>
+                  <label><input type="radio" name="q4" value="1"> 2 fois avec Athaulf et Constance</label>
+                  <label><input type="radio" name="q4" value="0"> 3 fois</label>
                 </div>
               </div>
 
               <div class="quiz-question">
-                <h4>5. Galla Placidia a-t-elle été régente ?</h4>
+                <h4>5. Galla Placidia a exercé la régence :</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="galla-q5" value="1"> Oui</label>
-                  <label><input type="radio" name="galla-q5" value="0"> Non</label>
+                  <label><input type="radio" name="q5" value="1"> De 425 à 437</label>
+                  <label><input type="radio" name="q5" value="0"> De 427 à 435</label>
+                  <label><input type="radio" name="q5" value="0"> De 425 à 435</label>
                 </div>
               </div>
 
               <div class="quiz-question">
                 <h4>6. Quelle est la date de son décès ?</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="galla-q6" value="0"> 448</label>
-                  <label><input type="radio" name="galla-q6" value="0"> 449</label>
-                  <label><input type="radio" name="galla-q6" value="1"> 450</label>
+                  <label><input type="radio" name="q6" value="0"> 448</label>
+                  <label><input type="radio" name="q6" value="0"> 449</label>
+                  <label><input type="radio" name="q6" value="1"> 450</label>
                 </div>
               </div>
 
               <div class="quiz-question">
-                <h4>7. Où est-elle inhumée ?</h4>
+                <h4>7. Selon les historiens, Galla Placidia a probablement été inhumée :</h4>
                 <div class="quiz-options">
-                  <label><input type="radio" name="galla-q7" value="0"> À Ravenne</label>
-                  <label><input type="radio" name="galla-q7" value="1"> À Rome</label>
+                  <label><input type="radio" name="q7" value="0"> À Ravenne</label>
+                  <label><input type="radio" name="q7" value="1"> À Rome</label>
                 </div>
               </div>
 
               <button class="btn btn-primary" type="submit">Voir mon score</button>
-              <div class="quiz-result"></div>
-            </form>
-          </div>
-
-          <div class="quiz-box">
-            <h3>Quiz express — Ermengarde de Narbonne</h3>
-
-            <form class="quiz-form" data-total="6">
-              <div class="quiz-question">
-                <h4>1. En quelle année meurt le vicomte de Narbonne Aymeri II ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="ermengarde-q1" value="0"> 1133</label>
-                  <label><input type="radio" name="ermengarde-q1" value="1"> 1134</label>
-                  <label><input type="radio" name="ermengarde-q1" value="0"> 1135</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>2. Qui est Aymeri II par rapport à Ermengarde ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="ermengarde-q2" value="0"> Son frère</label>
-                  <label><input type="radio" name="ermengarde-q2" value="1"> Son père</label>
-                  <label><input type="radio" name="ermengarde-q2" value="0"> Son fils</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>3. Bernard d’Anduze a-t-il été l’époux d’Ermengarde de Narbonne ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="ermengarde-q3" value="1"> Oui</label>
-                  <label><input type="radio" name="ermengarde-q3" value="0"> Non</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>4. Ermengarde a-t-elle été une protectrice de la vie intellectuelle et artistique ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="ermengarde-q4" value="1"> Oui</label>
-                  <label><input type="radio" name="ermengarde-q4" value="0"> Non</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>5. La cour d’Ermengarde est réputée pour accueillir des médecins, des juristes et surtout des troubadours.</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="ermengarde-q5" value="1"> Vrai</label>
-                  <label><input type="radio" name="ermengarde-q5" value="0"> Faux</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>6. L’abbaye de Fontfroide a-t-elle reçu d’Ermengarde une donation majeure ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="ermengarde-q6" value="1"> Oui</label>
-                  <label><input type="radio" name="ermengarde-q6" value="0"> Non</label>
-                </div>
-              </div>
-
-              <button class="btn btn-primary" type="submit">Voir mon score</button>
-              <div class="quiz-result"></div>
-            </form>
-          </div>
-
-          <div class="quiz-box">
-            <h3>Quiz express — Françoise de Cezelli</h3>
-
-            <form class="quiz-form" data-total="6">
-              <div class="quiz-question">
-                <h4>1. Où est née Françoise de Cezelli ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="cezelli-q1" value="0"> Avignon</label>
-                  <label><input type="radio" name="cezelli-q1" value="0"> Narbonne</label>
-                  <label><input type="radio" name="cezelli-q1" value="1"> Montpellier</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>2. De qui est-elle la fille ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="cezelli-q2" value="0"> Du gouverneur de Leucate</label>
-                  <label><input type="radio" name="cezelli-q2" value="1"> Du président de la chambre des comptes de Montpellier</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>3. En quelle année se marie-t-elle avec Jean de Boursiez, seigneur de Pantnaut de Barri ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="cezelli-q3" value="0"> 1571</label>
-                  <label><input type="radio" name="cezelli-q3" value="0"> 1572</label>
-                  <label><input type="radio" name="cezelli-q3" value="1"> 1577</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>4. Quand a lieu le siège de Leucate ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="cezelli-q4" value="0"> 1588</label>
-                  <label><input type="radio" name="cezelli-q4" value="1"> 1589</label>
-                  <label><input type="radio" name="cezelli-q4" value="0"> 1590</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>5. En quelle année est-elle décédée ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="cezelli-q5" value="0"> 1614</label>
-                  <label><input type="radio" name="cezelli-q5" value="1"> 1615</label>
-                  <label><input type="radio" name="cezelli-q5" value="0"> 1616</label>
-                </div>
-              </div>
-
-              <div class="quiz-question">
-                <h4>6. Où est-elle inhumée ?</h4>
-                <div class="quiz-options">
-                  <label><input type="radio" name="cezelli-q6" value="1"> À Narbonne</label>
-                  <label><input type="radio" name="cezelli-q6" value="0"> À Montpellier</label>
-                  <label><input type="radio" name="cezelli-q6" value="0"> À Leucate</label>
-                </div>
-              </div>
-
-              <button class="btn btn-primary" type="submit">Voir mon score</button>
-              <div class="quiz-result"></div>
+              <div id="quizResult" class="quiz-result"></div>
             </form>
           </div>
 
@@ -1678,12 +1543,12 @@
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
 
-    document.querySelectorAll('.gallery-item, .portrait-card').forEach(item => {
+    document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('click', () => {
         const full = item.getAttribute('data-full');
         const img = item.querySelector('img');
         lightboxImg.src = full;
-        lightboxImg.alt = img ? img.alt : 'Image agrandie';
+        lightboxImg.alt = img ? img.alt : 'Image atelier';
         lightbox.classList.add('open');
       });
     });
@@ -1708,7 +1573,7 @@
             title: 'Naissance et destin impérial',
             image: 'img/Galla-Placidia_1.webp',
             body: `
-              <p><strong>Aelia Galla Placidia</strong>, née en 388 à Thessalonique, est la fille de l’empereur Théodose Ier et de Galla, elle-même fille de l’empereur Valentinien.</p>
+              <p><strong>Aelia Galla Placidia</strong>, née en 388 à Thessalonique, est la fille de l’empereur Théodose Ier et de Galla, elle-même fille de l’empereur Valentinien Ier.</p>
               <p>Fille et petite-fille d’empereur, elle appartient au cœur de la dynastie théodosienne. Demi-sœur d’Arcadius et d’Honorius, elle grandit dans l’univers de la cour impériale, d’abord à Constantinople, puis dans un Empire romain d’Occident fragilisé.</p>
               <p>En 410, lors du sac de Rome par les Wisigoths, Galla Placidia est prise en otage. Cet événement marque un tournant décisif dans sa vie politique et personnelle.</p>
             `
@@ -1718,7 +1583,7 @@
             image: 'img/Placidia_2.jpg',
             body: `
               <p>Après avoir été emmenée par les Wisigoths, Galla Placidia épouse leur roi, <strong>Athaulf</strong>, d’abord selon le rite germanique en 411, puis selon le rite romain à Narbonne en 414.</p>
-              <p>Ce mariage entre une princesse impériale romaine et un chef barbare, une première, frappe profondément les contemporains. La même année, elle donne naissance à une fille, puis en 415 à Barcelone à un fils, Théodose, qui meurt quelques mois plus tard.</p>
+              <p>Ce mariage entre une princesse impériale romaine et un chef barbare, une première, frappe profondément les contemporains. La même année, elle donne naissance à une fille, Clotilde de Wisigothie, puis en 415 à Barcelone à un fils, Théodose, qui meurt quelques mois plus tard.</p>
               <p>Quelques semaines plus tard, Athaulf est assassiné. Galla Placidia subit alors l’humiliation imposée par le roi Sigéric avant d’être finalement rendue au pouvoir romain. En 417, elle rejoint Ravenne, où Honorius lui impose un second mariage avec Constance.</p>
             `
           },
@@ -1836,7 +1701,7 @@
         pages: [
           {
             title: 'Naissance et milieu familial',
-            image: 'img/Therese3.jpg',
+            image: 'img/Thérèse3.jpg',
             body: `
               <p><strong>BLUM Thérèse, née Peyrera (1881-1938)</strong></p>
               <p>(Hélène) Thérèse Pereyra voit le jour le 11 août 1881, à Saint-Germain-en-Laye (Yvelines). Issue d’une famille de la bourgeoisie intellectuelle juive, elle est la fille de Marie Mayer et d’Abraham Pereyra.</p>
@@ -1845,7 +1710,7 @@
           },
           {
             title: 'Une femme libre et engagée',
-            image: 'img/Therese2.webp',
+            image: 'img/Thérèse_Léon_Blum2.webp',
             body: `
               <p>Mariée en 1908 à Edmond Mayrargues, agent de change, Thérèse Blum est décrite comme énergique et décidée, à la fois musicienne et sportive.</p>
               <p>Elle mène une vie libre, conduit sa voiture et fréquente les cercles aisés et cultivés, où elle rencontre en 1911 le critique littéraire et dramatique Léon Blum.</p>
@@ -1854,7 +1719,7 @@
           },
           {
             title: 'La “citoyenne Blum”',
-            image: 'img/Therese3.jpg',
+            image: 'img/Thérèse3.jpg',
             body: `
               <p>Après la mort de la première épouse de Léon Blum, elle l’épouse en 1931.</p>
               <p>Militante socialiste acharnée, elle est surnommée la <em>« citoyenne Blum »</em>.</p>
@@ -1896,7 +1761,7 @@
         pages: [
           {
             title: 'Biographie',
-            image: 'img/claire_remi_1.jpg',
+            image: 'img/Koralie_4.jpg',
             body: `
               <p>Diplômée des arts appliqués et des métiers d’art en graphisme, Claire Rémy développe très tôt une pratique artistique diversifiée. Après une première expérience en agence de communication à Lyon, elle voyage à travers le monde et vit notamment un an en Inde.</p>
               <p>De retour à Lyon, elle ouvre un atelier-boutique en centre-ville, où elle réalise peintures, sculptures, artisanat d’art, bijoux et vêtements. C’est aussi à cette période qu’elle commence à produire des fresques murales.</p>
@@ -1905,7 +1770,7 @@
           },
           {
             title: 'Ancrage à Narbonne',
-            image: 'img/claire_remi_2',
+            image: 'img/Koralie-3.webp',
             body: `
               <p>Aujourd’hui installée à Narbonne, Claire Rémy enseigne les arts plastiques et la céramique au Patio des Arts depuis neuf ans. Elle intervient également dans les écoles de Narbonne et du Grand Narbonne, où elle mène de nombreux projets artistiques participatifs.</p>
               <p>Son travail a été présenté dans de nombreuses expositions, individuelles et collectives. Dans le projet, elle signe l’intervention visuelle de la zone 2.</p>
@@ -2116,34 +1981,30 @@
        QUIZ
     =========================== */
 
-    document.querySelectorAll('.quiz-form').forEach(form => {
-      const quizResult = form.querySelector('.quiz-result');
+    const quizForm = document.getElementById('quizForm');
+    const quizResult = document.getElementById('quizResult');
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    quizForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-        let score = 0;
-        const total = Number(form.dataset.total || 0);
-        const groups = new Set(
-          Array.from(form.querySelectorAll('input[type="radio"]')).map(input => input.name)
-        );
+      let score = 0;
+      const total = 7;
 
-        groups.forEach(name => {
-          const answer = form.querySelector(`input[name="${name}"]:checked`);
-          if (answer && answer.value === "1") score++;
-        });
+      for (let i = 1; i <= total; i++) {
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (answer && answer.value === "1") score++;
+      }
 
-        quizResult.style.display = 'block';
-        quizResult.innerHTML = `<strong>Score :</strong> ${score} / ${total}`;
+      quizResult.style.display = 'block';
+      quizResult.innerHTML = `<strong>Score :</strong> ${score} / ${total}`;
 
-        if (score === total) {
-          quizResult.innerHTML += `<br>Excellent, regard affûté.`;
-        } else if (score >= Math.ceil(total / 2)) {
-          quizResult.innerHTML += `<br>Bon niveau, continuez l’exploration.`;
-        } else {
-          quizResult.innerHTML += `<br>À revoir sur le parcours.`;
-        }
-      });
+      if (score === total) {
+        quizResult.innerHTML += `<br>Excellent, regard affûté.`;
+      } else if (score >= 4) {
+        quizResult.innerHTML += `<br>Bon niveau, continuez l’exploration.`;
+      } else {
+        quizResult.innerHTML += `<br>À revoir sur le parcours.`;
+      }
     });
 
     /* ===========================
@@ -2155,9 +2016,11 @@
     const restartMemory = document.getElementById('restartMemory');
 
     const memoryImages = [
-      'img/Koralie_1.webp',
-      'img/PORTRAIT-KORALIE.jpg',
-      'img/Yannlegal_2.jpeg',
+      'img/galla_p.jpeg',
+      'img/ermangarde_p.jpeg',
+      'img/francoise_p.jpeg',
+      'img/blum_p.jpeg',
+      'img/ratur_1.jpg',
       'img/ratur4.webp'
     ];
 
